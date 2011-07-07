@@ -4,8 +4,8 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 #My introduced settings
-MYFILEPATH="/home/ben/Desktop/depression_website/cbt/"
-MYDIRNAME="CBT-Toolkit"
+MYFILEPATH="/home/ben/Desktop/depression_website/CBT-Toolkit/"
+MYDIRNAME="cbt"
 MYMEDIAURL="Media"
 MYAPPURL=""
 
