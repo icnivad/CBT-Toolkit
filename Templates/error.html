@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} CBT Toolkit Dashboard {% endblock title %}
+{% block login %} 
+{% if logged_in %}
+	<div id='login_message'>
+		Welcome {{username}}, you are now logged in! <a href="/logout">Sign Out</a>
+	</div>
+{% else %}
+	<div id="login_message">
+		<form action="login" method="POST" id='signin'>
+			{% csrf_token %}
+			Username: {{loginform.username}}
+			Password: {{loginform.password}}
+			<a href="javascript:;" class="button submit"><span>Sign In</span></a>
+		</form>
+	</div>
+{% endif %}
+
+{% endblock %}
+{% block content %}
+	<div class="header page">
+		<h1>We're sorry, this page does not exist yet</h1>
+	</div>
+	<div class="padding">
+		I'm afraid this page isn't ready yet.  Head on back to the <a href="/">Main Page</a>.
+	</div>
+	<div class="bottom"></div>
+{% endblock %}

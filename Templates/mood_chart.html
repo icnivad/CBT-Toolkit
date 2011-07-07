@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} Mood Chart {% endblock title %}
+{% block header %}
+	<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="/Media/jqplot/excanvas.min.js"></script><![endif]-->
+	<script language="javascript" type="text/javascript" src="/Media/jqplot/jquery.jqplot.min.js"></script>
+	<script type="text/javascript" src="/Media/jqplot/plugins/jqplot.dateAxisRenderer.min.js"></script>
+	<script type="text/javascript" src="/Media/jqplot/plugins/jqplot.highlighter.min.js"></script>
+	<script type="text/javascript" src="/Media/jqplot/plugins/jqplot.cursor.min.js"></script>
+	<script language="javascript" type="text/javascript" src="/Media/javascripts/mood_chart.js"></script>
+	<link rel="stylesheet" type="text/css" href="/Media/jqplot/jquery.jqplot.min.css" />
+	
+{% endblock %}
+{% block login %} 
+{% if logged_in %}
+	<div id='login_message'>
+		Welcome {{username}}, you are now logged in! <a href="/logout">Sign Out</a>
+	</div>
+{% else %}
+	<div id="login_message">
+		<a href="/login">Log In</a> <a href="/signup">Sign Up</a>
+	</div>
+{% endif %}
+
+{% endblock %}
+{% block content %}
+	<div class="header page">
+		<h1>Mood Chart</h1>
+		<ul>
+			<li><a href="/">Return to Dashboard</a></li>
+		</ul>
+	</div>
+	<div class="padding">
+		<div class="mood_chart">
+			<div id="chartdiv"></div>
+		</div>
+	</div>
+	<div class="bottom"></div>
+{% endblock %}

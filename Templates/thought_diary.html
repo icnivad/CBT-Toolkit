@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %} CBT Toolkit Dashboard {% endblock title %}
+{% block login %} 
+{% if logged_in %}
+	<div id='login_message'>
+		Welcome {{username}}, you are now logged in! <a href="/logout">Sign Out</a>
+	</div>
+{% else %}
+	<div id="login_message">
+		<a href="/login">Log In</a><a href="/signup">Sign Up</a>
+	</div>
+{% endif %}
+
+{% endblock %}
+{% block content %}
+	<div class="header page">
+		<h1>Thought Diary</h1>
+		<ul>
+			<li><a href="/chart">Mood Chart</a></li>
+			<li><a href="/track">Track Your Mood</a></li>
+			<li><a href="/">Return to Main Page</a></li>
+		</ul>
+	</div>
+	<div class="padding">
+		<form action="/thought" method="POST">
+			{% csrf_token %}
+			<div class="form_field">
+			<div class="thought_label">Add your thought:</div>
+			{{form.thought}}
+			</div>
+			<h5>If you'd like, you can add the following optional information as well.</h5>
+			<div class="inline">
+				<div class="form_field_inline">
+					<div class="label">Mood(0-10): </div>
+					{{moodForm.mood}}
+				</div>
+				<div class="form_field_inline">
+					<div class="label">Feeling: </div>
+					{{moodForm.feeling}}
+				</div>
+				<div class="form_field_inline last">
+					<div class="label">What topic are you thinking about?: </div>
+					{{form.category}}
+				</div>
+			</div>
+			<div class="form_field">
+				<div class="label">What was the situation?: </div>
+				{{form.situation}}
+			</div>
+			<div class="submit_thought">
+				<a href="javascript:;" class="button submit"><span>Add Thought</span></a>
+			</div>
+		</form>
+		<div class="text_header">Thoughts</div>
+	<table class='thoughts'>
+		<tr class="thought_header">
+			<td class='time'><span class='time'>Date</span></td>
+			<td class='thought'><span class='thought'>Thought</span></td>
+			<td class="mood"><span>Mood</span></td>
+			<td class="feeling"><span>Feeling</span></td>
+			<td class="category"><span>Category</span></td>
+			<td>Actions</td>
+		</tr>	
+		{% for thought in thoughts reversed %}
+			<tr class="thought_box">
+				<td class='id'>{{thought.pk}}</td>
+				<td class='time'><span class='time'>{{thought.pretty_date}}</span></td>
+				<td class='thought'><span class='thought'>{{thought.thought}}</span></td>
+				<td class="mood"><span>{{thought.get_mood.mood}}</span></td>
+				<td class="feeling"><span>{{thought.get_mood.feeling}}</span></td>
+				<td class="category"><span>{{thought.get_category_display}}</span></td>
+				<td><a class='action_thought' href="/delete">Delete</a></td>
+			</tr> 
+		{% endfor %}
+	    </table>
+	</div>
+	<div class="bottom"></div>
+{% endblock %}

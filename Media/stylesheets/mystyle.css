@@ -1,0 +1,129 @@
+/**********************
+**** Thought Diary *******
+***************************/
+
+form #id_thought {
+	width:700px;
+	height:75px;
+}
+
+form #id_situation {
+	width:700px;
+	height:75px;
+	margin: 5px 0px 10px
+}
+
+div.label {
+	color:#888888;
+}
+
+div.thought_label {
+	color:#363636;
+	font-size:17px;
+}
+
+form #id_mood {
+	border-color:#D6D6D6;
+	border-width:1px;
+	border-style:solid;
+	width:200px;
+	height:25px;
+}
+
+.form_field_inline{
+	float:left;
+	margin:0px 10px 10px;
+}
+
+.form_field_inline select{
+	width:200px
+}
+
+.last{
+	float:none;
+}
+
+.inline {
+	width:700px;
+}
+
+.submit_thought, .submit_items {
+	position:relative;
+	margin: 15px 0px 25px;
+	left:50px;
+}
+
+#login_message{
+	position:absolute;
+	top:15px;
+	left:400px;
+}
+
+.text_header {
+		position:relative;
+		margin: 50px 0px 20px;
+		left: 250px;
+		font-size:30px;
+}
+
+.thoughts {
+	list-style:none;
+}
+
+tr.thought_box {
+	width:700px;
+	margin:40px 50px;
+}
+
+td {
+	padding:0px 20px;
+}
+
+td.thought{
+	width:250px;
+}
+
+div.situation {
+	left:100px;
+}
+
+td.id {
+	display:none;
+}
+
+
+/**********************
+**** Signup Page *******
+***************************/
+
+p.signup_note {
+	margin: 10px 0px;
+}
+
+form.signup div {
+	margin: 10px;
+}
+
+form.signup div.submit {
+	margin:20px 10px;
+}
+
+/**********************
+**** mood chart *******
+***************************/
+.mood_chart #chartdiv {
+	height:400px;
+	width:800px;
+}
+
+/**********************
+**** track mood *******
+***************************/
+div.item {
+	margin: 10px 10px; 
+}
+
+div.track_item span {
+	padding: 15 px;
+	color:blue;
+}

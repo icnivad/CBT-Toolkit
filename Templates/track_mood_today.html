@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %} CBT Toolkit Dashboard {% endblock title %}
+{% block login %} 
+{% if logged_in %}
+	<div id='login_message'>
+		Welcome {{username}}, you are now logged in! <a href="/logout">Sign Out</a>
+	</div>
+{% else %}
+	<div id="login_message">
+		<a href="/login">Log In</a><a href="/signup">Sign Up</a>
+	</div>
+{% endif %}
+
+{% endblock %}
+{% block content %}
+	<div class="header page">
+		<h1>Track Your Mood</h1>
+		<ul>
+			<li><a href="/chart">Mood Chart</a></li>
+			<li><a href="/thought_diary">Thought Diary</a></li>
+			<li><a href="/">Return to Dashboard</a></li>
+		</ul>
+	</div>
+	<div class="padding">
+		What was today like?  Update us on what you've been up to.  
+		<div class="track_item">
+		Did you get any exercise?
+		<span>Yes</span><span>No</span><span>Not sure</span>
+		</div>
+		<div class="track_item">
+		Did you get at least 8 hours of sleep?
+		<span>Yes</span><span>No</span><span>Not sure</span>
+		</div>
+		<div class="track_item">
+		Did you hang out with one of your friends?
+		<span>Yes</span><span>No</span><span>Not sure</span>
+		</div>
+		<div class="track_item">
+		Did you watch any TV?
+		<span>Yes</span><span>No</span><span>Not sure</span>
+		</div>
+		<div class="track_item">
+		Did you wake up early?
+		<span>Yes</span><span>No</span><span>Not sure</span>
+		</div>
+		<input type="submit" value="Submit"/>
+	</div>
+	<div class="bottom"></div>
+{% endblock %}

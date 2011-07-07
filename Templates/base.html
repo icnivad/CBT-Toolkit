@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="/Media/stylesheets/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/Media/stylesheets/green-blue.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/Media/stylesheets/mystyle.css" media="screen" />  
+    <script type="text/javascript" src="/Media/javascripts/jquery.js"></script>
+    <script type="text/javascript" src="/Media/javascripts/site.js"></script>
+    <script type="text/javascript" src="/Media/javascripts/demo.js"></script>
+    <script type="text/javascript" src="/Media/javascripts/script.js"></script>
+    {%block header %}{% endblock %}
+ </head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div class="page">
+			{%block login %}{% endblock %}
+			<a href="index.html" class="logo">CBTToolkit</a>
+			
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/about">About</a></li>
+				<li><a href="/blog">Blog</a></li>
+				<li><a href="contact">Contact</a></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div id="page">
+		<div class="top"></div>
+		<div class="content">
+			{% block content %}{% endblock %}
+		</div>
+	</div>
+	<div id="footer" class="page">
+	<p>Copyright 2011 CBTToolkit.com.</p>
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/about">About</a></li>
+			<li><a href="/blog">Blog</a></li>
+			<li><a href="contact">Contact</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+</div>
+</body>
+</html>
