@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} CBT Toolkit Dashboard {% endblock title %}
+{% block login %} 
+{% if logged_in %}
+	<div id='login_message'>
+		Welcome {{username}}, you are now logged in! <a href="/logout">Sign Out</a>
+	</div>
+{% else %}
+	<div id="login_message">
+		<a href="/login">Log In</a><a href="/signup">Sign Up</a>
+	</div>
+{% endif %}
+
+{% endblock %}
+{% block content %}
+	<div class="header page">
+		<h1>Track Your Mood</h1>
+		<ul>
+			<li><a href="/thought_diary">Thought Diary</a></li>
+			<li><a href="/">Return to Dashboard</a></li>
+		</ul>
+	</div>
+	<div class="padding">
+		<h2>Get Started</h2>
+		List a few things that you'd like to track.  Common items to track include sleep, coffee, medications, and exercise.  
+		<form action="" method="POST">
+			<div class='item'> 1) <input id="item1"/> </div>
+			<div class='item'> 2) <input id="item2"/> </div>
+			<div class='item'> 3) <input id="item3"/> </div>
+			<div class='item'> 4) <input id="item4"/> </div>
+			<div class='item'> 5) <input id="item5"/> </div>
+			<div class="submit_items">
+				<a href="javascript:;" class="button submit"><span>Get Started</span></a>
+			</div>
+		</form>
+
+	</div>
+	<div class="bottom"></div>
+{% endblock %}
