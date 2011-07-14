@@ -1,10 +1,11 @@
 # Django settings for cbt project.
-
+import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 #My introduced settings
-MYFILEPATH="/home/ben/Desktop/depression_website/CBT-Toolkit/"
+currentDir=os.getcwd()
+MYFILEPATH=os.path.dirname(currentDir)+"/"
 MYDIRNAME="cbt"
 MYMEDIAURL="Media"
 MYAPPURL=""
