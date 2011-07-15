@@ -132,9 +132,10 @@ def trackView(request):
 		c={'logged_in':logged_in, 'username':username, 'items':items}
 		c.update(csrf(request))
 		if request.user.get_profile().startedTracking==False:
-			return render(request, "track_mood_first.html", c)
+			return redirect("/track/new")
 		else:
 			items=TrackItem.objects.filter(user=request.user)
+			c.update({'items':items})
 			return render(request, "track_mood.html", c)
 
 def newTrackView(request):
@@ -148,6 +149,9 @@ def newTrackView(request):
 					print nitem
 			except:
 				pass
+		profile=request.user.get_profile()
+		profile.startedTracking=True
+		profile.save()
 	else:
 		logged_in=False
 		username=""
