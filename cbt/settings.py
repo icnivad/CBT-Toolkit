@@ -10,6 +10,9 @@ MYDIRNAME="cbt"
 MYMEDIAURL="Media"
 MYAPPURL=""
 
+#user profiles
+AUTH_PROFILE_MODULE='thought_diary.UserProfile'
+
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )

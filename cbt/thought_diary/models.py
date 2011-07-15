@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__),"helper_functions"))
@@ -97,3 +98,12 @@ class Thought(models.Model):
 			return mood
 		except:
 			return ""
+			
+class UserProfile(models.Model):
+	user=models.ForeignKey(User, unique=True)
+	startedTracking=models.BooleanField(default=False)
+	
+def create_user_profile(sender, instance, created, **kwargs):
+	profile, new=UserProfile.objects.get_or_create(user=instance)
+
+post_save.connect(create_user_profile, sender=User)

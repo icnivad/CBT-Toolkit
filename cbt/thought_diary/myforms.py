@@ -41,6 +41,7 @@ class ThoughtForm(ModelForm):
 		exclude=('user', 'datetime', 'share', 'issue')
 		widgets={
 			'thought':forms.Textarea(attrs={'class':'text_field'}),
+			'note':forms.Textarea(attrs={'class':'text_field'}),
 			'situation':forms.Textarea(attrs={'class':'text_field'}),
 		}
 		

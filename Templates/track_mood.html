@@ -16,25 +16,19 @@
 	<div class="header page">
 		<h1>Track Your Mood</h1>
 		<ul>
-			<li><a href="/chart">Mood Chart</a></li>
-			<li><a href="/thought_diary">Thought Diary</a></li>
-			<li><a href="/">Return to Dashboard</a></li>
+			<li><a href="/thought">Thought Diary</a></li>
+			<li><a href="/">Return to Main Page</a></li>
 		</ul>
 	</div>
 	<div class="padding">
-		<h2>Get Started</h2>
-		List a few things that you'd like to track.  Common items to track include sleep, coffee, medications, and exercise.  
-		<form action="" method="POST">
-			<div class='item'> 1) <input id="item1"/> </div>
-			<div class='item'> 2) <input id="item2"/> </div>
-			<div class='item'> 3) <input id="item3"/> </div>
-			<div class='item'> 4) <input id="item4"/> </div>
-			<div class='item'> 5) <input id="item5"/> </div>
-			<div class="submit_items">
-				<a href="javascript:;" class="button submit"><span>Get Started</span></a>
+		<a href="track/new">Start here if you're new</a>
+		{% for item in items %}
+			<div class="item">
+				{{item}}
+				<div class="response"><span>Yes</span><span>No</span><span>Not sure</span></div>
 			</div>
-		</form>
-
+		{% endfor %}
+		<input type="submit" value="Submit"/>
 	</div>
 	<div class="bottom"></div>
 {% endblock %}

@@ -120,45 +120,43 @@ def thoughtView(request):
 			logged_in=True
 			username=request.user.username
 		c={'form':form, 'moodForm':moodForm, 'thoughts':thoughts, 'logged_in':logged_in, 'username':username}
-		return render(request, "thought_diary.html", c)
+		return render(request, "thought.html", c)
 
+def trackView(request):
+	logged_in=False
+	username=""
+	items=[]
+	if request.user.is_authenticated():
+		logged_in=True
+		username=request.user.username
+		c={'logged_in':logged_in, 'username':username, 'items':items}
+		c.update(csrf(request))
+		if request.user.get_profile().startedTracking==False:
+			return render(request, "track_mood_first.html", c)
+		else:
+			items=TrackItem.objects.filter(user=request.user)
+			return render(request, "track_mood.html", c)
 
-def simpleThoughtView(request):
+def newTrackView(request):
 	if request.method=="POST":
-		form=ThoughtForm(request.POST)
-		moodForm=MoodForm(request.POST)
-		if form.is_valid():
-			temp=form.save(commit=False)
-			temp.user=request.user
-			temp.save()
-		else:
-			print 'invalid'
-		if moodForm.is_valid():
-			temp=moodForm.save(commit=False)
-			temp.user=request.user
-			temp.save()
-			return redirect("/simple")
-		else:
-			print 'invalid'
+		for i in [1, 2, 3, 4, 5]:
+			try:
+				itemString=request.POST['item'+str(i)]
+				if itemString!="":
+					nitem=TrackItem(user=request.user, item=itemString)
+					nitem.save()
+					print nitem
+			except:
+				pass
 	else:
-		form=ThoughtForm()
-		moodForm=MoodForm()
-		thoughts=Thought.objects.order_by('datetime')
 		logged_in=False
 		username=""
 		if request.user.is_authenticated():
 			logged_in=True
 			username=request.user.username
-		c={'form':form, 'moodForm':moodForm, 'thoughts':thoughts, 'logged_in':logged_in, 'username':username}
-		return render(request, "simple_thoughts.html", c)
-
-def trackView(request):
-	logged_in=False
-	username=""
-	if request.user.is_authenticated():
-		logged_in=True
-		username=request.user.username
-	return render(request, "track_mood_today.html", {'logged_in':logged_in, 'username':username})
+		c={'logged_in':logged_in, 'username':username}
+		c.update(csrf(request))
+		return render(request, "track_mood_first.html", c)
 	
 def errorView(request):
 	logged_in=False
