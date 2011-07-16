@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %} CBT Toolkit Dashboard {% endblock title %}
+{% block title %} CBT Toolkit {% endblock title %}
 {% block login %} 
 {% if logged_in %}
 	<div id='login_message'>
-		Welcome {{username}}, you are now logged in! <a href="/logout">Sign Out</a>
+		Welcome {{request.user.username}}, you are now logged in! <a href="/logout">Sign Out</a>
 	</div>
 {% else %}
 	<div id="login_message">
@@ -19,7 +19,7 @@
 {% endblock %}
 {% block content %}
 	<div class="header page">
-		<h1>Welcome to CBT Toolkit</h1>
+		<h1>Welcome to CBT Toolkit!</h1>
 	</div>
 	<div class="padding">
 		<form action="/signup" method="POST" class="signup">

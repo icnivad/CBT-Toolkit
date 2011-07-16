@@ -21,7 +21,7 @@ def mainView(request):
 		username=request.user.username
 		c={'logged_in':logged_in, 'username':username}
 		c.update(csrf(request))
-		return render(request, "dashboard.html", c)
+		return redirect("/thought")
 	else:
 		loginForm=LoginForm()
 		signupForm=CreateUserForm()
@@ -56,13 +56,17 @@ def signupAction(request):
 		if form.is_valid():
 			username=form.cleaned_data['username']
 			password=form.cleaned_data['password']
-			pass
+			email=form.cleaned_data['email']
+			user=User.objects.create_user(username=username, email=email, password=password) 
+			user.save()
 		else:
-			pass #not valid signup
-		
+			c={'logged_in':logged_in, 'username':username, 'loginform':LoginForm(), 'signupform':form}
+			c.update(csrf(request))
+			return render(request, "main.html", c)
+				
 def logoutView(request):
 	logout(request)
-	return render(request, "logout.html")
+	return redirect("/")
 
 def deleteThought(request):
 	if request.method=="POST":
@@ -76,22 +80,6 @@ def deleteThought(request):
 				thought.delete()
 				thoughts=Thought.objects.all()
 				return render(request, "thought_list.html", {'thoughts':thoughts})
-
-def chartView(request):
-	mood_data=""
-	logged_in=False
-	username=""
-	if request.user.is_authenticated():
-		logged_in=True
-		username=request.user.username
-	return render(request, "mood_chart.html", {'logged_in':logged_in, 'username':username})
-
-def moodData(request):
-	moods=Mood.objects.all()
-	moodData=[]
-	for mood in moods:
-		moodData.append([mood.datetime.strftime('%Y-%m-%d %I%p'), mood.mood])
-	return HttpResponse(simplejson.dumps(moodData))
 	
 def thoughtView(request):
 	if request.method=="POST":
@@ -113,7 +101,7 @@ def thoughtView(request):
 	else:
 		form=ThoughtForm()
 		moodForm=MoodForm()
-		thoughts=Thought.objects.order_by('datetime')
+		thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
 		logged_in=False
 		username=""
 		if request.user.is_authenticated():
@@ -122,60 +110,6 @@ def thoughtView(request):
 		c={'form':form, 'moodForm':moodForm, 'thoughts':thoughts, 'logged_in':logged_in, 'username':username}
 		return render(request, "thought.html", c)
 
-def trackView(request):
-	if request.method=="POST":
-		for key, value in request.POST.iteritems():
-			if key.startswith("item"):
-				key=int(key.split(":")[1])
-				item=TrackItem.objects.get(pk=key)
-				dt=datetime.datetime.now()
-				if value=="yes":
-					itemstatus=TrackItemStatus(user=request.user, item=item, value=True, datetime=dt)
-				elif value=="no":
-					itemstatus=TrackItemStatus(user=request.user, item=item, value=False, datetime=dt)
-				else:
-					itemstatus=TrackItemStatus(user=request.user, item=item, datetime=dt)
-				itemstatus.save()
-	else:
-		logged_in=False
-		username=""
-		items=[]
-		if request.user.is_authenticated():
-			logged_in=True
-			username=request.user.username
-			c={'logged_in':logged_in, 'username':username, 'items':items}
-			c.update(csrf(request))
-			if request.user.get_profile().startedTracking==False:
-				return redirect("/track/new")
-			else:
-				items=TrackItem.objects.filter(user=request.user)
-				c.update({'items':items})
-				return render(request, "track_mood.html", c)
-
-def newTrackView(request):
-	if request.method=="POST":
-		for i in [1, 2, 3, 4, 5]:
-			try:
-				itemString=request.POST['item'+str(i)]
-				if itemString!="":
-					nitem=TrackItem(user=request.user, item=itemString)
-					nitem.save()
-					print nitem
-			except:
-				pass
-		profile=request.user.get_profile()
-		profile.startedTracking=True
-		profile.save()
-	else:
-		logged_in=False
-		username=""
-		if request.user.is_authenticated():
-			logged_in=True
-			username=request.user.username
-		c={'logged_in':logged_in, 'username':username}
-		c.update(csrf(request))
-		return render(request, "track_mood_first.html", c)
-	
 def errorView(request):
 	logged_in=False
 	username=""
