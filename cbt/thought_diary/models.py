@@ -38,7 +38,7 @@ class TrackItemStatus(models.Model):
 	item=models.ForeignKey('TrackItem')
 	value=models.NullBooleanField(blank=True, null=True)
 	def __unicode__(self):
-		return str(self.item+": "+str(self.value))
+		return str(self.item)+": "+str(self.value)
 
 
 class Thought(models.Model):

@@ -123,20 +123,34 @@ def thoughtView(request):
 		return render(request, "thought.html", c)
 
 def trackView(request):
-	logged_in=False
-	username=""
-	items=[]
-	if request.user.is_authenticated():
-		logged_in=True
-		username=request.user.username
-		c={'logged_in':logged_in, 'username':username, 'items':items}
-		c.update(csrf(request))
-		if request.user.get_profile().startedTracking==False:
-			return redirect("/track/new")
-		else:
-			items=TrackItem.objects.filter(user=request.user)
-			c.update({'items':items})
-			return render(request, "track_mood.html", c)
+	if request.method=="POST":
+		for key, value in request.POST.iteritems():
+			if key.startswith("item"):
+				key=int(key.split(":")[1])
+				item=TrackItem.objects.get(pk=key)
+				dt=datetime.datetime.now()
+				if value=="yes":
+					itemstatus=TrackItemStatus(user=request.user, item=item, value=True, datetime=dt)
+				elif value=="no":
+					itemstatus=TrackItemStatus(user=request.user, item=item, value=False, datetime=dt)
+				else:
+					itemstatus=TrackItemStatus(user=request.user, item=item, datetime=dt)
+				itemstatus.save()
+	else:
+		logged_in=False
+		username=""
+		items=[]
+		if request.user.is_authenticated():
+			logged_in=True
+			username=request.user.username
+			c={'logged_in':logged_in, 'username':username, 'items':items}
+			c.update(csrf(request))
+			if request.user.get_profile().startedTracking==False:
+				return redirect("/track/new")
+			else:
+				items=TrackItem.objects.filter(user=request.user)
+				c.update({'items':items})
+				return render(request, "track_mood.html", c)
 
 def newTrackView(request):
 	if request.method=="POST":
