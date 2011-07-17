@@ -56,7 +56,7 @@ form #id_mood {
 #login_message{
 	position:absolute;
 	top:15px;
-	left:400px;
+	right:30px;
 }
 
 .text_header {
