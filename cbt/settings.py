@@ -11,6 +11,9 @@ MYDIRNAME="cbt"
 MYMEDIAURL="Media"
 MYAPPURL=""
 
+#user profiles
+AUTH_PROFILE_MODULE='thought_diary.UserProfile'
+
 ADMINS = (
      ('ben', 'bearle2009@gmail.com'),
 )

@@ -21,7 +21,7 @@ def mainView(request):
 		username=request.user.username
 		c={'logged_in':logged_in, 'username':username}
 		c.update(csrf(request))
-		return render(request, "dashboard.html", c)
+		return redirect("/thought")
 	else:
 		loginForm=LoginForm()
 		signupForm=CreateUserForm()
@@ -56,13 +56,20 @@ def signupAction(request):
 		if form.is_valid():
 			username=form.cleaned_data['username']
 			password=form.cleaned_data['password']
-			pass
+			email=form.cleaned_data['email']
+			user=User.objects.create_user(username=username, email=email, password=password) 
+			user.save()
+			createdUser=authenticate(username=username, password=password)
+			login(request, createdUser)
+			return redirect("/")
 		else:
-			pass #not valid signup
-		
+			c={'logged_in':logged_in, 'username':username, 'loginform':LoginForm(), 'signupform':form}
+			c.update(csrf(request))
+			return render(request, "main.html", c)
+				
 def logoutView(request):
 	logout(request)
-	return render(request, "logout.html")
+	return redirect("/")
 
 def deleteThought(request):
 	if request.method=="POST":
@@ -76,22 +83,6 @@ def deleteThought(request):
 				thought.delete()
 				thoughts=Thought.objects.all()
 				return render(request, "thought_list.html", {'thoughts':thoughts})
-
-def chartView(request):
-	mood_data=""
-	logged_in=False
-	username=""
-	if request.user.is_authenticated():
-		logged_in=True
-		username=request.user.username
-	return render(request, "mood_chart.html", {'logged_in':logged_in, 'username':username})
-
-def moodData(request):
-	moods=Mood.objects.all()
-	moodData=[]
-	for mood in moods:
-		moodData.append([mood.datetime.strftime('%Y-%m-%d %I%p'), mood.mood])
-	return HttpResponse(simplejson.dumps(moodData))
 	
 def thoughtView(request):
 	if request.method=="POST":
@@ -113,53 +104,15 @@ def thoughtView(request):
 	else:
 		form=ThoughtForm()
 		moodForm=MoodForm()
-		thoughts=Thought.objects.order_by('datetime')
+		thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
 		logged_in=False
 		username=""
 		if request.user.is_authenticated():
 			logged_in=True
 			username=request.user.username
 		c={'form':form, 'moodForm':moodForm, 'thoughts':thoughts, 'logged_in':logged_in, 'username':username}
-		return render(request, "thought_diary.html", c)
+		return render(request, "thought.html", c)
 
-
-def simpleThoughtView(request):
-	if request.method=="POST":
-		form=ThoughtForm(request.POST)
-		moodForm=MoodForm(request.POST)
-		if form.is_valid():
-			temp=form.save(commit=False)
-			temp.user=request.user
-			temp.save()
-		else:
-			print 'invalid'
-		if moodForm.is_valid():
-			temp=moodForm.save(commit=False)
-			temp.user=request.user
-			temp.save()
-			return redirect("/simple")
-		else:
-			print 'invalid'
-	else:
-		form=ThoughtForm()
-		moodForm=MoodForm()
-		thoughts=Thought.objects.order_by('datetime')
-		logged_in=False
-		username=""
-		if request.user.is_authenticated():
-			logged_in=True
-			username=request.user.username
-		c={'form':form, 'moodForm':moodForm, 'thoughts':thoughts, 'logged_in':logged_in, 'username':username}
-		return render(request, "simple_thoughts.html", c)
-
-def trackView(request):
-	logged_in=False
-	username=""
-	if request.user.is_authenticated():
-		logged_in=True
-		username=request.user.username
-	return render(request, "track_mood_today.html", {'logged_in':logged_in, 'username':username})
-	
 def errorView(request):
 	logged_in=False
 	username=""
