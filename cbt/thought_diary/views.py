@@ -59,6 +59,9 @@ def signupAction(request):
 			email=form.cleaned_data['email']
 			user=User.objects.create_user(username=username, email=email, password=password) 
 			user.save()
+			createdUser=authenticate(username=username, password=password)
+			login(request, createdUser)
+			return redirect("/")
 		else:
 			c={'logged_in':logged_in, 'username':username, 'loginform':LoginForm(), 'signupform':form}
 			c.update(csrf(request))
