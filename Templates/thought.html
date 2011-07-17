@@ -15,18 +15,15 @@
 {% block content %}
 	<div class="header page">
 		<h1>Thought Diary</h1>
-		<ul>
-			<li><a href="/chart">Mood Chart</a></li>
-			<li><a href="/track">Track Your Mood</a></li>
-			<li><a href="/">Return to Main Page</a></li>
-		</ul>
 	</div>
 	<div class="padding">
-		<form action="/simple" method="POST">
+		<form action="/thought" method="POST">
 	{% csrf_token %}
 	<div class="form_field">
-	<div class="thought_label">Add your thought:</div>
+	<div class="form_label">Add your thought:</div>
 	{{form.thought}}
+	<div class="form_label">Positive Response: </div>
+	{{form.note}}
 	</div>
 	<div class="submit_thought">
 		<a href="javascript:;" class="button submit"><span>Add Thought</span></a>
@@ -34,11 +31,18 @@
 </form>
 <div class="text_header">Thoughts</div>
 <table>
+	<tr class="thought_header">
+		<td class='id'></td>
+		<td class='time'></td>
+		<td class='thought'>Thought</td>
+		<td class='response'>Positive Response</td>
+	</tr>
 {% for thought in thoughts reversed%}
 	<tr class="thought_box">
 		<td class='id'>{{thought.pk}}</td>
 		<td class='time'><span class='time'>{{thought.pretty_date}}</span></td>
 		<td class='thought'><span class='thought'>{{thought.thought}}</span></td>
+		<td class='response'><span class='response'>{{thought.note}}</span></td>
 	</tr>
     </li>
 {% endfor %}
