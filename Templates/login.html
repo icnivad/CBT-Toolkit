@@ -7,6 +7,7 @@
 	<div class="padding">
 		<form action="" method="POST">
 			{% csrf_token %}
+			{{errormsg}}
 			{{form}}
 			<input type="submit" value="Log In"/>
 		</form>

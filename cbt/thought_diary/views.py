@@ -40,10 +40,15 @@ def loginAction(request):
 				if user.is_active:
 					login(request, user)
 					return redirect("/")
+				else:
+					pass
 			else:
-				pass #account disabled
+				errormsg="You have entered an incorrect username or password.  Please try again."  
+				c={'form':form, 'errormsg':errormsg}
+				c.update(csrf(request))
+				return render(request, "login.html", c)
 		else:
-			pass #invalid login
+			pass
 	else:
 		form=LoginForm()
 	c={'form':form}
@@ -63,7 +68,7 @@ def signupAction(request):
 			login(request, createdUser)
 			return redirect("/")
 		else:
-			c={'logged_in':logged_in, 'username':username, 'loginform':LoginForm(), 'signupform':form}
+			c={'logged_in':False, 'username':"", 'loginform':LoginForm(), 'signupform':form}
 			c.update(csrf(request))
 			return render(request, "main.html", c)
 				
@@ -71,6 +76,9 @@ def logoutView(request):
 	logout(request)
 	return redirect("/")
 
+def thoughtAction(request):
+	pass
+	
 def deleteThought(request):
 	if request.method=="POST":
 		if request.user.is_authenticated():

@@ -19,12 +19,7 @@
 	<div class="padding">
 		<form action="/thought" method="POST">
 	{% csrf_token %}
-	<div class="form_field">
-	<div class="form_label">Add your thought:</div>
-	{{form.thought}}
-	<div class="form_label">Positive Response: </div>
-	{{form.note}}
-	</div>
+	{{form}}
 	<div class="submit_thought">
 		<a href="javascript:;" class="button submit"><span>Add Thought</span></a>
 	</div>
