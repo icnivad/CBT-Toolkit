@@ -1,22 +1,6 @@
 {% extends "base.html" %}
 {% block title %} CBT Toolkit {% endblock title %}
-{% block login %} 
-{% if logged_in %}
-	<div id='login_message'>
-		Welcome {{request.user.username}}, you are now logged in! <a href="/logout">Sign Out</a>
-	</div>
-{% else %}
-	<div id="login_message">
-		<form action="/login" method="POST" id='signin'>
-			{% csrf_token %}
-			Username: {{loginform.username}}
-			Password: {{loginform.password}}
-			<a href="javascript:;" class="button submit"><span>Sign In</span></a>
-		</form>
-	</div>
-{% endif %}
 
-{% endblock %}
 {% block content %}
 	<div class="header page">
 		<h1>Welcome to CBT Toolkit!</h1>

@@ -16,7 +16,20 @@
 <div id="wrapper">
 	<div id="header">
 		<div class="page">
-			{%block login %}{% endblock %}
+			{% if request.user.is_authenticated %}
+				<div id='login_message'>
+					Welcome {{request.user.username}}, you are now logged in! <a href="/logout">Sign Out</a>
+				</div>
+			{% else %}
+				<div id="login_message">
+					<form action="/login" method="POST" id='signin'>
+						{% csrf_token %}
+						Username: {{loginform.username}}
+						Password: {{loginform.password}}
+						<a href="javascript:;" class="button submit"><span>Sign In</span></a>
+					</form>
+				</div>
+			{% endif %}
 			<a href="index.html" class="logo">CBTToolkit</a>
 			
 			<ul>

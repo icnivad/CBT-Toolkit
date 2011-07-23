@@ -1,25 +1,18 @@
 {% extends "base.html" %}
 {% block title %} CBT Toolkit Dashboard {% endblock title %}
-{% block login %} 
-{% if logged_in %}
-	<div id='login_message'>
-		Welcome {{username}}, you are now logged in! <a href="/logout">Sign Out</a>
-	</div>
-{% else %}
-	<div id="login_message">
-		<a href="/login">Log In</a><a href="/signup">Sign Up</a>
-	</div>
-{% endif %}
-
-{% endblock %}
 {% block content %}
 	<div class="header page">
 		<h1>Thought Diary</h1>
 	</div>
 	<div class="padding">
+	{% if recent_thought %}
+		<h3>Your thought: {{recent_thought}}</h3>
+		<h4>You can <a href="/challenge">challenge this thought</a> or </h4>
+	{% endif %}
 	<form action="/thought" method="POST">
 	{% csrf_token %}
-	{{form}}
+	<label>Add Another Thought:</label>
+	{{form.thought}}
 	<div class="submit_thought">
 		<a href="javascript:;" class="button submit"><span>Add Thought</span></a>
 	</div>
