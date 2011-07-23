@@ -76,67 +76,39 @@ def logoutView(request):
 	logout(request)
 	return redirect("/")
 
-def thoughtAction(request):
-	if request.method=="POST":
-		if request.user.is_authenticated():
-			id=request.POST['id']
-			action=request.POST['action']
-			thought=Thought.objects.get(pk=id)
-			if action=="delete":
-				thought.delete()
-				thoughts=Thought.objects.all()
-				return render(request, "thought_list.html", {'thoughts':thoughts})
-			
-			elif action=="add":
-				form=ThoughtForm(request.POST)
-				moodForm=MoodForm(request.POST)
-				if form.is_valid():
-					temp=form.save(commit=False)
-					temp.user=request.user
-					temp.save()
-				else:
-					print 'invalid'
-				if moodForm.is_valid():
-					temp=moodForm.save(commit=False)
-					temp.user=request.user
-					temp.save()
-					return redirect("/thought")
-				else:
-					print 'invalid'		
-
 def thoughtView(request):
 	if request.method=="POST":
 		form=ThoughtForm(request.POST)
-		moodForm=MoodForm(request.POST)
 		if form.is_valid():
 			temp=form.save(commit=False)
 			temp.user=request.user
 			temp.save()
 		else:
 			print 'invalid'
-		if moodForm.is_valid():
-			temp=moodForm.save(commit=False)
-			temp.user=request.user
-			temp.save()
-			return redirect("/thought")
-		else:
-			print 'invalid'
+		
 	else:
 		form=ThoughtForm()
-		moodForm=MoodForm()
 		thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
 		logged_in=False
 		username=""
 		if request.user.is_authenticated():
 			logged_in=True
 			username=request.user.username
-		c={'form':form, 'moodForm':moodForm, 'thoughts':thoughts, 'logged_in':logged_in, 'username':username}
+		c={'form':form, 'thoughts':thoughts, 'logged_in':logged_in, 'username':username}
 		return render(request, "thought.html", c)
 
 def getThoughts(request):
 	thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
 	c={'thought':thoughts}
 	return render(request, "thought_list.html", c)
+	
+def getThoughtForm(request):
+	if request.method=="POST":
+		
+
+def thoughtAction(request):
+	if request.method=="POST":
+		if 
 	
 def errorView(request):
 	logged_in=False

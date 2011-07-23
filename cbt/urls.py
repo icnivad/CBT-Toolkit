@@ -20,7 +20,6 @@ urlpatterns = patterns('',
     (r'^login$', loginAction),
     (r'^logout$', logoutView),
     (r'^signup$', signupAction),
-    (r'^delete$', deleteThought),
     (r'^thought$', thoughtView),
     (r'^$', mainView),
     # Example:

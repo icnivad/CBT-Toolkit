@@ -45,7 +45,7 @@ class LoginForm(forms.Form):
 	def clean(self):
 		cleaned=self.cleaned_data
 		username=cleaned.get("username")
-		pword=cleaned.get("passwod")
+		pword=cleaned.get("password")
 		return cleaned
 
 class ThoughtForm(ModelForm):
