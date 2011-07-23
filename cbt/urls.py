@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     (r'^logout$', logoutView),
     (r'^signup$', signupAction),
     (r'^thought$', thoughtView),
+    (r'^challenge$', challengeView),
     (r'^$', mainView),
     # Example:
     # (r'^cbt/', include('cbt.foo.urls')),

@@ -85,30 +85,20 @@ def thoughtView(request):
 			temp.save()
 		else:
 			print 'invalid'
+		newForm=ThoughtForm()
+		thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
+		c={'form':newForm, 'recent_thought':temp.thought, 'thoughts':thoughts}
+		return render(request, "thought.html", c)
 		
 	else:
 		form=ThoughtForm()
 		thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
-		logged_in=False
-		username=""
-		if request.user.is_authenticated():
-			logged_in=True
-			username=request.user.username
-		c={'form':form, 'thoughts':thoughts, 'logged_in':logged_in, 'username':username}
+		c={'form':form, 'thoughts':thoughts}
 		return render(request, "thought.html", c)
 
-def getThoughts(request):
-	thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
-	c={'thought':thoughts}
-	return render(request, "thought_list.html", c)
-	
-def getThoughtForm(request):
-	if request.method=="POST":
-		
-
-def thoughtAction(request):
-	if request.method=="POST":
-		if 
+def challengeView(request):
+	c={}
+	return render(request, "challenge.html", c)
 	
 def errorView(request):
 	logged_in=False
