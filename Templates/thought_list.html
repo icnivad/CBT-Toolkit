@@ -1,0 +1,18 @@
+<div class="text_header">Thoughts</div>
+<table>
+	<tr class="thought_header">
+		<td class='id'></td>
+		<td class='time'></td>
+		<td class='thought'>Thought</td>
+		<td class='response'>Positive Response</td>
+	</tr>
+{% for thought in thoughts reversed%}
+	<tr class="thought_box">
+		<td class='id'>{{thought.pk}}</td>
+		<td class='time'><span class='time'>{{thought.pretty_date}}</span></td>
+		<td class='thought'><span class='thought'>{{thought.thought}}</span></td>
+		<td class='response'><span class='response'>{{thought.note}}</span></td>
+	</tr>
+    </li>
+{% endfor %}
+</table>

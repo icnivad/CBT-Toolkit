@@ -1,0 +1,9 @@
+<form action="/thought" method="POST">
+	Thanks for entering your thought!
+	Would you like to challenge this thought?
+	{% csrf_token %}
+	{{form}}
+	<div class="submit_thought">
+		<a href="javascript:;" class="button submit"><span>Add Thought</span></a>
+	</div>
+</form>
