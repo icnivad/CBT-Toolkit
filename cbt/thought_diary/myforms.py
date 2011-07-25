@@ -59,7 +59,7 @@ class ThoughtForm(ModelForm):
 class ChallengeForm(ModelForm):
 	class Meta:
 		model=Challenge
-		exclude=('thought', )
+		exclude=('thought', 'distortion')
 		widgets={
 			'response':forms.Textarea(attrs={'class':'text_field'}),
 		}

@@ -4,6 +4,7 @@ from django.template import Context, Template
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
+from django.core.urlresolvers import reverse
 import simplejson
 from django.views.generic import *
 from django.views.generic.edit import *
@@ -17,11 +18,7 @@ def mainView(request):
 	logged_in=False
 	username=""
 	if request.user.is_authenticated():
-		logged_in=True
-		username=request.user.username
-		c={'logged_in':logged_in, 'username':username}
-		c.update(csrf(request))
-		return redirect("/thought")
+		return redirect(reverse('thought'))
 	else:
 		loginForm=LoginForm()
 		signupForm=CreateUserForm()
@@ -96,8 +93,27 @@ def thoughtView(request):
 		c={'form':form, 'thoughts':thoughts}
 		return render(request, "thought.html", c)
 
+def thoughtDetailView(request, thought_id):
+	thought=Thought.objects.get(pk=thought_id)
+	challenge=None
+	try:
+		challenge=Challenge.objects.get(thought=thought)
+	except:
+		pass
+	c={'thought':thought, 'challenge':challenge}
+	return render(request, "thought_detail.html", c)
+
 def challengeView(request, id):
 	thought=Thought.objects.get(pk=id)
+	if request.method=="POST":
+		form=ChallengeForm(request.POST)
+		if form.is_valid():
+			temp=form.save(commit=False)
+			temp.thought=thought
+			temp.user=request.user
+			temp.save()
+		else:
+			pass
 	if not thought.user==request.user:
 		return redirect("/")
 	else:
@@ -119,3 +135,8 @@ def errorView(request):
 		c={'logged_in':logged_in, 'username':username, 'loginform':loginForm}
 		c.update(csrf(request))
 		return render(request, "error.html", c)
+
+def testView(request):
+	test=reverse('main')
+	c={'test':test}
+	return render(request, 'test.html', c)

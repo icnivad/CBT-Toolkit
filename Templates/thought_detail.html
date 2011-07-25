@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} CBT Toolkit Dashboard {% endblock title %}
+{% block content %}
+	<div class="header page">
+		<h1>Thought Diary</h1>
+	</div>
+	<div class="padding">
+		<h3>Your Thought: {{thought.thought}}</h3>
+		<h4>Response: {{challenge.response}}</h4>
+	</div>
+	<div class="bottom"></div>
+{% endblock %}

@@ -3,13 +3,13 @@
     <title>{% block title %}{% endblock %}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
-    <link rel="stylesheet" type="text/css" href="/Media/stylesheets/styles.css" />
-    <link rel="stylesheet" type="text/css" href="/Media/stylesheets/green-blue.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/Media/stylesheets/mystyle.css" media="screen" />  
-    <script type="text/javascript" src="/Media/javascripts/jquery.js"></script>
-    <script type="text/javascript" src="/Media/javascripts/site.js"></script>
-    <script type="text/javascript" src="/Media/javascripts/demo.js"></script>
-    <script type="text/javascript" src="/Media/javascripts/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}stylesheets/styles.css" />
+    <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}stylesheets/green-blue.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}stylesheets/mystyle.css" media="screen" />  
+    <script type="text/javascript" src="{{MEDIA_URL}}javascripts/jquery.js"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}javascripts/site.js"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}javascripts/demo.js"></script>
+    <script type="text/javascript" src="{{MEDIA_URL}}javascripts/script.js"></script>
     {%block header %}{% endblock %}
  </head>
 <body>

@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from django.views.generic import *
+from django.contrib.auth.decorators import login_required
 from thought_diary.views import *
 import settings
 from thought_diary.models import Thought
@@ -20,9 +21,11 @@ urlpatterns = patterns('',
     (r'^login$', loginAction),
     (r'^logout$', logoutView),
     (r'^signup$', signupAction),
-    (r'^thought$', thoughtView),
-    (r'^thought/(?P<id>\d.*)/challenge$', challengeView),
-    (r'^$', mainView),
+    url(r'^thought$', thoughtView, name='thought'),
+    (r'^thought/(?P<id>\d.*)/challenge/$', challengeView),
+    (r'^thought/(?P<thought_id>\d+)/$', thoughtDetailView),
+    (r'^test/', testView),
+    url(r'^$', mainView, name='main'),
     # Example:
     # (r'^cbt/', include('cbt.foo.urls')),
 
@@ -30,6 +33,6 @@ urlpatterns = patterns('',
     #(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^admin', include(admin.site.urls)),
-    (r'', errorView),
+    (r'^admin/', include(admin.site.urls)),
+#    (r'', errorView),
 )

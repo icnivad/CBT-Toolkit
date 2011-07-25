@@ -97,10 +97,11 @@ class Challenge(models.Model):
 		("11", "Shoulds and Musts"),
 		("12", "Memories"),
 	)
-	thought=models.ForeignKey(Thought)
+	thought=models.OneToOneField(Thought)
 	response=models.TextField(blank=True)
 	distortion=models.CharField(blank=True, max_length=100, choices=THOUGHT_CHOICES)
-
+	def __unicode__(self):
+		return self.response
 
 class UserProfile(models.Model):
 	user=models.ForeignKey(User, unique=True)
