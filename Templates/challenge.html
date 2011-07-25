@@ -6,5 +6,14 @@
 	</div>
 	<div class="padding">
 		New	to thought challenging?  <a href="/challenge/learn">Learn more</a>
+		<h3>Your Thought: {{thought.thought}}</h3>
+		<form action="/thought" method="POST">
+			{% csrf_token %}
+			<label>Challenge That Thought:</label>
+			{{form}}
+			<div class="submit_thought">
+				<a href="javascript:;" class="button submit"><span>Challenge Thought</span></a>
+			</div>
+		</form>
 	</div>
 {% endblock %}

@@ -87,7 +87,7 @@ def thoughtView(request):
 			print 'invalid'
 		newForm=ThoughtForm()
 		thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
-		c={'form':newForm, 'recent_thought':temp.thought, 'thoughts':thoughts}
+		c={'form':newForm, 'recent_thought':temp, 'thoughts':thoughts}
 		return render(request, "thought.html", c)
 		
 	else:
@@ -96,9 +96,14 @@ def thoughtView(request):
 		c={'form':form, 'thoughts':thoughts}
 		return render(request, "thought.html", c)
 
-def challengeView(request):
-	c={}
-	return render(request, "challenge.html", c)
+def challengeView(request, id):
+	thought=Thought.objects.get(pk=id)
+	if not thought.user==request.user:
+		return redirect("/")
+	else:
+		form=ChallengeForm()
+		c={'thought':thought, 'form':form}
+		return render(request, "challenge.html", c)
 	
 def errorView(request):
 	logged_in=False

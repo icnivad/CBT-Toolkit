@@ -3,15 +3,11 @@
 {% block content %}
 	<div class="header page">
 		<h1>Thought Diary</h1>
-		<ul>
-			<li><a href="/challenge">Challenge Your Thought</a></li>
-		</ul>
-
 	</div>
 	<div class="padding">
 	{% if recent_thought %}
-		<h3>Your thought: {{recent_thought}}</h3>
-		<h4>You can <a href="/challenge">challenge this thought</a> or </h4>
+		<h3>Your thought: {{recent_thought.thought}}</h3>
+		<h4>You can <a href="/thought/{{recent_thought.pk}}/challenge">challenge this thought</a> or </h4>
 	{% endif %}
 	<form action="/thought" method="POST">
 	{% csrf_token %}
@@ -27,14 +23,14 @@
 		<td class='id'></td>
 		<td class='time'></td>
 		<td class='thought'>Thought</td>
-		<td class='response'>Positive Response</td>
+		<td class='actions'>Actions</td>
 	</tr>
 {% for thought in thoughts reversed%}
 	<tr class="thought_box">
 		<td class='id'>{{thought.pk}}</td>
 		<td class='time'><span class='time'>{{thought.pretty_date}}</span></td>
 		<td class='thought'><span class='thought'>{{thought.thought}}</span></td>
-		<td class='response'><span class='response'>{{thought.note}}</span></td>
+		<td class='actions'>Delete Challenge</td>
 	</tr>
     </li>
 {% endfor %}

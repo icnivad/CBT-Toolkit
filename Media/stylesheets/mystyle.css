@@ -2,7 +2,7 @@
 **** Thought Diary *******
 ***************************/
 
-form #id_thought , #id_note{
+form #id_thought , #id_response{
 	width:700px;
 	height:75px;
 }

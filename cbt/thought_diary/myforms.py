@@ -56,12 +56,12 @@ class ThoughtForm(ModelForm):
 			'thought':forms.Textarea(attrs={'class':'text_field'}),
 		}
 		
-class ThoughtChallengeForm(ModelForm):
+class ChallengeForm(ModelForm):
 	class Meta:
-		model=Thought
-		fields=('note',)
+		model=Challenge
+		exclude=('thought', )
 		widgets={
-			'note':forms.Textarea(attrs={'class':'text_field'}),
+			'response':forms.Textarea(attrs={'class':'text_field'}),
 		}
 	
 class MoodForm(ModelForm):

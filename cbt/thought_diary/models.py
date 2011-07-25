@@ -42,20 +42,6 @@ class TrackItemStatus(models.Model):
 
 
 class Thought(models.Model):
-	THOUGHT_CHOICES=(
-		("1", "Mental Filter"),
-		("2", "Judgements"),
-		("3", "Mind-Reading"),
-		("4", "Emotional Reasoning"),
-		("5", "Prediction"),
-		("6", "Comparisons"),
-		("7", "Mountains and Molehills"),
-		("8", "Catastrophizing"),
-		("9", "Critical Self"),
-		("10", "Black and White Thinking"),
-		("11", "Shoulds and Musts"),
-		("12", "Memories"),
-	)
 	CATEGORY_CHOICES=(
 		("1", "Family"),
 		("2", "Relationships"),
@@ -75,11 +61,8 @@ class Thought(models.Model):
 	category=models.CharField(blank=True, max_length=100, choices=CATEGORY_CHOICES)
 	thought=models.TextField(blank=True)
 	situation=models.TextField(blank=True)
-	note=models.TextField(blank=True)
-	coping=models.TextField(blank=True)
 	user=models.ForeignKey(User)
 	datetime=models.DateTimeField('time', editable=False)
-	distortion=models.CharField(blank=True, max_length=100, choices=THOUGHT_CHOICES)
 	
 	def save(self):
 		if not self.datetime:
@@ -98,7 +81,27 @@ class Thought(models.Model):
 			return mood
 		except:
 			return ""
-			
+
+class Challenge(models.Model):
+	THOUGHT_CHOICES=(
+		("1", "Mental Filter"),
+		("2", "Judgements"),
+		("3", "Mind-Reading"),
+		("4", "Emotional Reasoning"),
+		("5", "Prediction"),
+		("6", "Comparisons"),
+		("7", "Mountains and Molehills"),
+		("8", "Catastrophizing"),
+		("9", "Critical Self"),
+		("10", "Black and White Thinking"),
+		("11", "Shoulds and Musts"),
+		("12", "Memories"),
+	)
+	thought=models.ForeignKey(Thought)
+	response=models.TextField(blank=True)
+	distortion=models.CharField(blank=True, max_length=100, choices=THOUGHT_CHOICES)
+
+
 class UserProfile(models.Model):
 	user=models.ForeignKey(User, unique=True)
 	startedTracking=models.BooleanField(default=False)
