@@ -76,21 +76,35 @@ def logoutView(request):
 def thoughtView(request):
 	if request.method=="POST":
 		form=ThoughtForm(request.POST)
+		moodForm=MoodForm(request.POST)
 		if form.is_valid():
 			temp=form.save(commit=False)
 			temp.user=request.user
 			temp.save()
 		else:
-			print 'invalid'
+			raise Exception('thought form invalid')
+		if moodForm.is_valid():
+			if ((moodForm.cleaned_data['mood'] is not None) or (moodForm.cleaned_data['feeling']!="")):
+				mtemp=moodForm.save(commit=False)
+				mtemp.user=request.user
+				mtemp.save()
+			else:
+				pass
+		else:
+			raise Exception('mood form invalid')
+		
+		#make sure we're using new forms here
 		newForm=ThoughtForm()
+		newMoodForm=MoodForm()
 		thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
-		c={'form':newForm, 'recent_thought':temp, 'thoughts':thoughts}
+		c={'form':newForm, 'recent_thought':temp, 'thoughts':thoughts, 'mood':newMoodForm}
 		return render(request, "thought.html", c)
 		
 	else:
 		form=ThoughtForm()
+		moodForm=MoodForm()
 		thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
-		c={'form':form, 'thoughts':thoughts}
+		c={'form':form, 'thoughts':thoughts, 'mood':moodForm}
 		return render(request, "thought.html", c)
 
 def thoughtDetailView(request, thought_id):

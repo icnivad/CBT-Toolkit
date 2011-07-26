@@ -42,23 +42,8 @@ class TrackItemStatus(models.Model):
 
 
 class Thought(models.Model):
-	CATEGORY_CHOICES=(
-		("1", "Family"),
-		("2", "Relationships"),
-		("3", "Work"),
-		("4", "Friends"),
-		("5", "Pleasure"),
-		("6", "Travel"),
-		("7", "Health"),
-		("8", "Kids"),
-		("9", "Money"),
-		("10","Self"),
-		("11", "Chores"),
-		("12", "Other")
-
-	)
 	share=models.BooleanField(default=False)
-	category=models.CharField(blank=True, max_length=100, choices=CATEGORY_CHOICES)
+	category=models.CharField(blank=True, max_length=100)
 	thought=models.TextField(blank=True)
 	situation=models.TextField(blank=True)
 	user=models.ForeignKey(User)

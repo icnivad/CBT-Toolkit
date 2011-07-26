@@ -51,7 +51,7 @@ class LoginForm(forms.Form):
 class ThoughtForm(ModelForm):
 	class Meta:
 		model=Thought
-		fields=('thought',)
+		fields=('thought', 'situation', 'category')
 		widgets={
 			'thought':forms.Textarea(attrs={'class':'text_field'}),
 		}
