@@ -104,8 +104,8 @@ def thoughtDetailView(request, thought_id):
 	return render(request, "thought_detail.html", c)
 
 
-def challengeView(request, id):
-	thought=Thought.objects.get(pk=id)
+def challengeView(request, thought_id):
+	thought=Thought.objects.get(pk=thought_id)
 	if request.method=="POST":
 		form=ChallengeForm(request.POST)
 		if form.is_valid():
@@ -121,6 +121,13 @@ def challengeView(request, id):
 		form=ChallengeForm()
 		c={'thought':thought, 'form':form}
 		return render(request, "challenge.html", c)
+	
+def thoughtDeleteView(request, thought_id):
+	thought=Thought.objects.get(pk=thought_id)
+	if ((request.user.is_authenticated()) and (request.user==thought.user)):
+		thought.delete()
+	else:
+		pass
 	
 def errorView(request):
 	logged_in=False
