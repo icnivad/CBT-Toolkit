@@ -103,6 +103,7 @@ def thoughtDetailView(request, thought_id):
 	c={'thought':thought, 'challenge':challenge}
 	return render(request, "thought_detail.html", c)
 
+
 def challengeView(request, id):
 	thought=Thought.objects.get(pk=id)
 	if request.method=="POST":

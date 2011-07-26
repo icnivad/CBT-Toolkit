@@ -23,7 +23,7 @@ urlpatterns = patterns('',
     (r'^signup$', signupAction),
     url(r'^thought$', thoughtView, name='thought'),
     (r'^thought/(?P<id>\d.*)/challenge/$', challengeView),
-    (r'^thought/(?P<thought_id>\d+)/$', thoughtDetailView),
+    url(r'^thought/(?P<thought_id>\d+)/$', thoughtDetailView, name='thought_detail'),
     (r'^test/', testView),
     url(r'^$', mainView, name='main'),
     # Example:
