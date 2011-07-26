@@ -148,3 +148,8 @@ def testView(request):
 	test=reverse('main')
 	c={'test':test}
 	return render(request, 'test.html', c)
+	
+def getThoughts(request):
+	thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
+	c={'thoughts':thoughts}
+	return render(request, 'thought_list.html', c)
