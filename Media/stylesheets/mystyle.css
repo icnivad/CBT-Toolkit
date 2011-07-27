@@ -2,6 +2,10 @@
 **** Thought Diary *******
 ***************************/
 
+.hidden {
+	display:none;
+}
+
 form #id_thought , #id_response{
 	width:700px;
 	height:75px;
@@ -80,11 +84,7 @@ td {
 }
 
 td.thought{
-	width:250px;
-}
-
-div.situation {
-	left:100px;
+	width:450px;
 }
 
 td.id {

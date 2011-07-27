@@ -44,7 +44,10 @@
 	<div id="page">
 		<div class="top"></div>
 		<div class="content">
-			{% block content %}{% endblock %}
+			<div class="padding">
+				{% block content %}{% endblock %}
+			</div>
+			<div class="bottom"></div>
 		</div>
 	</div>
 	<div id="footer" class="page">

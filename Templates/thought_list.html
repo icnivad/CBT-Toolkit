@@ -1,17 +1,21 @@
 <div class="text_header">Thoughts</div>
-<table>
+<table class="thoughts">
 	<tr class="thought_header">
 		<td class='id'></td>
 		<td class='time'></td>
 		<td class='thought'>Thought</td>
-		<td class='response'>Positive Response</td>
+		<td class='actions'>Actions</td>
 	</tr>
 {% for thought in thoughts reversed%}
 	<tr class="thought_box">
 		<td class='id'>{{thought.pk}}</td>
 		<td class='time'><span class='time'>{{thought.pretty_date}}</span></td>
 		<td class='thought'><span class='thought'>{{thought.thought}}</span></td>
-		<td class='response'><span class='response'>{{thought.note}}</span></td>
+		<td class='actions'>
+			<a class="check_delete" href="{% url thought_delete thought.pk %}"><img title="Delete Thought" class="icon" src="{{MEDIA_URL}}/my_images/delete2.png"/></a>
+			<a href="/thought/edit"><img title="Edit Thought" class="icon" src="{{MEDIA_URL}}/my_images/edit.png"/></a>
+			<a href="{% url thought_challenge thought.pk %}"><img title="Challenge Thought" class="icon" src="{{MEDIA_URL}}/my_images/challenge.png"/></a>
+		</td>
 	</tr>
     </li>
 {% endfor %}

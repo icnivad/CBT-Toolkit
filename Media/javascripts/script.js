@@ -26,12 +26,24 @@ $(document).ready(function(){
 	});
 	
 	//basic crud for thoughts
-	$('a.action_thought').click(function(){
-		var id=$(this).closest('tr.thought_box').find('.id').html();
-		$.post('/delete', {'id':id, 'action':'delete'}, function(data){
-			$('table.thoughts').html(data);
-		});
+	$('a.check_delete').live('click', function(){
+		var thought=$(this).closest('.thought_box').find('span.thought').html()
+		result=confirm("Are you sure you want to delete your thought: "+thought)
+		if(result){
+			$.get($(this).attr("href"));
+			$.get('/thought/list/', function(data){
+				$('div.thoughts').html(data);
+			});
+		}
 		return false;
+	});
+	
+	$('.toggle_mood').live('click', function(){
+		$('.mood').toggle();
+	});
+	
+	$('.toggle_situation').live('click', function(){
+		$('.situation').toggle();
 	});
 	
 	$('.thought_box').hover(function(){

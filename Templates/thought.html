@@ -1,41 +1,17 @@
 {% extends "base.html" %}
 {% block title %} CBT Toolkit Dashboard {% endblock title %}
 {% block content %}
-	<div class="header page">
-		<h1>Thought Diary</h1>
-	</div>
-	<div class="padding">
+	<div class="header_message">
 	{% if recent_thought %}
 		<h3>Your thought: {{recent_thought.thought}}</h3>
-		<h4>You can <a href="/thought/{{recent_thought.pk}}/challenge">challenge this thought</a> or </h4>
+		<h4>If you feel bad, you can <a href="/thought/{{recent_thought.pk}}/challenge">challenge this thought</a> or </h4>
+	{% else %}
+		You haven't entered any thoughts yet!  Go ahead and add one.
 	{% endif %}
-	<form action="/thought" method="POST">
-	{% csrf_token %}
-	<label>Add Another Thought:</label>
-	{{form.thought}}
-	<div class="submit_thought">
-		<a href="javascript:;" class="button submit"><span>Add Thought</span></a>
 	</div>
-</form>
-<div class="text_header">Thoughts</div>
-<table>
-	<tr class="thought_header">
-		<td class='id'></td>
-		<td class='time'></td>
-		<td class='thought'>Thought</td>
-		<td class='actions'>Actions</td>
-	</tr>
-{% for thought in thoughts reversed%}
-	<tr class="thought_box">
-		<td class='id'>{{thought.pk}}</td>
-		<td class='time'><span class='time'>{{thought.pretty_date}}</span></td>
-		<td class='thought'><a href=""><span class='thought'>{{thought.thought}}</span></a></td>
-		<td class='actions'>Delete Challenge</td>
-	</tr>
-    </li>
-{% endfor %}
-</table>
+	{% include "add_thought_form.html" %}
+	<div class='thoughts'>
+		{% include "thought_list.html" %}
+	</div>
 </div>
-	</div>
-	<div class="bottom"></div>
 {% endblock %}
