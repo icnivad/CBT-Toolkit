@@ -38,8 +38,19 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	$('.detail > div').live('hover', function(){
-		$(this).closest('.detail').find('.hidden').toggle();
-        $(this).closest('.detail').find('[id^="id_"]').focus();
+	// onShow : show+make the window translucent
+	var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+	$('#dialog').jqm({onShow:myOpen}); 
+
+	$('.detail_field').jqm({overlay:0});
+	$('.detail_icon img').live('mouseenter', function(){
+		var el=$(this).closest('.detail').find('.detail_field');
+		el.jqmShow({});
+		el.position({'at':'bottom', 'my':'top', 'of':$(this), 'offset':"10 10"});
 	});
+		
+	$('.detail').live('mouseleave', function(){
+		$('.detail_field').jqmHide();
+	});
+
 });

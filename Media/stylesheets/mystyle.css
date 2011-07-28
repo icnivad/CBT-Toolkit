@@ -19,6 +19,22 @@
     padding: 10px 5px;
 }
 
+.detail_field {
+	display: none;
+    
+    position: fixed;
+    top: 17%;
+    left: 50%;
+    
+    margin-left: -300px;
+    width: 600px;
+    
+    background-color: #EEE;
+    color: #333;
+    border: 1px solid black;
+    padding: 12px;
+}
+
 form #id_thought , #id_response{
 	width:700px;
 	height:75px;
