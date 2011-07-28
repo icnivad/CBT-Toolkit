@@ -6,6 +6,19 @@
 	display:none;
 }
 
+.add_thought {
+    float:left;
+    padding: 10px 0px 0px;
+}
+
+.detail {
+    float:left;
+}
+
+.detail_icon {
+    padding: 10px 5px;
+}
+
 form #id_thought , #id_response{
 	width:700px;
 	height:75px;

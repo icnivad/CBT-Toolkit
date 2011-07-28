@@ -1,24 +1,43 @@
 <form action="{% url thought %}" method="POST">
 	{% csrf_token %}
-	<label>Add Another Thought:</label>
+	<label class='add_thought'>Add Another Thought:</label>
+	<div class="detail">
+		<div class="detail_icon">
+			<img title="How do you feel?" class="icon" src="{{MEDIA_URL}}/my_images/mood.png"/>
+		</div>
+		<div class="hidden">
+			<label>What is your mood on a scale of 1 to 10? (1 for bad, 10 for good)</label>
+			{{mood.mood}}
+		</div>
+	</div>
+	<div class="detail">
+		<div class="detail_icon">
+			<img title="How do you feel?" class="icon" src="{{MEDIA_URL}}/my_images/feeling.png"/>
+		</div>
+		<div class="hidden">
+			<label>How do you feel in one word?</label>
+			{{mood.feeling}}
+		</div>
+	</div>
+	<div class="detail">
+		<div class="detail_icon">
+			<img title="How do you feel?" class="icon" src="{{MEDIA_URL}}/my_images/category.png"/>
+		</div>
+		<div class="hidden">
+			<label>Tag</label>
+			{{form.category}}
+		</div>
+	</div>
+	<div class="detail last">
+		<div class="detail_icon">
+			<img title="How do you feel?" class="icon" src="{{MEDIA_URL}}/my_images/situation.png"/>
+		</div>
+		<div class="hidden">
+			<label>What is the situation?</label>
+			{{form.situation}}
+		</div>
+	</div>
 	{{form.thought}}
-	<div class="details_menu">
-	More Details (optional):
-	<span class="toggle_mood"><img title="How do you feel?" class="icon" src="{{MEDIA_URL}}/my_images/mood.png"/></span>
-	<span class="toggle_situation"><img title="What are you up to?c" class="icon" src="{{MEDIA_URL}}/my_images/situation.png"/></span>
-	</div>
-	<div class="mood hidden">
-		<label>What is your mood on a scale of 1 to 10? (1 for bad, 10 for good)</label>
-		{{mood.mood}}
-		<label>How do you feel in one word?</label>
-		{{mood.feeling}}
-	</div>
-	<div class="situation hidden">
-		<label>What is the situation?</label>
-		{{form.situation}}
-		<label>Tag</label>
-		{{form.category}}
-	</div>
 	<div class="submit_thought">
 		<a href="javascript:;" class="button submit"><span>Add Thought</span></a>
 	</div>

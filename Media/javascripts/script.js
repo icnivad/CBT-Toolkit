@@ -38,14 +38,8 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	$('.toggle_mood').live('click', function(){
-		$('.mood').toggle();
-	});
-	
-	$('.toggle_situation').live('click', function(){
-		$('.situation').toggle();
-	});
-	
-	$('.thought_box').hover(function(){
+	$('.detail > div').live('hover', function(){
+		$(this).closest('.detail').find('.hidden').toggle();
+        $(this).closest('.detail').find('[id^="id_"]').focus();
 	});
 });

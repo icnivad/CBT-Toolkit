@@ -77,10 +77,14 @@ def thoughtView(request):
 	if request.method=="POST":
 		form=ThoughtForm(request.POST)
 		moodForm=MoodForm(request.POST)
+		temp=""
 		if form.is_valid():
-			temp=form.save(commit=False)
-			temp.user=request.user
-			temp.save()
+			if(form.cleaned_data['thought']!=""):
+				temp=form.save(commit=False)
+				temp.user=request.user
+				temp.save()
+			else:
+				pass
 		else:
 			raise Exception('thought form invalid')
 		if moodForm.is_valid():
