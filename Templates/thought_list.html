@@ -26,6 +26,9 @@
 				{% if thought.category %}
 					<img title="Category" class="icon" src="{{MEDIA_URL}}/my_images/16px/category.png"/> {{thought.category}}
 				{% endif %}
+				<div class="thought_challenge">
+					<strong>{{thought.get_challenge.response}}</strong>
+				</div>
 			</div>
 			
 		</td>

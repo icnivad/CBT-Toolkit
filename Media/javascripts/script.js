@@ -27,7 +27,7 @@ $(document).ready(function(){
 	
 	//basic crud for thoughts
 	$('a.check_delete').live('click', function(){
-		var thought=$(this).closest('.thought_box').find('span.thought').html()
+		var thought=$(this).closest('.thought_box').find('div.thought').html()
 		result=confirm("Are you sure you want to delete your thought: "+thought)
 		if(result){
 			$.get($(this).attr("href"));
@@ -53,9 +53,15 @@ $(document).ready(function(){
 		$('.detail_field').jqmHide();
 	});
 	
-	$('#jqm_popup_msg').jqm({overlay:20, ajax:"@href", trigger:"a.challenge"});
+	$('#jqm_popup_msg').jqm({overlay:20, ajax:"@href", trigger:"a.challenge", modal:true});
 	$('.cancel').live('click', function(){
 		$('#jqm_popup_msg').jqmHide();
+	});
+	
+	$('div.thought_details div.thought_challenge').hide();
+	
+	$('tr.thought_box').live('hover', function(){
+		$(this).find("div.thought_challenge").toggle();
 	});
 //	$('a.challenge').live('click', function(){
 //		var el=$('#jqm_popup_msg');

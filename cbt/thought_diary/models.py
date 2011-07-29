@@ -62,8 +62,15 @@ class Thought(models.Model):
 		
 	def get_mood(self):
 		try:
-			mood=Mood.objects.filter(datetime=self.datetime)[0]
+			mood=Mood.objects.filter(user=self.user, datetime=self.datetime)[0]
 			return mood
+		except:
+			return ""
+	
+	def get_challenge(self):
+		try:
+			challenge=Challenge.objects.get(thought=self)
+			return challenge
 		except:
 			return ""
 
