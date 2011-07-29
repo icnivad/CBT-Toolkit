@@ -40,7 +40,7 @@ $(document).ready(function() {
 	}
 	
 	// Add form submit capability to buttons
-	$("a.submit").click(function() {
+	$("a.submit").live('click', function() {
 		$(this).closest('form').submit();
 	});
 	

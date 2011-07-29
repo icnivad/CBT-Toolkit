@@ -34,6 +34,21 @@
     padding: 12px;
 }
 
+#jqm_popup_msg {
+display: none;
+    
+    position: fixed;
+    top: 17%;
+    left: 50%;
+    
+    margin-left: -300px;
+    
+    background-color: #EEE;
+    color: #333;
+    border: 1px solid black;
+    padding: 12px;	
+}
+
 form #id_thought , #id_response{
 	width:700px;
 	height:75px;
@@ -113,12 +128,19 @@ td {
 
 td.thought{
 	width:450px;
+	padding:10px;
 }
 
 td.id {
 	display:none;
 }
 
+/**********************
+**** Popup *******
+***************************/
+form.challenge a.button {
+	width:150px;
+}
 
 /**********************
 **** Signup Page *******

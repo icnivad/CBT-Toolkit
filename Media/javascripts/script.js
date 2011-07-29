@@ -52,5 +52,15 @@ $(document).ready(function(){
 	$('.detail').live('mouseleave', function(){
 		$('.detail_field').jqmHide();
 	});
-
+	
+	$('#jqm_popup_msg').jqm({overlay:20, ajax:"@href", trigger:"a.challenge"});
+	$('.cancel').live('click', function(){
+		$('#jqm_popup_msg').jqmHide();
+	});
+//	$('a.challenge').live('click', function(){
+//		var el=$('#jqm_popup_msg');
+//		el.jqmShow({});
+//		el.position({'at':'top', 'my':'top', 'of':$(this).closest(".thought_box"), 'offset':"0 -50"});
+//		return false;
+//	});
 });

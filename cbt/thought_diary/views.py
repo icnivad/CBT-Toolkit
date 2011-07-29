@@ -133,12 +133,13 @@ def challengeView(request, thought_id):
 			temp.save()
 		else:
 			pass
+		return redirect("/thought")
 	if not thought.user==request.user:
 		return redirect("/")
 	else:
 		form=ChallengeForm()
 		c={'thought':thought, 'form':form}
-		return render(request, "challenge.html", c)
+		return render(request, "challenge_thought_form.html", c)
 	
 def thoughtDeleteView(request, thought_id):
 	thought=Thought.objects.get(pk=thought_id)
