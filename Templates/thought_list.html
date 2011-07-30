@@ -27,7 +27,11 @@
 					<img title="Category" class="icon" src="{{MEDIA_URL}}/my_images/16px/category.png"/> {{thought.category}}
 				{% endif %}
 				<div class="thought_challenge">
+				{% if thought.get_challenge.response %}
 					<strong>{{thought.get_challenge.response}}</strong>
+				{% else %}
+					<a class="challenge" href="{% url thought_challenge thought.pk %}">Challenge This Thought</a>
+				{% endif %}
 				</div>
 			</div>
 			

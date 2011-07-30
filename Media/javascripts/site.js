@@ -41,7 +41,15 @@ $(document).ready(function() {
 	
 	// Add form submit capability to buttons
 	$("a.submit").live('click', function() {
-		$(this).closest('form').submit();
+		$form=$(this).closest('form')
+		$.ajax({
+			type:'POST',
+			url:$form.attr("action"),
+			data:$form.serialize(),
+			success: function(data){
+				alert(data);
+			},
+		});
 	});
 	
 	// Ajax contact form

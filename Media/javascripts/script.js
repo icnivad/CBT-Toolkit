@@ -57,12 +57,14 @@ $(document).ready(function(){
 	$('.cancel').live('click', function(){
 		$('#jqm_popup_msg').jqmHide();
 	});
-	
-	$('div.thought_details div.thought_challenge').hide();
-	
-	$('tr.thought_box').live('hover', function(){
-		$(this).find("div.thought_challenge").toggle();
+		
+	$('tr.thought_box').live('mouseenter', function(){
+		$(this).find("div.thought_challenge").show();
 	});
+	$('tr.thought_box').live('mouseleave', function(){
+		$(this).find("div.thought_challenge").hide();
+	});
+	
 //	$('a.challenge').live('click', function(){
 //		var el=$('#jqm_popup_msg');
 //		el.jqmShow({});
