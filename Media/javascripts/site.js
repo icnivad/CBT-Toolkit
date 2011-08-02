@@ -28,6 +28,11 @@ $(document).ready(function() {
 		);
 	}
 		
+	// Add form submit capability to buttons
+	$("a.submit").click(function() {
+		$(this).closest('form').submit();
+	});
+	
 	// Ajax contact form
 	$('#send').click(function() {
        var name = $('input#name').val();

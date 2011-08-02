@@ -91,17 +91,17 @@ $(document).ready(function(){
 		});
 	}
 	
-	$("a.submit", "#challenge_thought_form").live('click', function(){
+	$("a.ajax_submit", "#challenge_thought_form").live('click', function(){
 		ajax_submit($(this).closest("form"), refresh_thoughts);
 		$('#jqm_popup_msg').jqmHide();
 	});
 	
-	$("a.submit", "#edit_thought_form").live('click', function(){
+	$("a.ajax_submit", "#edit_thought_form").live('click', function(){
 		ajax_submit($(this).closest("form"), refresh_thoughts);
 		$('#jqm_popup_msg').jqmHide();
 	});
 	
-	$('a.submit', '#add_thought_form').live('click', function(){
+	$('a.ajax_submit', '#add_thought_form').live('click', function(){
 		ajax_submit($(this).closest("form"), refresh_thoughts);
 		$(':input','#add_thought_form')
 		.not(':button, :submit, :reset, :hidden')
