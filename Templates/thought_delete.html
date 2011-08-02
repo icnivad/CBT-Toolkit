@@ -1,0 +1,9 @@
+<div id="delete_form">
+	<div>Are you sure you want to delete this thought?</div>
+	<div class="submit_thought float">
+		<a href="javascript:;" class="button cancel"><span>Cancel</span></a>
+	</div>
+	<div class='float'>
+		<a class="thought_delete" href="{% url thought_delete thought.pk %}">Delete</a>
+	</div>
+</div>	

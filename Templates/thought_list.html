@@ -30,16 +30,16 @@
 				{% if thought.get_challenge.response %}
 					<strong>{{thought.get_challenge.response}}</strong>
 				{% else %}
-					<a class="challenge" href="{% url thought_challenge thought.pk %}">Challenge This Thought</a>
+					<a class="jqm_trigger" href="{% url thought_challenge thought.pk %}">Challenge This Thought</a>
 				{% endif %}
 				</div>
 			</div>
 			
 		</td>
 		<td class='actions'>
-			<a class="check_delete" href="{% url thought_delete thought.pk %}"><img title="Delete Thought" class="icon" src="{{MEDIA_URL}}/my_images/24px/delete2.png"/></a>
-			<a href="/thought/edit"><img title="Edit Thought" class="icon" src="{{MEDIA_URL}}/my_images/24px/edit.png"/></a>
-			<a class="challenge" href="{% url thought_challenge thought.pk %}"><img title="Challenge Thought" class="icon" src="{{MEDIA_URL}}/my_images/24px/challenge.png"/><div class="hidden jqm_popup">Hello</div></a>
+			<a class="jqm_trigger" href="{% url thought_delete thought.pk %}"><img title="Delete Thought" class="icon" src="{{MEDIA_URL}}/my_images/24px/delete2.png"/></a>
+			<a class="jqm_trigger" href="{% url thought_edit thought.pk %}"><img title="Edit Thought" class="icon" src="{{MEDIA_URL}}/my_images/24px/edit.png"/></a>
+			<a class="jqm_trigger" href="{% url thought_challenge thought.pk %}"><img title="Challenge Thought" class="icon" src="{{MEDIA_URL}}/my_images/24px/challenge.png"/></a>
 		</td>
 	</tr>
     </li>
