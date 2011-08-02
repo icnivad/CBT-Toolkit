@@ -54,6 +54,8 @@ class ThoughtForm(ModelForm):
 		fields=('thought', 'situation', 'category')
 		widgets={
 			'thought':forms.Textarea(attrs={'class':'text_field'}),
+			'situation':forms.Textarea(attrs={'class':'text_field'}),			
+			'category':forms.TextInput(attrs={'class':'text_field'}),
 		}
 		
 class ChallengeForm(ModelForm):
@@ -68,3 +70,7 @@ class MoodForm(ModelForm):
 	class Meta:
 		model=Mood
 		exclude=('user', 'datetime')
+		widgets={
+			'mood':forms.TextInput(attrs={'class':'text_field'}),
+			'feeling':forms.TextInput(attrs={'class':'text_field'}),
+		}

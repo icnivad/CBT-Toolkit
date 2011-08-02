@@ -121,6 +121,43 @@ def thoughtDetailView(request, thought_id):
 	c={'thought':thought, 'challenge':challenge}
 	return render(request, "thought_detail.html", c)
 
+def thoughtEditView(request, thought_id):
+	if request.method=="POST":
+		thought=Thought.objects.get(pk=thought_id)
+		form=ThoughtForm(request.POST, instance=thought)
+		try:
+			moodForm=MoodForm(request.POST, instance=thought.get_mood())
+		except:
+			moodForm=MoodForm(request.POST)
+		temp=""
+		if form.is_valid():
+			if(form.cleaned_data['thought']!=""):
+				temp=form.save(commit=False)
+				temp.user=request.user
+				temp.save()
+			else:
+				pass
+		else:
+			raise Exception('thought form invalid')
+		if moodForm.is_valid():
+			if ((moodForm.cleaned_data['mood'] is not None) or (moodForm.cleaned_data['feeling']!="")):
+				mtemp=moodForm.save(commit=False)
+				mtemp.user=request.user
+				mtemp.save()
+			else:
+				pass
+		else:
+			raise Exception('mood form invalid')
+		return HttpResponse("")
+	else:
+		thought=Thought.objects.get(pk=thought_id)
+		form=ThoughtForm(instance=thought)
+		try:
+			moodForm=MoodForm(instance=thought.get_mood())
+		except:
+			moodForm=MoodForm()
+		c={'thought':thought, 'form':form, 'mood':moodForm}
+		return render(request, "thought_edit.html", c)
 
 def challengeView(request, thought_id):
 	thought=Thought.objects.get(pk=thought_id)
@@ -134,19 +171,25 @@ def challengeView(request, thought_id):
 		else:
 			pass
 		return redirect("/thought")
-	if not thought.user==request.user:
-		return redirect("/")
 	else:
-		form=ChallengeForm()
-		c={'thought':thought, 'form':form}
-		return render(request, "challenge_thought_form.html", c)
+		if not thought.user==request.user:
+			return redirect("/")
+		else:
+			form=ChallengeForm()
+			c={'thought':thought, 'form':form}
+			return render(request, "challenge_thought_form.html", c)
 	
 def thoughtDeleteView(request, thought_id):
 	thought=Thought.objects.get(pk=thought_id)
-	if ((request.user.is_authenticated()) and (request.user==thought.user)):
-		thought.delete()
+	if request.method=="POST":
+		if ((request.user.is_authenticated()) and (request.user==thought.user)):
+			thought.delete()
+		else:
+			pass
+		return HttpResponse('deleted');
 	else:
-		pass
+		c={'thought':thought}
+		return render(request, "thought_delete.html", c)
 	
 def errorView(request):
 	logged_in=False
