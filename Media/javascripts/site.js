@@ -40,14 +40,14 @@ $(document).ready(function() {
 	}
 	
 	// Add form submit capability to buttons
-	$("a.submit").live('click', function() {
+	$("#add_thought_form a.submit").live('click', function() {
 		$form=$(this).closest('form')
 		$.ajax({
 			type:'POST',
 			url:$form.attr("action"),
 			data:$form.serialize(),
 			success: function(data){
-				alert(data);
+				$('.header_message').html(data);
 			},
 		});
 	});

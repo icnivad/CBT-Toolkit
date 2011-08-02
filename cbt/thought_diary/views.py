@@ -96,13 +96,8 @@ def thoughtView(request):
 				pass
 		else:
 			raise Exception('mood form invalid')
-		
-		#make sure we're using new forms here
-		newForm=ThoughtForm()
-		newMoodForm=MoodForm()
-		thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
-		c={'form':newForm, 'recent_thought':temp, 'thoughts':thoughts, 'mood':newMoodForm}
-		return render(request, "thought.html", c)
+		c={'recent_thought':temp}
+		return render(request, "thought_message.html", c)
 		
 	else:
 		form=ThoughtForm()

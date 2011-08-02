@@ -53,9 +53,15 @@ $(document).ready(function(){
 		$('.detail_field').jqmHide();
 	});
 	
-	$('#jqm_popup_msg').jqm({overlay:20, ajax:"@href", trigger:"a.challenge", modal:true});
+	$('#jqm_popup_msg').jqm({overlay:20, ajax:"@href", modal:true});
 	$('.cancel').live('click', function(){
 		$('#jqm_popup_msg').jqmHide();
+	});
+	$('a.challenge').live('click', function(){
+		var el=$('#jqm_popup_msg');
+		var url=$(this).attr("href");
+		el.jqmShow({ajax:url});
+		return false;
 	});
 		
 	$('tr.thought_box').live('mouseenter', function(){
@@ -64,11 +70,4 @@ $(document).ready(function(){
 	$('tr.thought_box').live('mouseleave', function(){
 		$(this).find("div.thought_challenge").hide();
 	});
-	
-//	$('a.challenge').live('click', function(){
-//		var el=$('#jqm_popup_msg');
-//		el.jqmShow({});
-//		el.position({'at':'top', 'my':'top', 'of':$(this).closest(".thought_box"), 'offset':"0 -50"});
-//		return false;
-//	});
 });
