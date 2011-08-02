@@ -1,12 +1,8 @@
 {% extends "base.html" %}
 {% block title %} CBT Toolkit Dashboard {% endblock title %}
 {% block content %}
-	<div class="header_message">
-	{% if recent_thought %}
-		<h3>Your thought: {{recent_thought.thought}}</h3>
-		<h4>If you feel bad, you can <a class="challenge" href="/thought/{{recent_thought.pk}}/challenge">challenge this thought</a> or </h4>
-	{% else %}
-	{% endif %}
+	<div id="header_message">
+	{% include "thought_message.html" %}
 	</div>
 	{% include "add_thought_form.html" %}
 	<div class='thoughts'>

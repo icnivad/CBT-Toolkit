@@ -101,15 +101,18 @@ $(document).ready(function(){
 		$('#jqm_popup_msg').jqmHide();
 	});
 	
+	function add_thought(data){
+		$("#header_message").html(data);
+		refresh_thoughts();
+	}
+	
 	$('a.ajax_submit', '#add_thought_form').live('click', function(){
-		ajax_submit($(this).closest("form"), refresh_thoughts);
+		ajax_submit($(this).closest("form"), add_thought);
 		$(':input','#add_thought_form')
 		.not(':button, :submit, :reset, :hidden')
 		.val('')
 		.removeAttr('checked')
 		.removeAttr('selected');
-
-		$('#id_thought').focus();
 	});
 
 });
