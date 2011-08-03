@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block title %} CBT Toolkit {% endblock title %}
-
-{% block content %}
+{% block content_header %}
+<div class="header header_home page">
+    <img src="http://www.cbttoolkit.com/wp-content/uploads/2011/07/tech_toolbox_cropped2.jpg" alt="" class="main_screenshot" />
+    <div class="info">
+        <h1>Get Help for Anxiety and Depression</h1>
 	<form action="/signup" method="POST" class="signup">
 		{% csrf_token %}
 		{{signupform}}
@@ -9,4 +12,21 @@
 			<a href="javascript:;" class="button submit"><span>Sign Up</span></a>
 		</div>
 	</form>
+    </div>
+
+    <!-- End App Info -->
+    <div class="clear"></div>
+    
+	<div class="clear"></div>
+	
+</div>
+{% endblock %}
+
+{% block content %}
+              <div class="section_title">
+                    <h3>Learn More</h3>
+                </div>
+                <p>CBT Toolkit is is ready to use!  You can also check out the <a href="/about">about page</a>, <a href="/blog/contact">send me an e-mail</a>, or check out the <a href="/blog">blog</a>.</p>    
+	<div class="clear"></div>
+</div>
 {% endblock %}

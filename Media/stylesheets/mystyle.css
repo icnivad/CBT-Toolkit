@@ -179,3 +179,11 @@ div.track_item span {
 	padding: 15 px;
 	color:blue;
 }
+
+/**********************
+**** about page *******
+***************************/
+img.about_me_img {
+	float:left;
+	margin: 0 35px 0 0;
+}

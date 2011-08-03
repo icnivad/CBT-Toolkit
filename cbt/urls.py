@@ -29,6 +29,8 @@ urlpatterns = patterns('',
     url(r'^thought/list/$', getThoughts, name='thought_list'),
     (r'^test/', testView),
     url(r'^$', mainView, name='main'),
+    url(r'^about/', 'django.views.generic.simple.direct_to_template', {'template': 'about.html'}),
+
     # Example:
     # (r'^cbt/', include('cbt.foo.urls')),
 
