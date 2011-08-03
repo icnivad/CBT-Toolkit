@@ -1,6 +1,5 @@
 {% if recent_thought %}
 	<h3>Your thought: {{recent_thought.thought}}</h3>
-	<h4>If you feel bad, you can <a class="challenge" href="/thought/{{recent_thought.pk}}/challenge">challenge this thought</a> or </h4>
+	<h4>If you feel bad, you can <a class="jqm_trigger" href="{% url thought_challenge recent_thought.pk %}">challenge this thought</a> or </h4>
 {% else %}
-	You haven't entered any thoughts yet!  Go ahead and add one.
 {% endif %}

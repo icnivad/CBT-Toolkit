@@ -26,48 +26,91 @@ $(document).ready(function(){
 	});
 	
 	//basic crud for thoughts
-	$('a.check_delete').live('click', function(){
-		var thought=$(this).closest('.thought_box').find('div.thought').html()
-		result=confirm("Are you sure you want to delete your thought: "+thought)
-		if(result){
-			$.get($(this).attr("href"));
-			$.get('/thought/list/', function(data){
-				$('div.thoughts').html(data);
-			});
-		}
+	$('a.thought_delete').live('click', function(){
+		$.post($(this).attr("href"), {}, function(data){
+			$("#jqm_popup_msg").jqmHide();
+			refresh_thoughts();
+		});
 		return false;
 	});
 	
 	// onShow : show+make the window translucent
-	var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
-	$('#dialog').jqm({onShow:myOpen}); 
-
-	$('.detail_field').jqm({overlay:0});
-	$('.detail_icon img').live('mouseenter', function(){
-		var el=$(this).closest('.detail').find('.detail_field');
-		el.jqmShow({});
-		el.position({'at':'bottom', 'my':'top', 'of':$(this), 'offset':"10 10"});
-	});
-		
-	$('.detail').live('mouseleave', function(){
-		$('.detail_field').jqmHide();
+	$(".details").hide();
+	$(".detail_trigger").live("click", function(){
+		$(".details").toggle();
+		var msg=$(this).children("a")
+		if($(".details").is(":visible")){
+			msg.html("Click to Hide Optional Details");
+		}
+		else {
+			msg.html("Click to Show Optional Details");
+		}
 	});
 	
-	$('#jqm_popup_msg').jqm({overlay:20, ajax:"@href", modal:true});
+	// CSS3 rounded corners / shadows
+	function fix_form_css(){
+		$("div#header li.active a").css({ '-moz-border-radius': '6px', '-webkit-border-radius': '6px', 'border-radius': '6px' });
+		$("div.sidebar_box").css({ '-moz-border-radius': '8px', '-webkit-border-radius': '8px', 'border-radius': '8px' });
+		$("div#price_table table").css({ '-moz-border-radius': '8px', '-webkit-border-radius': '8px', 'border-radius': '8px' });
+		$("span.highlight_dark, span.highlight_light").css({ '-moz-border-radius': '2px', '-webkit-border-radius': '2px', 'border-radius': '2px' });
+		$("div#about .team ul li a").css({ '-moz-border-radius': '8px', '-webkit-border-radius': '8px', 'border-radius': '8px' });
+		$("form .text_field").css({ '-moz-border-radius': '8px', '-webkit-border-radius': '8px', 'border-radius': '8px' });
+		$("a.button span").css({ 'text-shadow': '#000 0px -0px 2px' });
+		$("div#page .section_title h3").css({ 'text-shadow': '#3e2828 0px 0px 2px' });
+	}
+	fix_form_css();
+	
+	$('#jqm_popup_msg').jqm({overlay:20, ajax:"@href", modal:true, trigger:'a.jqm_trigger', onLoad:fix_form_css});
 	$('.cancel').live('click', function(){
 		$('#jqm_popup_msg').jqmHide();
 	});
-	$('a.challenge').live('click', function(){
-		var el=$('#jqm_popup_msg');
-		var url=$(this).attr("href");
-		el.jqmShow({ajax:url});
-		return false;
+	
+	$("div.thought_challenge").show();
+//	$('tr.thought_box').live('mouseenter', function(){
+//		$(this).find("div.thought_challenge").show();
+//	});
+//	$('tr.thought_box').live('mouseleave', function(){
+//		$(this).find("div.thought_challenge").hide();
+//	});
+	
+	function refresh_thoughts(){
+		$.get('/thought/list/', function(data){
+			$('div.thoughts').html(data);
+			$('#jqm_popup_msg').jqm({overlay:20, ajax:"@href", modal:true, trigger:'a.jqm_trigger'});
+			$("div.thought_challenge").show();
+		});
+	}
+	
+	function ajax_submit(form, callback){
+		$.ajax({
+			type:'POST',
+			url:form.attr("action"),
+			data:form.serialize(),
+			success: callback,
+		});
+	}
+	
+	$("a.ajax_submit", "#challenge_thought_form").live('click', function(){
+		ajax_submit($(this).closest("form"), refresh_thoughts);
+		$('#jqm_popup_msg').jqmHide();
 	});
-		
-	$('tr.thought_box').live('mouseenter', function(){
-		$(this).find("div.thought_challenge").show();
+	
+	$("a.ajax_submit", "#edit_thought_form").live('click', function(){
+		ajax_submit($(this).closest("form"), refresh_thoughts);
+		$('#jqm_popup_msg').jqmHide();
 	});
-	$('tr.thought_box').live('mouseleave', function(){
-		$(this).find("div.thought_challenge").hide();
+	
+	function add_thought(data){
+		$("#header_message").html(data);
+		refresh_thoughts();
+	}
+	
+	$('a.ajax_submit', '#add_thought_form').live('click', function(){
+		ajax_submit($(this).closest("form"), add_thought);
+		$(':input','#add_thought_form')
+		.not(':button, :submit, :reset, :hidden')
+		.val('')
+		.removeAttr('checked')
+		.removeAttr('selected');
 	});
 });

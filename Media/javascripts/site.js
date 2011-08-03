@@ -1,15 +1,4 @@
 $(document).ready(function() {
-	
-	// CSS3 rounded corners / shadows
-	$("div#header li.active a").css({ '-moz-border-radius': '6px', '-webkit-border-radius': '6px', 'border-radius': '6px' });
-	$("div.sidebar_box").css({ '-moz-border-radius': '8px', '-webkit-border-radius': '8px', 'border-radius': '8px' });
-	$("div#price_table table").css({ '-moz-border-radius': '8px', '-webkit-border-radius': '8px', 'border-radius': '8px' });
-	$("span.highlight_dark, span.highlight_light").css({ '-moz-border-radius': '2px', '-webkit-border-radius': '2px', 'border-radius': '2px' });
-	$("div#about .team ul li a").css({ '-moz-border-radius': '8px', '-webkit-border-radius': '8px', 'border-radius': '8px' });
-	$("form .text_field").css({ '-moz-border-radius': '8px', '-webkit-border-radius': '8px', 'border-radius': '8px' });
-	$("a.button span").css({ 'text-shadow': '#000 0px -0px 2px' });
-	$("div#page .section_title h3").css({ 'text-shadow': '#3e2828 0px 0px 2px' });
-
 	// Default text field values
 	$(".text_field").focus(function(srcc)
   {
@@ -38,18 +27,10 @@ $(document).ready(function() {
 			function() { jQuery(this).stop().animate({opacity:1},400); }
 		);
 	}
-	
+		
 	// Add form submit capability to buttons
-	$("#add_thought_form a.submit").live('click', function() {
-		$form=$(this).closest('form')
-		$.ajax({
-			type:'POST',
-			url:$form.attr("action"),
-			data:$form.serialize(),
-			success: function(data){
-				$('.header_message').html(data);
-			},
-		});
+	$("a.submit").click(function() {
+		$(this).closest('form').submit();
 	});
 	
 	// Ajax contact form

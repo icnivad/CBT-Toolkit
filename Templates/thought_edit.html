@@ -1,15 +1,14 @@
-<form id="add_thought_form" action="{% url thought %}" method="POST">
+<form id="edit_thought_form" action="{% url thought_edit thought.pk %}" method="POST">
 	{% csrf_token %}
-	<label class='add_thought'>Add Another Thought:</label>
+	<label class='add_thought'>Edit Your Thought:</label>
 	{{form.thought}}
-	<div class="detail_trigger"><a>Click to Show Optional Details</a></div>
 	<div class="details">
 		<div class="detail_field">
 			<label>What is your mood on a scale of 1 to 10? (1 for bad, 10 for good)</label>
 			{{mood.mood}}
 		</div>
 		<div class="detail_field">
-			<label>How do you feel?</label>
+			<label>How do you feel in one word?</label>
 			{{mood.feeling}}
 		</div>
 		<div class="detail_field">
@@ -23,6 +22,7 @@
 	</div>
 	
 	<div class="submit_thought">
-		<a href="javascript:;" class="button ajax_submit"><span>Add Thought</span></a>
-	</div>
+		<a href="javascript:;" class="button ajax_submit"><span>Edit Thought</span></a>
+		<a href="javascript:;" class="button cancel"><span>Cancel</span></a>
+	</div>	
 </form>

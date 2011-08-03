@@ -1,10 +1,10 @@
-<form class="challenge" action="{% url thought_challenge thought.pk %}" method="POST">
+<form id="challenge_thought_form" action="{% url thought_challenge thought.pk %}" method="POST">
 	{% csrf_token %}
 	Your Thought: {{thought}}
 	<label>Challenge That Thought:</label>
 	{{form}}
 	<div class="submit_thought">
-		<a href="javascript:;" class="button submit"><span>Challenge Thought</span></a>
+		<a href="javascript:;" class="button ajax_submit"><span>Challenge Thought</span></a>
 		<a href="javascript:;" class="button cancel"><span>Cancel</span></a>
 	</div>
 </form>

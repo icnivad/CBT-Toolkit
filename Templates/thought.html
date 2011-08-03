@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %} CBT Toolkit Dashboard {% endblock title %}
 {% block content %}
-	<div class="header_message">
-		You haven't entered any thoughts yet!  Go ahead and add one.
+	<div id="header_message">
+	{% include "thought_message.html" %}
 	</div>
 	{% include "add_thought_form.html" %}
 	<div class='thoughts'>

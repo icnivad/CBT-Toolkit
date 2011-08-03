@@ -7,46 +7,21 @@
 }
 
 .add_thought {
-    float:left;
-    padding: 10px 0px 0px;
-}
-
-.detail {
-    float:left;
-}
-
-.detail_icon {
-    padding: 10px 5px;
+	padding:10px;
 }
 
 .detail_field {
-	display: none;
-    
-    position: fixed;
-    top: 17%;
-    left: 50%;
-    
-    margin-left: -300px;
-    
-    background-color: #EEE;
-    color: #333;
-    border: 1px solid black;
-    padding: 12px;
+	width:200px;
+	float:left;
+	padding:15px;
 }
 
-#jqm_popup_msg {
-display: none;
-    
-    position: fixed;
-    top: 17%;
-    left: 50%;
-    
-    margin-left: -300px;
-    
-    background-color: #EEE;
-    color: #333;
-    border: 1px solid black;
-    padding: 12px;	
+.detail_field .text_field {
+		width:175px;
+}
+
+.large {
+	float:none;
 }
 
 form #id_thought , #id_response{
@@ -69,21 +44,13 @@ div.form_label {
 	font-size:17px;
 }
 
-form #id_mood {
-	border-color:#D6D6D6;
-	border-width:1px;
-	border-style:solid;
-	width:200px;
-	height:25px;
-}
-
 .form_field_inline{
 	float:left;
 	margin:0px 10px 10px;
 }
 
 .form_field_inline select{
-	width:200px
+	width:150px;
 }
 
 .last{
@@ -129,6 +96,7 @@ td {
 td.thought{
 	width:450px;
 	padding:10px;
+	height:75px;
 }
 
 td.id {
@@ -140,11 +108,41 @@ div.thought_challenge {
 }
 
 /**********************
-**** Popup *******
+**** JQM Popup *******
 ***************************/
+
+#jqm_popup_msg {
+display: none;
+    
+    position: fixed;
+    top: 17%;
+    left: 50%;
+    
+    margin-left: -300px;
+    
+    background-color: #EEE;
+    color: #333;
+    border: 1px solid black;
+    padding: 12px;	
+}
+
+#jqm_popup_msg #id_situation, #jqm_popup_msg #id_thought{
+	width:600px;
+}
+
 form.challenge a.button {
 	width:150px;
 }
+
+/**********************
+**** Delete Form *******
+***************************/
+#delete_form div.float {
+	float:left;
+	width:100px;
+	left: 0px;
+}
+
 
 /**********************
 **** Signup Page *******
