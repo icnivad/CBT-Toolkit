@@ -8,7 +8,7 @@ TEMPLATE_CONTEXT_PROCESSORS = ('django.core.context_processors.request',
 'django.core.context_processors.auth',
 'django.core.context_processors.debug',
 'django.core.context_processors.i18n',
-'thought_diary.context_processors.media_url',
+'thought_diary.context_processors.get_useful_constants',
 )
 
 MYFILEPATH=os.path.dirname(os.path.dirname(__file__))+"/"
