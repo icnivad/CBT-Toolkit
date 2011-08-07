@@ -1,4 +1,16 @@
 /**********************
+**** Main Page *******
+***************************/
+img.main_screenshot {
+	float: left;
+    padding: 20px 50px 0 100px;
+}
+
+div.signup form.signup {
+	margin: 10px 0px 0px 500px;
+}
+
+/**********************
 **** Thought Diary *******
 ***************************/
 

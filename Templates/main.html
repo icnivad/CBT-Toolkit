@@ -2,8 +2,8 @@
 {% block title %} CBT Toolkit {% endblock title %}
 {% block content_header %}
 <div class="header header_home page">
-    <img src="http://www.cbttoolkit.com/wp-content/uploads/2011/07/tech_toolbox_cropped2.jpg" alt="" class="main_screenshot" />
-    <div class="info">
+    <img src="{{MEDIA_URL}}/my_images/tech_toolbox.jpg" alt="application icon" title="application icon" class="main_screenshot" />
+    <div class="signup">
         <h1>Get Help for Anxiety and Depression</h1>
 	<form action="/signup" method="POST" class="signup">
 		{% csrf_token %}

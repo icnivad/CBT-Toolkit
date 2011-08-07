@@ -210,3 +210,6 @@ def getThoughts(request):
 	thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
 	c={'thoughts':thoughts}
 	return render(request, 'thought_list.html', c)
+
+def getLoginMessage(request):
+	return render(request, "login_message.html")

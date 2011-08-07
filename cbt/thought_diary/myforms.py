@@ -27,7 +27,7 @@ class CreateUserForm(forms.Form):
 		if pword!=rpword:
 			raise forms.ValidationError("Password does not match.")
 		email=cleaned.get("email")
-		if email is not None:
+		if email!="":
 			try:
 				validate_email(email)
 			except:

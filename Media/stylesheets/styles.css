@@ -155,10 +155,11 @@ div#page {
 			top: -55px;
 			right: -35px;
 		}
+		/* I have another style for the main_screenshot
 		div#page .header_home img.main_screenshot{ 
 			float: left;
 			padding: 20px 0px 0px 35px;
-		}
+		}*/
 		div#page .header_home .info {
 			width: 450px;
 			float: right;
