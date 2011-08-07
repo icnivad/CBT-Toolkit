@@ -21,7 +21,7 @@ Work on staging environment
     env.static_folder='static_app'
 
 def push():
-	local('git push origin $(branch)')
+	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/; git pull origin master' % env.app_folder)
 
 def move_static_files():
 	with settings(warn_only=True):
@@ -33,8 +33,11 @@ def move_static_files():
 def restart():
 	run('/home/tukipenda/webapps/%s/apache2/bin/restart' % env.app_folder)
 
+def stop():
+	run('/home/tukipenda/webapps/%s/apache2/bin/stop' % env.app_folder)
+
 def deploy():
-	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/; git pull origin master' % env.app_folder)
+	push()
 	move_static_files()
 	restart()
 	
