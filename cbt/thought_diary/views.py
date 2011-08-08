@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.template import Context, Template
+from django.template import Context, Template, loader
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
@@ -10,7 +10,7 @@ from django.views.generic import *
 from django.views.generic.edit import *
 from django.template import RequestContext
 from models import  *
-import settings
+from django.conf import settings
 from myforms import *
 import datetime
 
@@ -213,3 +213,12 @@ def getThoughts(request):
 
 def getLoginMessage(request):
 	return render(request, "login_message.html")
+	
+def server_error(request, template_name='500.html'):
+	"Always includes MEDIA_URL"
+	from django.http import HttpResponseServerError
+	t = loader.get_template(template_name)
+	c=Context({'MEDIA_URL':settings.MEDIA_URL})
+	c.update(csrf(request))
+	return HttpResponseServerError(t.render(c))
+

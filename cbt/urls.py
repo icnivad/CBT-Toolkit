@@ -10,10 +10,7 @@ from thought_diary.myforms import ThoughtForm
 from django.contrib import admin
 admin.autodiscover()
 
-thought_info = {
-	'queryset' : Thought.objects.all(),
-	'template_name': 'thought_list.html',
-}
+handler500 = 'thought_diary.views.server_error'
 
 #today we're playing with generic views
 urlpatterns = patterns('',
