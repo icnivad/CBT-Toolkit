@@ -218,5 +218,7 @@ def server_error(request, template_name='500.html'):
 	"Always includes MEDIA_URL"
 	from django.http import HttpResponseServerError
 	t = loader.get_template(template_name)
-	return HttpResponseServerError(t.render(Context({'MEDIA_URL': settings.MEDIA_URL})))
+	c=Context({'MEDIA_URL':settings.MEDIA_URL})
+	c.update(csrf(request))
+	return HttpResponseServerError(t.render(c))
 
