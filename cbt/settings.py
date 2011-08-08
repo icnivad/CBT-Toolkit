@@ -1,5 +1,10 @@
 from localsettings import *
 import os
+import sys
+
+#lets see if we can speed up testing
+if 'test' in sys.argv:
+	DATABASE_ENGINE='sqlite3'
 
 #deal with urls
 APPEND_SLASH=True
