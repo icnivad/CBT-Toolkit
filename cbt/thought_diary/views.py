@@ -65,9 +65,14 @@ def signupAction(request):
 			login(request, createdUser)
 			return redirect("/")
 		else:
-			c={'logged_in':False, 'username':"", 'loginform':LoginForm(), 'signupform':form}
+			c={'form':form}
 			c.update(csrf(request))
-			return render(request, "main.html", c)
+			return render(request, "signup.html", c)
+	else:
+		form=CreateUserForm()
+		c={'form':form}
+		c.update(csrf(request))
+		return render(request, "signup.html", c)
 				
 def logoutView(request):
 	logout(request)

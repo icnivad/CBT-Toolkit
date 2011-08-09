@@ -21,7 +21,6 @@ class SimpleTest(TestCase):
         self.failUnlessEqual(1 + 1, 2)
 
 class ModelTest(TestCase):
-	import pdb; pdb.set_trace()
 	fixtures=['test.json']
 	def test_thought(self):
 		thoughts=Thought.objects.all()
@@ -44,10 +43,17 @@ class ViewTest(TestCase):
 		self.assertEqual(thought_view, '/thought/')
 		
 		test=self.client.login(username="ben", password="cold")	
-		print test
-#		resp=self.client.get(thought_view)
-#		self.assertEqual(resp.status_code, 200)
+		resp=self.client.get(thought_view)
+		self.assertEqual(resp.status_code, 200)
 
 	def test_challenge_view(self):
 		challenge_view=reverse('thought_challenge', args=[2])
-#		self.assertEqual(challenge_view, '/thought/2/challenge/')
+		self.assertEqual(challenge_view, '/thought/2/challenge/')
+		
+		#check if we can get a challenge view that does exist
+		self.client.login(username="ben", password="cold")
+		
+		#check what happens if challenge doesn't exist -we should return some type of friendly response
+		not_exist_challenge_view=reverse('thought_challenge', args=[10000])
+		resp=self.client.get(not_exist_challenge_view)
+		self.assertEqual(resp.status_code, 200)
