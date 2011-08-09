@@ -53,6 +53,7 @@ class ViewTest(TestCase):
 		#check if we can get a challenge view that does exist
 		self.client.login(username="ben", password="cold")
 		
-		#check what happens if challenge doesn't exist
+		#check what happens if challenge doesn't exist -we should return some type of friendly response
 		not_exist_challenge_view=reverse('thought_challenge', args=[10000])
 		resp=self.client.get(not_exist_challenge_view)
+		self.assertEqual(resp.status_code, 200)
