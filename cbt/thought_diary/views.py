@@ -160,7 +160,14 @@ def thoughtEditView(request, thought_id):
 		return render(request, "thought_edit.html", c)
 
 def challengeView(request, thought_id):
-	thought=Thought.objects.get(pk=thought_id)
+	templateName="challenge_thought_form.html"
+	try:
+		thought=Thought.objects.get(pk=thought_id)
+	except: 
+		thought=""
+		errors=True
+		error_msg="Uh oh, we couldn't find that thought to challenge it."
+		
 	if request.method=="POST":
 		form=ChallengeForm(request.POST)
 		if form.is_valid():
@@ -173,11 +180,13 @@ def challengeView(request, thought_id):
 		return redirect("/thought")
 	else:
 		if not thought.user==request.user:
-			return redirect("/")
+			#need to write this so it returns an error_msg - can't access thought
+			errors=True
+			thought=""
 		else:
 			form=ChallengeForm()
-			c={'thought':thought, 'form':form}
-			return render(request, "challenge_thought_form.html", c)
+			c={'thought':thought, 'form':form, 'errors':errors}
+			return render(request, templateName, c)
 	
 def thoughtDeleteView(request, thought_id):
 	thought=Thought.objects.get(pk=thought_id)
