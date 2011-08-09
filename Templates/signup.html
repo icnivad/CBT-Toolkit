@@ -1,15 +1,16 @@
 {% extends "base.html" %}
-{% block title %} Log in to CBT Toolkit {% endblock title %}
-{% block content %}
+{% block title %} Sign up forCBT Toolkit {% endblock %}
+{% block content_header %} 
 	<div class="header page">
-		<h1>Log in to CBT Toolkit</h1>
+		<h1>Sign up for CBT Toolkit </h1>
 	</div>
-	<div class="padding">
-		<form action="" method="POST">
-			{% csrf_token %}
-			{{form}}
-			<input type="submit" value="Log In"/>
-		</form>
-	</div>
-	<div class="bottom"></div>
+{% endblock %}
+{% block content %}
+	<form action="" method="POST">
+		{% csrf_token %}
+		{{form}}
+		<div class="submit add_padding">
+			<a href="javascript:;" class="button submit"><span>Log In</span></a>
+		</div>		
+	</form>
 {% endblock %}

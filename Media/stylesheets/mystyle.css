@@ -164,12 +164,9 @@ p.signup_note {
 	margin: 10px 0px;
 }
 
-form.signup div {
-	margin: 10px;
-}
 
-form.signup div.submit {
-	margin:20px 10px;
+div.add_padding {
+    margin: 15px 15px;
 }
 
 /**********************
