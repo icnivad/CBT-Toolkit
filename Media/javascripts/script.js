@@ -86,7 +86,7 @@ $(document).ready(function(){
 			type:'POST',
 			url:form.attr("action"),
 			data:form.serialize(),
-			success: callback,
+			success: callback
 		});
 	}
 	
