@@ -33,20 +33,9 @@
 <div id="wrapper">
 	<div id="header">
 		<div class="page">
-			{% if request.user.is_authenticated %}
-				<div id='login_message'>
-					Welcome {{request.user.username}}, you are now logged in! <a href="/logout">Sign Out</a>
-				</div>
-			{% else %}
-				<div id="login_message">
-					<form action="/login" method="POST" id='signin'>
-						{% csrf_token %}
-						Username: <input id="id_username" type="text" maxlength="20" name="username">
-						Password: <input id="id_password" type="password" maxlength="20" name="password">
-						<a href="javascript:;" class="button submit"><span>Sign In</span></a>
-					</form>
-				</div>
-			{% endif %}
+			<div id="#login_message">
+				{% include "login_message.html" %}
+			</div>	
 			<a href="/" class="logo">CBTToolkit</a>
 			
 			<ul>

@@ -17,9 +17,6 @@ handler500 = 'thought_diary.views.server_error'
 #today we're playing with generic views
 urlpatterns = patterns('',
     (r'^Media/(?P<path>.*)$', 'django.views.static.serve',  {'document_root': settings.MEDIA_ROOT}),
-    (r'^login$', loginAction),
-    (r'^logout$', logoutView),
-    (r'^signup$', signupAction),
     url(r'^thought/$', thoughtView, name='thought'),
     url(r'^thought/(?P<thought_id>\d.*)/challenge/$', challengeView, name='thought_challenge'),
     url(r'^thought/(?P<thought_id>\d+)/$', thoughtDetailView, name='thought_detail'),
