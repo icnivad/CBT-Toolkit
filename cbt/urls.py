@@ -10,10 +10,7 @@ from thought_diary.myforms import ThoughtForm
 from django.contrib import admin
 admin.autodiscover()
 
-thought_info = {
-	'queryset' : Thought.objects.all(),
-	'template_name': 'thought_list.html',
-}
+handler500 = 'thought_diary.views.server_error'
 
 #today we're playing with generic views
 urlpatterns = patterns('',
@@ -24,8 +21,8 @@ urlpatterns = patterns('',
     url(r'^thought/$', thoughtView, name='thought'),
     url(r'^thought/(?P<thought_id>\d.*)/challenge/$', challengeView, name='thought_challenge'),
     url(r'^thought/(?P<thought_id>\d+)/$', thoughtDetailView, name='thought_detail'),
-    url(r'^thought/(?P<thought_id>\d+)/delete$', thoughtDeleteView, name='thought_delete'),
-    url(r'^thought/(?P<thought_id>\d+)/edit$', thoughtEditView, name='thought_edit'),
+    url(r'^thought/(?P<thought_id>\d+)/delete/$', thoughtDeleteView, name='thought_delete'),
+    url(r'^thought/(?P<thought_id>\d+)/edit/$', thoughtEditView, name='thought_edit'),
     url(r'^thought/list/$', getThoughts, name='thought_list'),
     (r'^test/', testView),
     url(r'^$', mainView, name='main'),
