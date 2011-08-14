@@ -26,8 +26,9 @@ $(document).ready(function(){
 	});
 	
 	//basic crud for thoughts
-	$('a.thought_delete').live('click', function(){
-		$.post($(this).attr("href"), {}, function(data){
+	$('a.thought_delete').live('click', function(e){
+		var href=$(this).attr("href");
+		$.post(href, "delete", function(data){
 			$("#jqm_popup_msg").jqmHide();
 			refresh_thoughts();
 		});
@@ -86,7 +87,7 @@ $(document).ready(function(){
 			type:'POST',
 			url:form.attr("action"),
 			data:form.serialize(),
-			success: callback,
+			success: callback
 		});
 	}
 	
