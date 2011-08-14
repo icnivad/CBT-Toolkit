@@ -18,9 +18,12 @@ TEMPLATE_CONTEXT_PROCESSORS = ('django.core.context_processors.request',
 
 MYFILEPATH=os.path.dirname(os.path.dirname(__file__))+"/"
 
+template_dir=MYFILEPATH+"Templates"
 TEMPLATE_DIRS = (
-	MYFILEPATH+"Templates/",
-	MYFILEPATH+"Templates/Thoughts",
+	template_dir,
+	template_dir+"/Thoughts",
+	template_dir+"/tagging",
+	template_dir+"/registration",
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -43,6 +46,8 @@ MIDDLEWARE_CLASSES = (
 )
 
 INSTALLED_APPS = (
+    'tagging',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

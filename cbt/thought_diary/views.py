@@ -26,58 +26,6 @@ def mainView(request):
 		c.update(csrf(request))
 		return render(request, "main.html", c)
 
-def loginAction(request):
-	if request.method=="POST":
-		form=LoginForm(request.POST)
-		if form.is_valid():
-			username=form.cleaned_data['username']
-			password=form.cleaned_data['password']
-			user=authenticate(username=username, password=password)
-			if user is not None:
-				if user.is_active:
-					login(request, user)
-					return redirect("/")
-				else:
-					pass
-			else:
-				errormsg="You have entered an incorrect username or password.  Please try again."  
-				c={'form':form, 'errormsg':errormsg}
-				c.update(csrf(request))
-				return render(request, "login.html", c)
-		else:
-			pass
-	else:
-		form=LoginForm()
-	c={'form':form}
-	c.update(csrf(request))
-	return render(request, "login.html", c)
-
-def signupAction(request):
-	if request.method=="POST":
-		form=CreateUserForm(request.POST)
-		if form.is_valid():
-			username=form.cleaned_data['username']
-			password=form.cleaned_data['password']
-			email=form.cleaned_data['email']
-			user=User.objects.create_user(username=username, email=email, password=password) 
-			user.save()
-			createdUser=authenticate(username=username, password=password)
-			login(request, createdUser)
-			return redirect("/")
-		else:
-			c={'form':form}
-			c.update(csrf(request))
-			return render(request, "signup.html", c)
-	else:
-		form=CreateUserForm()
-		c={'form':form}
-		c.update(csrf(request))
-		return render(request, "signup.html", c)
-				
-def logoutView(request):
-	logout(request)
-	return redirect("/")
-
 def thoughtView(request):
 	if request.method=="POST":
 		form=ThoughtForm(request.POST)
@@ -161,32 +109,38 @@ def thoughtEditView(request, thought_id):
 
 def challengeView(request, thought_id):
 	templateName="challenge_thought_form.html"
+	errors=False
+	error_msg=""
+	form=ChallengeForm()
+	thought=""
 	try:
 		thought=Thought.objects.get(pk=thought_id)
+		if request.method=="POST":
+			form=ChallengeForm(request.POST)
+			if form.is_valid():
+				temp=form.save(commit=False)
+				temp.thought=thought
+				temp.user=request.user
+				temp.save()
+			else:
+				pass
+			return HttpResponse("success")
+		else:
+			if not thought.user==request.user:
+				#need to write this so it returns an error_msg - can't access thought
+				errors=True
+				thought=""
+				error_msg="Uh oh, it looks like you don't have permission to access this thought."
+				form=""
+			else:
+				pass
 	except: 
 		thought=""
 		errors=True
-		error_msg="Uh oh, we couldn't find that thought to challenge it."
-		
-	if request.method=="POST":
-		form=ChallengeForm(request.POST)
-		if form.is_valid():
-			temp=form.save(commit=False)
-			temp.thought=thought
-			temp.user=request.user
-			temp.save()
-		else:
-			pass
-		return redirect("/thought")
-	else:
-		if not thought.user==request.user:
-			#need to write this so it returns an error_msg - can't access thought
-			errors=True
-			thought=""
-		else:
-			form=ChallengeForm()
-			c={'thought':thought, 'form':form, 'errors':errors}
-			return render(request, templateName, c)
+		error_msg="Uh oh, it looks like that thought does not exist!  Our bad!"
+		form=""
+	c={'thought':thought, 'form':form, 'errors':errors, 'error_msg':error_msg}
+	return render(request, templateName, c)
 	
 def thoughtDeleteView(request, thought_id):
 	thought=Thought.objects.get(pk=thought_id)
@@ -199,21 +153,6 @@ def thoughtDeleteView(request, thought_id):
 	else:
 		c={'thought':thought}
 		return render(request, "thought_delete.html", c)
-	
-def errorView(request):
-	logged_in=False
-	username=""
-	if request.user.is_authenticated():
-		logged_in=True
-		username=request.user.username
-		c={'logged_in':logged_in, 'username':username}
-		c.update(csrf(request))
-		return render(request, "error.html", c)
-	else:
-		loginForm=LoginForm()
-		c={'logged_in':logged_in, 'username':username, 'loginform':loginForm}
-		c.update(csrf(request))
-		return render(request, "error.html", c)
 
 def testView(request):
 	test=reverse('main')

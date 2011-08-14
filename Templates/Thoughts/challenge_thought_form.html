@@ -1,3 +1,9 @@
+{% if errors %}
+	{{error_msg}}
+	<div class="submit_thought">
+		<a href="javascript:;" class="button cancel"><span>Cancel</span></a>
+	</div>
+{% else %}
 <form id="challenge_thought_form" action="{% url thought_challenge thought.pk %}" method="POST">
 	{% csrf_token %}
 	Your Thought: {{thought}}
@@ -8,3 +14,4 @@
 		<a href="javascript:;" class="button cancel"><span>Cancel</span></a>
 	</div>
 </form>
+{% endif %}

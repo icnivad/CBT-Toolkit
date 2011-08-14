@@ -57,8 +57,3 @@ class ViewTest(TestCase):
 		not_exist_challenge_view=reverse('thought_challenge', args=[10000])
 		resp=self.client.get(not_exist_challenge_view)
 		self.assertEqual(resp.status_code, 200)
-		
-		#if thought query is improperly formatted, check that nothing is returned
-		challenge_view_badinput=reverse('thought_challenge', args=[';lkjadf'])
-		resp=self.client.get(challenge_view_badinput)
-		self.assertEqual(resp.status_code, 404)
