@@ -7,6 +7,7 @@ from thought_diary.models import Thought
 from thought_diary.myforms import ThoughtForm
 from django.contrib.auth.views import password_reset, password_reset_done, password_change, password_change_done
 from django.views.generic.simple import direct_to_template
+import spreedly.settings as spreedly_settings
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -37,6 +38,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^accounts/', include('registration.backends.simple.urls')),
 #    (r'', errorView),
+    (r'^%s' % spreedly_settings.SPREEDLY_URL[1:], include('spreedly.urls')),
 )
 
 urlpatterns += patterns('',

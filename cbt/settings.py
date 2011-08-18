@@ -2,6 +2,11 @@ from localsettings import *
 import os
 import sys
 
+#spreedly controls
+SPREEDLY_AUTH_TOKEN='03743ec2ed1546ef8ee91ed6ef5f64c04c86b518'
+SPREEDLY_SITE_NAME='http://www.spreedly.com/cbttoolkit'
+SITE_URL="http://www.cbttoolkit.com"
+
 #We really really need to organize this file - oh well
 LOGIN_REDIRECT_URL="/"
 REGISTER_REDIRECT_URL="/"
@@ -46,6 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'spreedly.middleware.SpreedlyMiddleware',
 )
 
 INSTALLED_APPS = (
@@ -63,4 +69,5 @@ INSTALLED_APPS = (
     'thought_diary',
     'south',
     'debug_toolbar',
+    'spreedly',
 )
