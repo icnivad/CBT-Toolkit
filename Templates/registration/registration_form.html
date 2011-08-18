@@ -2,9 +2,5 @@
 {% load i18n %}
 
 {% block content %}
-<form method="post" action=".">
-  {{ form.as_p }}
-
-  <input type="submit" value="{% trans 'Submit' %}" />
-</form>
+{% include 'registration_form_contents.html' %}
 {% endblock %}

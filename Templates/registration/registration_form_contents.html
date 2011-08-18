@@ -1,0 +1,7 @@
+<form action="/accounts/register/" method="POST" class="signup">
+	{% csrf_token %}
+	{{form}}
+	<div class="submit">
+		<a href="javascript:;" class="button submit"><span>Sign Up</span></a>
+	</div>
+</form>

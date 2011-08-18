@@ -5,13 +5,7 @@
     <img src="{{MEDIA_URL}}/my_images/tech_toolbox.jpg" alt="application icon" title="application icon" class="main_screenshot" />
     <div class="signup">
         <h1>Get Help for Anxiety and Depression</h1>
-	<form action="/signup" method="POST" class="signup">
-		{% csrf_token %}
-		{{signupform}}
-		<div class="submit">
-			<a href="javascript:;" class="button submit"><span>Sign Up</span></a>
-		</div>
-	</form>
+	{% include 'registration_form_contents.html' %}
     </div>
 
     <!-- End App Info -->

@@ -12,17 +12,15 @@ from django.template import RequestContext
 from models import  *
 from django.conf import settings
 from myforms import *
+from registration.forms import RegistrationForm
 import datetime
 
 def mainView(request):
-	logged_in=False
-	username=""
 	if request.user.is_authenticated():
 		return redirect(reverse('thought'))
 	else:
-		loginForm=LoginForm()
-		signupForm=CreateUserForm()
-		c={'logged_in':logged_in, 'username':username, 'loginform':loginForm, 'signupform':signupForm}
+		form=RegistrationForm()
+		c={'form':form}
 		c.update(csrf(request))
 		return render(request, "main.html", c)
 

@@ -2,6 +2,9 @@ from localsettings import *
 import os
 import sys
 
+#We really really need to organize this file - oh well
+LOGIN_REDIRECT_URL="/"
+REGISTER_REDIRECT_URL="/"
 #lets see if we can speed up testing
 #if 'test' in sys.argv:
 #	DATABASE_ENGINE='sqlite3'
