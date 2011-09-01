@@ -173,3 +173,5 @@ def server_error(request, template_name='500.html'):
 	c.update(csrf(request))
 	return HttpResponseServerError(t.render(c))
 
+def contentView(request, templateName):
+	return render(request, templateName)

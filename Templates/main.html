@@ -2,11 +2,17 @@
 {% block title %} CBT Toolkit {% endblock title %}
 {% block content_header %}
 <div class="header header_home page">
-    <img src="{{MEDIA_URL}}/my_images/tech_toolbox.jpg" alt="application icon" title="application icon" class="main_screenshot" />
+    <img src="{{MEDIA_URL}}/my_images/tech_toolbox.jpg" alt="Mood Toolkit Icon" title="Mood Toolkit Icon" class="main_screenshot" />
     <div class="signup">
-        <h1>Get Help for Anxiety and Depression</h1>
-	{% include 'registration_form_contents.html' %}
-    </div>
+        <h1>Do you feel <strong>anxious</strong>, <strong>depressed</strong>, or <strong>sad</strong>?</h1>
+	The mood toolkit provides some simple tools to help you improve your mood.  
+	<form action="/introduction/" method="POST">
+		{% csrf_token %}
+		<div class="submit">
+			<a href="javascript:;" class="button submit"><span>Try It Now For Free!</span></a>
+		</div>
+	</form>   
+	</div>
 
     <!-- End App Info -->
     <div class="clear"></div>

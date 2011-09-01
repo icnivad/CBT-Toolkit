@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r'^$', mainView, name='main'),
     url(r'^about/', 'django.views.generic.simple.direct_to_template', {'template': 'about.html'}),
     (r'^getloginmsg/', getLoginMessage),
+    url(r'^content/(?P<templateName>.*)$', contentView, name='content'),
     # Example:
     # (r'^cbt/', include('cbt.foo.urls')),
 

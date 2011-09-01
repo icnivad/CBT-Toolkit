@@ -4,8 +4,9 @@ import sys
 
 #spreedly controls
 SPREEDLY_AUTH_TOKEN='03743ec2ed1546ef8ee91ed6ef5f64c04c86b518'
-SPREEDLY_SITE_NAME='http://www.spreedly.com/cbttoolkit'
+SPREEDLY_SITE_NAME='cbttoolkit'
 SITE_URL="http://www.cbttoolkit.com"
+SPREEDLY_ALLOWED_PATHS=["/media/", "/admin/", "/"]
 
 #We really really need to organize this file - oh well
 LOGIN_REDIRECT_URL="/"
@@ -32,6 +33,8 @@ TEMPLATE_DIRS = (
 	template_dir+"/Thoughts",
 	template_dir+"/tagging",
 	template_dir+"/registration",
+        template_dir+"/Spreedly",
+	template_dir+"/Content",
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
