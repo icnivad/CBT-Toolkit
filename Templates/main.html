@@ -1,32 +1,46 @@
 {% extends "base.html" %}
-{% block title %} CBT Toolkit {% endblock title %}
-{% block content_header %}
-<div class="header header_home page">
-    <img src="{{MEDIA_URL}}/my_images/tech_toolbox.jpg" alt="Mood Toolkit Icon" title="Mood Toolkit Icon" class="main_screenshot" />
-    <div class="signup">
-        <h1>Do you feel <strong>anxious</strong>, <strong>depressed</strong>, or <strong>sad</strong>?</h1>
-	The mood toolkit provides some simple tools to help you improve your mood.  
-	<form action="/introduction/" method="POST">
-		{% csrf_token %}
-		<div class="submit">
-			<a href="javascript:;" class="button submit"><span>Try It Now For Free!</span></a>
+{% block title %} Mood Toolkit {% endblock title %}
+{% block content%}
+	<div class="row">
+		<div class="columns span6">
+			<img src="{{MEDIA_URL}}/my_images/application_icon.jpg" alt="Mood Toolkit Icon" title="Mood Toolkit Icon" class="main_screenshot" />
 		</div>
-	</form>   
+		<div class="columns span8">
+			 <h1 class="tower">Feeling Sad or Anxious?</h1>
+			<h2 class="dungeon">The Mood Toolkit is here to help</h2>
+			<p class="dungeon">Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+			
+			<div class="row">
+			<p class="columns offset1">
+				<a class="btn primary large">Try It Now</a>
+				<a class="btn large">Learn More</a>
+			</p>
+			</div>
+		</div>
 	</div>
-
-    <!-- End App Info -->
-    <div class="clear"></div>
-    
-	<div class="clear"></div>
-	
-</div>
-{% endblock %}
-
-{% block content %}
-              <div class="section_title">
-                    <h3>Learn More</h3>
-                </div>
-                <p>CBT Toolkit is is ready to use!  You can also check out the <a href="/about">about page</a>, <a href="/blog/contact">send me an e-mail</a>, or check out the <a href="/blog">blog</a>.</p>    
-	<div class="clear"></div>
+	<div class="row">
+		<div class="page-header">
+		</div>
+		<div class="columns span5">
+			 <h2>Thought Diary</h2>
+			<p>Learn how negative thoughts can make you feel bad and what you can do about it.</p>
+			<p><a class="btn" href="#">View details &raquo;</a></p>
+		</div>
+		<div class="columns span5">
+			<h2>Mood Tracker</h2>
+			<h3>Coming soon!</h3>
+			<p>Your daily routine can have a big impact on how you feel.  Learn how your habits affect your mood. </p>
+			<p><a class="btn" href="#">View details &raquo;</a></p>
+		</div>
+		<div class="columns span5">
+			<h2>Daily Planner</h2>
+			<h3>Coming soon!</h3>
+			<p>This tool helps you plan your day so that you schedule some fun activities. </p>
+			<p><a class="btn" href="#">View details &raquo;</a></p>
+		</div>
+		<div class="columns span5">
+			<h3></h3>
+			<p></p>
+		</div>
 </div>
 {% endblock %}

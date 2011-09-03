@@ -4,15 +4,13 @@
     <title>{% block title %}{% endblock %}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
-    <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}stylesheets/styles.css" />
+    <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}stylesheets/bootstrap-1.1.1.css" />
     <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}javascripts/Popups/jqmodal.css"/>
-    <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}stylesheets/green-blue.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}stylesheets/mystyle.css" media="screen" />  
     <script type="text/javascript" src="{{MEDIA_URL}}javascripts/jquery.js"></script>
     <script type="text/javascript" src="{{MEDIA_URL}}jqueryUI/js/jquery-ui-1.8.14.custom.min.js"></script>
     <script type="text/javascript" src="{{MEDIA_URL}}javascripts/Popups/jqmodal.js"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}javascripts/site.js"></script>
-    <script type="text/javascript" src="{{MEDIA_URL}}javascripts/demo.js"></script>
+   <script type="text/javascript" src="{{MEDIA_URL}}javascripts/jquery.tablesorter.min.js"></script>
     <script type="text/javascript" src="{{MEDIA_URL}}javascripts/script.js"></script>
 	{% if PRODUCTION %}
 	<script type="text/javascript">
@@ -30,43 +28,42 @@
     {%block header %}{% endblock %}
  </head>
 <body>
-<div id="wrapper">
-	<div id="header">
-		<div class="page">
-			<div id="login_message">
-				{% include "login_message.html" %}
-			</div>	
-			<a href="/" class="logo">CBTToolkit</a>
-			
-			<ul>
-				<li><a href="/">Home</a></li>
-				<li><a href="/about">About</a></li>
-				<li><a href="/blog">Blog</a></li>
-				<li><a href="/blog/contact">Contact</a></li>
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <h3><a href="/">Mood Toolkit</a></h3>
+          <ul>
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blog/contact">Contact</a></li>
+	    <li><a href="/blog">Blog</a></li>
+            <li><a href="/forum">Forum</a></li>         
+	 </ul>
+	{% include "login_message.html" %}
+        </div>
+      </div>
+    </div>
+
+
+
+<div class="container" id="page">
+	{% block content %}{% endblock %}
+</div>
+
+<div id="footer">
+	<div class="inner">
+		<div class="container">
+			<ul class="unstyled">
+			            <li class="active"><a href="/">Home</a></li>
+				    <li><a href="/about">About</a></li>
+				    <li><a href="/blog/contact">Contact</a></li>
+				    <li><a href="/blog">Blog</a></li>
+				    <li><a href="/forum">Forum</a></li>         
 			</ul>
-			<div class="clear"></div>
+			<p>Copyright 2011 MoodToolkit.com</p>
 		</div>
-	</div>
-	<div id="page">
-		<div class="top"></div>
-		<div class="content">
-			{% block content_header %}{% endblock %}
-			<div class="padding">
-				{% block content %}{% endblock %}
-			</div>
-			<div class="bottom"></div>
-		</div>
-	</div>
-	<div id="footer" class="page">
-	<p>Copyright 2011 CBTToolkit.com.</p>
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/about">About</a></li>
-			<li><a href="/blog">Blog</a></li>
-			<li><a href="/blog/contact">Contact</a></li>
-		</ul>
-		<div class="clear"></div>
 	</div>
 </div>
+
 </body>
 </html>
