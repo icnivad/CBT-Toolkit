@@ -174,4 +174,6 @@ def server_error(request, template_name='500.html'):
 	return HttpResponseServerError(t.render(c))
 
 def contentView(request, templateName):
-	return render(request, templateName)
+	if templateName[-1]=="/":
+		templateName=templateName[:-1]
+	return render(request, templateName+".html")

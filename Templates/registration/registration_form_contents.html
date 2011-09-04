@@ -1,7 +1,8 @@
-<form action="/accounts/register/" method="POST" class="signup">
+<h1>Welcome to the Mood Toolkit!</h1>
+<h3>Sign up for a 1 Month Free Trial</h3>
+<h5>Already have an account? <a href="/accounts/login/">Log In Here</a></h5>
+<form class="form-stacked" action="/accounts/register/" method="POST" class="signup">
 	{% csrf_token %}
 	{{form}}
-	<div class="submit">
-		<a href="javascript:;" class="button submit"><span>Sign Up</span></a>
-	</div>
+	<input type="submit" class="btn primary" value="Sign Up"/>
 </form>

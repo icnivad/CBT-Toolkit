@@ -3,8 +3,6 @@ from django.views.generic import *
 from django.contrib.auth.decorators import login_required
 from thought_diary.views import *
 import settings
-from thought_diary.models import Thought
-from thought_diary.myforms import ThoughtForm
 from django.contrib.auth.views import password_reset, password_reset_done, password_change, password_change_done
 from django.views.generic.simple import direct_to_template
 import spreedly.settings as spreedly_settings
@@ -18,12 +16,9 @@ handler500 = 'thought_diary.views.server_error'
 #today we're playing with generic views
 urlpatterns = patterns('',
     (r'^Media/(?P<path>.*)$', 'django.views.static.serve',  {'document_root': settings.MEDIA_ROOT}),
-    url(r'^thought/$', thoughtView, name='thought'),
-    url(r'^thought/(?P<thought_id>\d.*)/challenge/$', challengeView, name='thought_challenge'),
-    url(r'^thought/(?P<thought_id>\d+)/$', thoughtDetailView, name='thought_detail'),
-    url(r'^thought/(?P<thought_id>\d+)/delete/$', thoughtDeleteView, name='thought_delete'),
-    url(r'^thought/(?P<thought_id>\d+)/edit/$', thoughtEditView, name='thought_edit'),
-    url(r'^thought/list/$', getThoughts, name='thought_list'),
+    (r'^thought/', include('thought_diary.urls')),
+    (r'^mood/', include('mood_tracker.urls')),
+    (r'^activity/', include('activity_planner.urls')),
     (r'^test/', testView),
     url(r'^$', mainView, name='main'),
     url(r'^about/', 'django.views.generic.simple.direct_to_template', {'template': 'about.html'}),
