@@ -16,6 +16,7 @@ handler500 = 'thought_diary.views.server_error'
 #today we're playing with generic views
 urlpatterns = patterns('',
     (r'^Media/(?P<path>.*)$', 'django.views.static.serve',  {'document_root': settings.MEDIA_ROOT}),
+    url(r'^dashboard/$', dashboardView, name='dashboard'),
     (r'^thought/', include('thought_diary.urls')),
     (r'^mood/', include('mood_tracker.urls')),
     (r'^activity/', include('activity_planner.urls')),

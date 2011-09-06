@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Mood Toolkit {% endblock title %}
+{% block content%}
+	<div class="row">
+		<div class='page-header tower'>
+		<h1>Welcome to the Mood Toolkit!</h1>
+		</div>
+		<form action="" method="POST"/>
+		{% csrf_token %}
+		{% for challenge in challenges %}
+			<div class="row">
+				<div class="columns span9">
+					<h4>{{challenge}}</h4>
+				</div>
+				<input class="toggle_switch" type="checkbox"/>
+			</div>
+		{% endfor %}
+		<input type="submit" class="btn" value="submit"/>
+		</form>
+	</div>
+{% endblock %}

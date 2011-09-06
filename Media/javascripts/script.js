@@ -108,4 +108,5 @@ $(document).ready(function(){
 		.removeAttr('checked')
 		.removeAttr('selected');
 	});
+	$('.toggle_switch').iphoneStyle({checkedLabel:'Yes', uncheckedLabel:'No'});
 });

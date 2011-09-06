@@ -2,16 +2,17 @@
 **** All Pages *******
 ***************************/
 
-#page {
-	margin-top:60px;
-}
-
 #log_in {
 	float:right;
 }
 
 #log_in input {
 	width:100px;
+}
+
+/*Let's make the topbar not be fixed cause that's annoying me*/
+.topbar {
+	position:relative;
 }
 
 .topbar .top_bar_text {

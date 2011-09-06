@@ -4,5 +4,7 @@
 <form class="form-stacked" action="/accounts/register/" method="POST" class="signup">
 	{% csrf_token %}
 	{{form}}
-	<input type="submit" class="btn primary" value="Sign Up"/>
+	<div class="row">
+		<input type="submit" class="btn primary" value="Sign Up"/>
+	</div>
 </form>

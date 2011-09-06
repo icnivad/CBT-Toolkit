@@ -9,8 +9,8 @@ SITE_URL="http://www.cbttoolkit.com"
 SPREEDLY_ALLOWED_PATHS=["/media/", "/admin/", "/"]
 
 #We really really need to organize this file - oh well
-LOGIN_REDIRECT_URL="/"
-REGISTER_REDIRECT_URL="/"
+LOGIN_REDIRECT_URL="/dashboard"
+REGISTER_REDIRECT_URL="/dashboard"
 #lets see if we can speed up testing
 #if 'test' in sys.argv:
 #	DATABASE_ENGINE='sqlite3'

@@ -174,6 +174,21 @@ def server_error(request, template_name='500.html'):
 	return HttpResponseServerError(t.render(c))
 
 def contentView(request, templateName):
+	challenges=[
+		"Did you use the words \"should\" or \"must\" or otherwise make demands of yourself or others?",
+		"Did you use a negative label, like \"stupid\", \"idiot\", \"jerk\", etc...?",
+		"Did you make an assumption about what someone else is thinking?",
+		"Did you make a prediction about the future?",
+		"Did you compare yourself to someone else?",
+		"Are you treating the situation as black and white?",
+		"Are you focusing on the negative aspects of the situation?",
+		"Are you drawing conclusions based on your emotions?",
+	]
+	c={'challenges':challenges}
+	c.update(csrf(request))
 	if templateName[-1]=="/":
 		templateName=templateName[:-1]
-	return render(request, templateName+".html")
+	return render(request, templateName+".html", c)
+
+def dashboardView(request):
+	return render(request, "dashboard.html")
