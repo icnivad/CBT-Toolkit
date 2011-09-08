@@ -1,7 +1,10 @@
-<form id="add_thought_form" action="{% url thought %}" method="POST">
+<div class="row">
+<div class="span9">
+<form id="add_thought_form" class="form-stacked" action="{% url thought %}" method="POST">
 	{% csrf_token %}
-	<label class='add_thought'>Add Another Thought:</label>
+	<label class='add_thought'>What's on your mind?</label>
 	{{form.thought}}
+	<!--
 	<div class="detail_trigger"><a>Click to Show Optional Details</a></div>
 	<div class="details">
 		<div class="detail_field">
@@ -21,8 +24,8 @@
 			{{form.situation}}
 		</div>
 	</div>
-	
-	<div class="submit_thought">
-		<a href="javascript:;" class="button ajax_submit"><span>Add Thought</span></a>
-	</div>
+	-->
+	<input type="submit" class="btn primary tower" value="Add Thought"/>
 </form>
+</div>
+</div>

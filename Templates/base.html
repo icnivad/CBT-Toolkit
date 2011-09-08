@@ -36,16 +36,20 @@
     {%block header %}{% endblock %}
  </head>
 <body>
+{% load tags %}
     <div class="topbar">
       <div class="fill">
         <div class="container">
           <h3><a href="/">Mood Toolkit</a></h3>
           <ul>
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
+            <li class="{% active request 'main' %}"><a href="/">Home</a></li>
+            <li class="{% active request 'about' %}"><a href="/about">About</a></li>
             <li><a href="/blog/contact">Contact</a></li>
 	    <li><a href="/blog">Blog</a></li>
             <li><a href="/forum">Forum</a></li>         
+	    {% if request.user.is_authenticated %}
+	    <li class="{% active request 'dashboard' %}"><a href="/dashboard">My Account</a></li>
+	    {% endif %}
 	 </ul>
 	{% include "login_message.html" %}
         </div>

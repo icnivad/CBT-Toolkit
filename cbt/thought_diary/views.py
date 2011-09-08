@@ -15,15 +15,6 @@ from myforms import *
 from registration.forms import RegistrationForm
 import datetime
 
-def mainView(request):
-	if request.user.is_authenticated():
-		return redirect(reverse('thought'))
-	else:
-		form=RegistrationForm()
-		c={'form':form}
-		c.update(csrf(request))
-		return render(request, "main.html", c)
-
 def thoughtView(request):
 	if request.method=="POST":
 		form=ThoughtForm(request.POST)
@@ -48,7 +39,7 @@ def thoughtView(request):
 		else:
 			raise Exception('mood form invalid')
 		c={'recent_thought':temp}
-		return render(request, "thought_message.html", c)
+		return redirect(reverse('thought_distortion', kwargs={'thought_id':temp.pk}))
 		
 	else:
 		form=ThoughtForm()
@@ -57,7 +48,7 @@ def thoughtView(request):
 		c={'form':form, 'thoughts':thoughts, 'mood':moodForm}
 		return render(request, "thought.html", c)
 
-def thoughtDetailView(request, thought_id):
+def detailView(request, thought_id):
 	thought=Thought.objects.get(pk=thought_id)
 	challenge=None
 	try:
@@ -67,7 +58,7 @@ def thoughtDetailView(request, thought_id):
 	c={'thought':thought, 'challenge':challenge}
 	return render(request, "thought_detail.html", c)
 
-def thoughtEditView(request, thought_id):
+def editView(request, thought_id):
 	if request.method=="POST":
 		thought=Thought.objects.get(pk=thought_id)
 		form=ThoughtForm(request.POST, instance=thought)
@@ -105,8 +96,34 @@ def thoughtEditView(request, thought_id):
 		c={'thought':thought, 'form':form, 'mood':moodForm}
 		return render(request, "thought_edit.html", c)
 
+def distortionView(request, thought_id):
+	templateName="distortion.html"
+	challenges=[
+		"Did you use the words \"should\" or \"must\" or make a demand?",
+		"Did you use a negative label, like \"stupid\", \"idiot\", \"jerk\", etc...?",
+		"Did you make an assumption about what someone else is thinking?",
+		"Did you make a prediction about the future?",
+		"Did you compare yourself to someone else?",
+		"Are you treating the situation as black and white?",
+		"Are you focusing on the negative aspects of the situation?",
+		"Is your thought extremely emotional?",
+	]
+	thought=""
+	try:
+		thought=Thought.objects.get(pk=thought_id)
+		if not thought.user==request.user:
+			#need to write this so it returns an error_msg - can't access thought
+			thought=""
+			form=""
+		else:
+			pass
+	except: 
+		thought=""
+	c={'thought':thought, 'challenges':challenges}
+	return render(request, templateName, c)
+	
 def challengeView(request, thought_id):
-	templateName="challenge_thought_form.html"
+	templateName="challenge.html"
 	errors=False
 	error_msg=""
 	form=ChallengeForm()
@@ -137,10 +154,10 @@ def challengeView(request, thought_id):
 		errors=True
 		error_msg="Uh oh, it looks like that thought does not exist!  Our bad!"
 		form=""
-	c={'thought':thought, 'form':form, 'errors':errors, 'error_msg':error_msg}
+	c={'thought':thought, 'form':form, 'errors':errors, 'error_msg':error_msg, 'challenges':challenges}
 	return render(request, templateName, c)
 	
-def thoughtDeleteView(request, thought_id):
+def deleteView(request, thought_id):
 	thought=Thought.objects.get(pk=thought_id)
 	if request.method=="POST":
 		if ((request.user.is_authenticated()) and (request.user==thought.user)):
@@ -151,44 +168,8 @@ def thoughtDeleteView(request, thought_id):
 	else:
 		c={'thought':thought}
 		return render(request, "thought_delete.html", c)
-
-def testView(request):
-	test=reverse('main')
-	c={'test':test}
-	return render(request, 'test.html', c)
 	
-def getThoughts(request):
+def listView(request):
 	thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
 	c={'thoughts':thoughts}
 	return render(request, 'thought_list.html', c)
-
-def getLoginMessage(request):
-	return render(request, "login_message.html")
-	
-def server_error(request, template_name='500.html'):
-	"Always includes MEDIA_URL"
-	from django.http import HttpResponseServerError
-	t = loader.get_template(template_name)
-	c=Context({'MEDIA_URL':settings.MEDIA_URL})
-	c.update(csrf(request))
-	return HttpResponseServerError(t.render(c))
-
-def contentView(request, templateName):
-	challenges=[
-		"Did you use the words \"should\" or \"must\" or otherwise make demands of yourself or others?",
-		"Did you use a negative label, like \"stupid\", \"idiot\", \"jerk\", etc...?",
-		"Did you make an assumption about what someone else is thinking?",
-		"Did you make a prediction about the future?",
-		"Did you compare yourself to someone else?",
-		"Are you treating the situation as black and white?",
-		"Are you focusing on the negative aspects of the situation?",
-		"Are you drawing conclusions based on your emotions?",
-	]
-	c={'challenges':challenges}
-	c.update(csrf(request))
-	if templateName[-1]=="/":
-		templateName=templateName[:-1]
-	return render(request, templateName+".html", c)
-
-def dashboardView(request):
-	return render(request, "dashboard.html")

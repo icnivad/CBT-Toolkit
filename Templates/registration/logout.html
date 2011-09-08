@@ -2,5 +2,19 @@
 {% load i18n %}
 
 {% block content %}
-<p>{% trans "Logged out" %}</p>
+<h1>You are now logged out of the Mood Toolkit!</h1>
+<h3>Thanks for visiting us!</h3>
+<div class="row">
+<div class="span8">
+<ul>
+<li>
+If you logged out by mistake, you can <a href="/accounts/login">log back in</a>.
+</li>
+<li>
+If you still want to learn more about the Mood Toolkit, and how it can help you improve your mood,
+feel free to check out <a href="/content/tutorial">our tutorial</a>.
+</li>
+<li>We hope you'll be back to visit us soon!</li>
+</div>
+</div>
 {% endblock %}

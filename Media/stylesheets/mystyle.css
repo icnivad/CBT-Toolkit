@@ -2,6 +2,10 @@
 **** All Pages *******
 ***************************/
 
+#page {
+	margin-top:30px;
+}
+
 #log_in {
 	float:right;
 }
@@ -96,7 +100,7 @@
 }
 
 form #id_thought , #id_response{
-	width:700px;
+	width: 450px;
 	height:75px;
 }
 
@@ -202,6 +206,13 @@ form.challenge a.button {
 }
 
 /**********************
+**** Zebra striped without stripes *******
+***************************/
+.odd {
+	background-color: #f9f9f9;
+}
+
+/**********************
 **** Delete Form *******
 ***************************/
 #delete_form div.float {
@@ -230,6 +241,28 @@ form.signup div.submit {
 div.add_padding {
     margin: 15px 15px;
 }
+
+/**********************
+**** thought distortions *******
+***************************/
+
+.distortions label {
+	float:none;
+	width:auto;
+}
+
+.distortions li{
+	margin:0px;
+}
+
+.distortions input {
+	float:left;
+}
+
+.distortions .odd {
+	  background-color: #f9f9f9;
+}
+
 
 /**********************
 **** mood chart *******

@@ -73,4 +73,5 @@ INSTALLED_APPS = (
     'south',
     'debug_toolbar',
     'spreedly',
+    'mytags',
 )
