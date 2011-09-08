@@ -1,0 +1,3 @@
+#need to add spreedly
+git://github.com/shelfworthy/django-spreedly.git spreedly
+then do cd spreedly/ git submodule update --init
