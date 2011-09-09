@@ -16,16 +16,16 @@
 		</div>
 	</div>
 		<h2>Your Thought: {{thought}}</h2>
-		<div class="row">
-			<ul class="unstyled distortions columns span10">
-				{% for challenge in challenges %}
-						<li class="row {% cycle 'odd' 'even' %}">
-						<label class="question" id="question_{{forloop.counter}}">
-							<input class="toggle_switch" type="checkbox"/>
-							<h4 class="columns span9">{{challenge}}</h4>
-						</label>
-						</li>
-				{% endfor %}
-			</ul>
-		</div>
+			<form action="{% url thought_distortion thought.pk %}" method="POST">
+			<div class="row">
+			<div class="columns span10 distortions">
+			{{form.distortion}}
+			{% csrf_token %}
+			
+			</div>
+			</div>
+			<div class="row">
+				<input class="btn primary" type="submit" value="next">
+			</div>
+			</form>
 {% endblock content %}

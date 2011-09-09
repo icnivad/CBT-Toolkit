@@ -18,7 +18,6 @@ import datetime
 def thoughtView(request):
 	if request.method=="POST":
 		form=ThoughtForm(request.POST)
-		moodForm=MoodForm(request.POST)
 		temp=""
 		if form.is_valid():
 			if(form.cleaned_data['thought']!=""):
@@ -29,23 +28,11 @@ def thoughtView(request):
 				pass
 		else:
 			raise Exception('thought form invalid')
-		if moodForm.is_valid():
-			if ((moodForm.cleaned_data['mood'] is not None) or (moodForm.cleaned_data['feeling']!="")):
-				mtemp=moodForm.save(commit=False)
-				mtemp.user=request.user
-				mtemp.save()
-			else:
-				pass
-		else:
-			raise Exception('mood form invalid')
-		c={'recent_thought':temp}
 		return redirect(reverse('thought_distortion', kwargs={'thought_id':temp.pk}))
 		
 	else:
 		form=ThoughtForm()
-		moodForm=MoodForm()
-		thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
-		c={'form':form, 'thoughts':thoughts, 'mood':moodForm}
+		c={'form':form}
 		return render(request, "thought.html", c)
 
 def detailView(request, thought_id):
@@ -62,10 +49,6 @@ def editView(request, thought_id):
 	if request.method=="POST":
 		thought=Thought.objects.get(pk=thought_id)
 		form=ThoughtForm(request.POST, instance=thought)
-		try:
-			moodForm=MoodForm(request.POST, instance=thought.get_mood())
-		except:
-			moodForm=MoodForm(request.POST)
 		temp=""
 		if form.is_valid():
 			if(form.cleaned_data['thought']!=""):
@@ -76,51 +59,39 @@ def editView(request, thought_id):
 				pass
 		else:
 			raise Exception('thought form invalid')
-		if moodForm.is_valid():
-			if ((moodForm.cleaned_data['mood'] is not None) or (moodForm.cleaned_data['feeling']!="")):
-				mtemp=moodForm.save(commit=False)
-				mtemp.user=request.user
-				mtemp.save()
-			else:
-				pass
-		else:
-			raise Exception('mood form invalid')
 		return HttpResponse("")
 	else:
 		thought=Thought.objects.get(pk=thought_id)
 		form=ThoughtForm(instance=thought)
-		try:
-			moodForm=MoodForm(instance=thought.get_mood())
-		except:
-			moodForm=MoodForm()
-		c={'thought':thought, 'form':form, 'mood':moodForm}
+		c={'thought':thought, 'form':form}
 		return render(request, "thought_edit.html", c)
 
 def distortionView(request, thought_id):
-	templateName="distortion.html"
-	challenges=[
-		"Did you use the words \"should\" or \"must\" or make a demand?",
-		"Did you use a negative label, like \"stupid\", \"idiot\", \"jerk\", etc...?",
-		"Did you make an assumption about what someone else is thinking?",
-		"Did you make a prediction about the future?",
-		"Did you compare yourself to someone else?",
-		"Are you treating the situation as black and white?",
-		"Are you focusing on the negative aspects of the situation?",
-		"Is your thought extremely emotional?",
-	]
-	thought=""
+	form=DistortionForm(questions=False)
+	thought=None
 	try:
 		thought=Thought.objects.get(pk=thought_id)
 		if not thought.user==request.user:
 			#need to write this so it returns an error_msg - can't access thought
-			thought=""
+			thought=None
 			form=""
 		else:
 			pass
 	except: 
-		thought=""
-	c={'thought':thought, 'challenges':challenges}
-	return render(request, templateName, c)
+		thought=None
+	if request.method=="POST":
+		form=DistortionForm(request.POST, questions=False)
+		if (form.is_valid() and thought!=None):
+			temp=form.save(commit=False)
+			temp.thought=thought
+			temp.save()
+		else:
+			pass #trouble trouble trouble!
+		return redirect(reverse('thought_challenge', kwargs={'thought_id':thought.pk}))
+	else:		
+		templateName="distortion.html"
+		c={'thought':thought, 'form':form}
+		return render(request, templateName, c)
 	
 def challengeView(request, thought_id):
 	templateName="challenge.html"
@@ -154,7 +125,7 @@ def challengeView(request, thought_id):
 		errors=True
 		error_msg="Uh oh, it looks like that thought does not exist!  Our bad!"
 		form=""
-	c={'thought':thought, 'form':form, 'errors':errors, 'error_msg':error_msg, 'challenges':challenges}
+	c={'thought':thought, 'form':form}
 	return render(request, templateName, c)
 	
 def deleteView(request, thought_id):

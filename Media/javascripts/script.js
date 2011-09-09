@@ -108,32 +108,4 @@ $(document).ready(function(){
 		.removeAttr('checked')
 		.removeAttr('selected');
 	});
-	
-	//$('.toggle_switch').iphoneStyle({checkedLabel:'Yes', uncheckedLabel:'No'});
-	
-	/*Implement questionnaire*/
-	function setQuestionnaire(beginner){
-		if(beginner==true){
-			$('.question .btn').show();
-			$('.question').hide();
-			$("#question_1").show();
-			$(".question input").click(function(){
-				var value=$(this).val();
-				var question=$(this).closest('.question');
-				var checkbox=question.find(".toggle_switch")
-				if (value=="yes"){
-					checkbox.prop("checked", true);
-					}
-				else {
-					checkbox.prop("checked", false);
-				}
-				question.hide();
-				var next_id=parseInt(question.attr('id').substr(9))+1;
-				$('#question_'+next_id).show();
-			});
-			$('.toggle_switch').hide();
-		}
-	}
-	
-	//setQuestionnaire(true);
 });

@@ -246,9 +246,29 @@ div.add_padding {
 **** thought distortions *******
 ***************************/
 
+
 .distortions label {
 	float:none;
 	width:auto;
+	font-size:16px;
+	display:block;
+	padding:5px;
+}
+
+.distortions ul {
+	list-style:none;
+}
+
+.distortions ul li:nth-child(odd) {
+	background-color: #f9f9f9;
+}
+
+.distortions ul li:hover {
+	background-color: #f5f5f5;
+}
+
+.distortions ul li:hover label{
+	color: #202020;
 }
 
 .distortions li{
