@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block tabs %}
+{% if request.user.is_authenticated %}
+	<ul class="tabs">
+		<li><a href="/">Dashboard</a></li>
+		<li class="active"><a href="/thought">Thought Diary</a></li>
+		<li><a href="/mood">Mood Tracker</a></li>
+		<li><a href="/activity">Activity Planner</a></li>
+	</ul>
+{% endif %}
+{% endblock %}

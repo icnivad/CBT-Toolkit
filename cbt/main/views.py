@@ -11,7 +11,10 @@ from django.conf import settings
 from registration.forms import RegistrationForm
 
 def mainView(request):
-	return render(request, "main.html")
+	if request.user.is_authenticated():
+		return redirect(reverse('dashboard'))
+	else:
+		return render(request, "main.html")
 
 def tryView(request):
 	if request.user.is_authenticated():

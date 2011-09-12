@@ -66,8 +66,7 @@ def editView(request, thought_id):
 		c={'thought':thought, 'form':form}
 		return render(request, "thought_edit.html", c)
 
-def distortionView(request, thought_id):
-	form=DistortionForm(questions=False)
+def distortionView(request, thought_id, questions=True):
 	thought=None
 	try:
 		thought=Thought.objects.get(pk=thought_id)
@@ -79,12 +78,11 @@ def distortionView(request, thought_id):
 			pass
 	except: 
 		thought=None
+	form=DistortionForm(questions=questions)
 	if request.method=="POST":
-		form=DistortionForm(request.POST, questions=False)
-		if (form.is_valid() and thought!=None):
-			temp=form.save(commit=False)
-			temp.thought=thought
-			temp.save()
+		form=DistortionForm(request.POST, instance=thought, questions=questions)
+		if form.is_valid():
+			form.save()
 		else:
 			pass #trouble trouble trouble!
 		return redirect(reverse('thought_challenge', kwargs={'thought_id':thought.pk}))
@@ -99,32 +97,26 @@ def challengeView(request, thought_id):
 	error_msg=""
 	form=ChallengeForm()
 	thought=""
-	try:
-		thought=Thought.objects.get(pk=thought_id)
-		if request.method=="POST":
-			form=ChallengeForm(request.POST)
-			if form.is_valid():
-				temp=form.save(commit=False)
-				temp.thought=thought
-				temp.user=request.user
-				temp.save()
-			else:
-				pass
-			return HttpResponse("success")
+	thought=Thought.objects.get(pk=thought_id)
+	if request.method=="POST":
+		form=ChallengeForm(request.POST)
+		if form.is_valid():
+			temp=form.save(commit=False)
+			temp.thought=thought
+			temp.user=request.user
+			temp.save()
 		else:
-			if not thought.user==request.user:
-				#need to write this so it returns an error_msg - can't access thought
-				errors=True
-				thought=""
-				error_msg="Uh oh, it looks like you don't have permission to access this thought."
-				form=""
-			else:
+			pass
+		return HttpResponse("success")
+	else:
+		if not thought.user==request.user:
+			#need to write this so it returns an error_msg - can't access thought
+			errors=True
+			thought=""
+			error_msg="Uh oh, it looks like you don't have permission to access this thought."
+			form=""
+		else:
 				pass
-	except: 
-		thought=""
-		errors=True
-		error_msg="Uh oh, it looks like that thought does not exist!  Our bad!"
-		form=""
 	c={'thought':thought, 'form':form}
 	return render(request, templateName, c)
 	

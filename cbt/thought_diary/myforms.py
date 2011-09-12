@@ -72,20 +72,7 @@ class DistortionForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		questions=kwargs.pop('questions')
 		super(DistortionForm, self).__init__(*args, **kwargs)
-		CHOICES=(
-			("1", "Mental Filter", "Are you focusing on the negative aspects of the situation?"),
-			("2", "Judgements", "Are you judging yourself or others?"),
-			("3", "Mind-Reading", "Did you make an assumption about what someone else is thinking?"),
-			("4", "Emotional Reasoning", "Is your thought extremely emotional?"),
-			("5", "Prediction", "Did you make a prediction about the future?"),
-			("6", "Comparisons", "Did you compare yourself to someone else?"),
-			("7", "Mountains and Molehills", "Are you making mountains out of molehills?"),
-			("8", "Catastrophizing", "Are you imagining the worst?"),
-			("9", "Critical Self", "Are you being critical, using words like \"stupid\", \"idiot\", \"jerk\", etc...?"),
-			("10", "Black and White Thinking", "Are you treating the situation as black and white?"),
-			("11", "Shoulds and Musts",  "Did you use the words \"should\" or \"must\" or make a demand?"),
-			("12", "Memories", "Are you thinking about the past?"),
-		)
+		CHOICES=Thought.CHOICES
 		qs=()
 		if questions:
 			qs=tuple([(t[0], t[2]) for t in CHOICES])
@@ -94,7 +81,7 @@ class DistortionForm(ModelForm):
 		self.fields['distortion']=MultiSelectFormField(choices=qs, required=False, max_choices=15)
 
 	class Meta:
-		model=Challenge
+		model=Thought
 		fields=('distortion',)
 
 class MoodForm(ModelForm):

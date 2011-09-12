@@ -21,8 +21,9 @@ class MultiSelectFormField(forms.MultipleChoiceField):
 	def __init__(self, *args, **kwargs):
 		self.max_choices = kwargs.pop('max_choices', 0)
 		super(MultiSelectFormField, self).__init__(*args, **kwargs)
-
+	
 	def clean(self, value):
+		print value
 		if not value and self.required:
 			raise forms.ValidationError(self.error_messages['required'])
 		if value and self.max_choices and len(value) > self.max_choices:
@@ -68,6 +69,9 @@ class MultiSelectField(models.Field):
 		value = self._get_val_from_obj(obj)
 		return self.get_db_prep_value(value)
 
+	def validate(self, value, model_instance):
+		return
+
 	def contribute_to_class(self, cls, name):
 		super(MultiSelectField, self).contribute_to_class(cls, name)
 		if self.choices:
@@ -105,7 +109,6 @@ class TrackItemStatus(models.Model):
 	def __unicode__(self):
 		return str(self.item)+": "+str(self.value)
 
-
 class Thought(models.Model):
 	share=models.BooleanField(default=False)
 	category=models.CharField(blank=True, max_length=100)
@@ -113,7 +116,23 @@ class Thought(models.Model):
 	situation=models.TextField(blank=True)
 	user=models.ForeignKey(User)
 	datetime=models.DateTimeField('time', editable=False)
-	distortion=MultiSelectField(blank=True, max_length=200)
+
+	#choices for distortions
+	CHOICES=(
+			("1", "Mental Filter", "Are you focusing on the negative aspects of the situation?"),
+			("2", "Judgements", "Are you judging yourself or others?"),
+			("3", "Mind-Reading", "Did you make an assumption about what someone else is thinking?"),
+			("4", "Emotional Reasoning", "Is your thought extremely emotional?"),
+			("5", "Prediction", "Did you make a prediction about the future?"),
+			("6", "Comparisons", "Did you compare yourself to someone else?"),
+			("7", "Catastrophizing", "Are you imagining the worst?"),
+			("8", "Critical Self", "Are you being critical, using words like \"stupid\", \"idiot\", \"jerk\", etc...?"),
+			("9", "Black and White Thinking", "Are you treating the situation as black and white?"),
+			("10", "Shoulds and Musts",  "Did you use the words \"should\" or \"must\" or make a demand?"),
+			("11", "Memories", "Are you thinking about the past?"),
+	)
+	DISTORTION_CHOICES=tuple([(t[0], t[1]) for t in CHOICES])
+	distortion=MultiSelectField(null=True, blank=True, choices=DISTORTION_CHOICES, max_length=200)
 	
 	def save(self):
 		if not self.datetime:
@@ -139,7 +158,26 @@ class Thought(models.Model):
 			return challenge
 		except:
 			return ""
-			
+	
+	def get_distortions_questions(self):
+		if self.distortion!=[""]:
+			return [self.CHOICES[(int(d) -1)][2] for d in self.distortion]
+		return []
+		
+	def get_distortions_simple(self):
+		if self.distortion!=[""]:
+			return [self.CHOICES[(int(d) -1)][1] for d in self.distortion]
+		return []
+
+class Distortion(models.Model):
+	distortion=models.CharField(max_length=100)
+	question=models.TextField(blank=True)
+	explanation=models.TextField(blank=True)
+	how_to_respond=models.TextField(blank=True)
+	example=models.TextField(blank=True)
+	def __unicode__(self):
+		return self.distortion
+
 class Challenge(models.Model):
 	thought=models.ForeignKey(Thought)
 	response=models.TextField()
@@ -154,3 +192,4 @@ def create_user_profile(sender, instance, created, **kwargs):
 	profile, new=UserProfile.objects.get_or_create(user=instance)
 
 post_save.connect(create_user_profile, sender=User)
+\
