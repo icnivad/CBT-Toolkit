@@ -116,23 +116,8 @@ class Thought(models.Model):
 	situation=models.TextField(blank=True)
 	user=models.ForeignKey(User)
 	datetime=models.DateTimeField('time', editable=False)
-
-	#choices for distortions
-	CHOICES=(
-			("1", "Mental Filter", "Are you focusing on the negative aspects of the situation?"),
-			("2", "Judgements", "Are you judging yourself or others?"),
-			("3", "Mind-Reading", "Did you make an assumption about what someone else is thinking?"),
-			("4", "Emotional Reasoning", "Is your thought extremely emotional?"),
-			("5", "Prediction", "Did you make a prediction about the future?"),
-			("6", "Comparisons", "Did you compare yourself to someone else?"),
-			("7", "Catastrophizing", "Are you imagining the worst?"),
-			("8", "Critical Self", "Are you being critical, using words like \"stupid\", \"idiot\", \"jerk\", etc...?"),
-			("9", "Black and White Thinking", "Are you treating the situation as black and white?"),
-			("10", "Shoulds and Musts",  "Did you use the words \"should\" or \"must\" or make a demand?"),
-			("11", "Memories", "Are you thinking about the past?"),
-	)
-	DISTORTION_CHOICES=tuple([(t[0], t[1]) for t in CHOICES])
-	distortion=MultiSelectField(null=True, blank=True, choices=DISTORTION_CHOICES, max_length=200)
+	distortions=models.ManyToManyField("Distortion", blank=True, null=True)
+	challenge_questions_answered=models.ManyToManyField("ChallengeQuestion", blank=True, null=True)
 	
 	def save(self):
 		if not self.datetime:
@@ -158,28 +143,32 @@ class Thought(models.Model):
 			return challenge
 		except:
 			return ""
-	
-	def get_distortions_questions(self):
-		if self.distortion!=[""]:
-			return [self.CHOICES[(int(d) -1)][2] for d in self.distortion]
-		return []
-		
-	def get_distortions_simple(self):
-		if self.distortion!=[""]:
-			return [self.CHOICES[(int(d) -1)][1] for d in self.distortion]
-		return []
-
+			
 class Distortion(models.Model):
 	distortion=models.CharField(max_length=100)
 	question=models.TextField(blank=True)
 	explanation=models.TextField(blank=True)
 	how_to_respond=models.TextField(blank=True)
 	example=models.TextField(blank=True)
+	
+	# really, really need to test this method!  testing needs to be done!!!!
+	def getChallengeQuestions(self, thought):
+		alreadyUsed=thought.challenge_questions_answered.all()
+		leftQuestions=[q for q in self.challenge_questions.all() if (q not in alreadyUsed)]
+		return leftQuestions
+		
 	def __unicode__(self):
 		return self.distortion
 
+class ChallengeQuestion(models.Model):
+	question=models.TextField()
+	distortion=models.ManyToManyField("Distortion", related_name="challenge_questions")
+	def __unicode__(self):
+		return self.question
+
 class Challenge(models.Model):
 	thought=models.ForeignKey(Thought)
+	challenge_question=models.ManyToManyField("ChallengeQuestion")
 	response=models.TextField()
 	def __unicode__(self):
 		return self.response

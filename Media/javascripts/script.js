@@ -108,4 +108,25 @@ $(document).ready(function(){
 		.removeAttr('checked')
 		.removeAttr('selected');
 	});
+	
+	
+	function show_tab(el){
+		var id=el.attr("id").split("_").pop();
+		$("#distortion_tab_content_"+id).show();
+	}
+	
+	function hide_tabs(){
+		$("[id^='distortion_tab_content']").hide();
+	}
+	hide_tabs();
+	show_tab($(".active a"));
+	$(".tabs a").live("click", function(){
+		hide_tabs();
+		show_tab($(this));
+		$(".tabs .active").removeClass("active");
+		$(this).closest("li").addClass("active");
+		$(this).blur();
+		return false;
+	});
+	
 });

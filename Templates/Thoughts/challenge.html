@@ -17,33 +17,32 @@
 		<h2>Your Thought:</h2>
 		<h2>{{thought}}</h2>
 		<ul class="tabs">
-		{% for distortion in thought.get_distortions_simple %}
-		<li {% if forloop.first %} class="active" {% endif %}><a href="#">{{distortion}}</a></li>
+		{% for distortion in thought.distortions.all %}
+		<li {% if forloop.first %} class="active" {% endif %}><a id="distortion_tab_link_{{distortion.pk}}" href="">{{distortion.distortion}}</a></li>
 		{% endfor %}
+		<li><a href="{% url thought_distortion_simple thought.pk %}"><img title="Edit Distortions" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/edit.png"/></a></li>
 		</ul>
-		<p>
-		Words like "should" or "must" make demands on you, the world, or others around you.  
-		When those demands are not fulfilled, it can be very upsetting and disappointing. 
-		Try replacing the word "should" or "must" with the words "I wish" or "it might be better if".  
-		This is a good place to start, as it lets you express the desire for the situation to be different,
-		without focusing on the fact that there is no way to instantly change it.
-		<br/><br/>
-		Example: <strong>I shouldn't have eaten that donut.</strong>  You can rephrase this as <strong>I wish I hadn't eaten that donut. </strong>
-		Even if you hadn't eaten the donut, your life would still not be perfect. 
-		Imagine thinking, if only I hadn't eaten that donut - all of my life's problems would be solved! 
-		Ridiculous, right?  It might have been nice if you hadn't eaten that donut, but ultimately,
-		it won't make a big difference to your life, and you can work on avoiding donuts in the future.  
-		<br/>
-		<a>Why "should" is such a dangerous word</a>
-		<a>Check out mental filter, another distortion which might apply</a>
-		</p>
+		<div id="distortion_tabs">
+		{% for distortion in thought.distortions.all %}
+			<div id="distortion_tab_content_{{distortion.pk}}">
+			{% autoescape off %}
+			{{distortion.explanation}}
+			{{distortion.howtorespond}}
+			{{distortion.example}}
+			{% for q in distortion.getChallengeQuestions thought %}
+			{{q}}
+			{% endfor %}
+			{% endautoescape %}
+			</div>
+		{% endfor %}
+		</div>
 		</div>
 
 	</div>
 	
 	<form id="challenge_thought_form" class="form-stacked" action="{% url thought_challenge thought.pk %}" method="POST">
 		{% csrf_token %}
-		{{form}}
+		{{form.response}}
 		<div class="row">
 			<input class="offset1 tower btn primary" type="submit" value="Challenge Thought"/>
 		</div>

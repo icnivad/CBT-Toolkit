@@ -78,16 +78,18 @@ def distortionView(request, thought_id, questions=True):
 			pass
 	except: 
 		thought=None
-	form=DistortionForm(questions=questions)
+	form=DistortionForm(questions=questions, instance=thought)
 	if request.method=="POST":
 		form=DistortionForm(request.POST, instance=thought, questions=questions)
 		if form.is_valid():
 			form.save()
 		else:
+			print 'not valid'
 			pass #trouble trouble trouble!
 		return redirect(reverse('thought_challenge', kwargs={'thought_id':thought.pk}))
 	else:		
 		templateName="distortion.html"
+		print form
 		c={'thought':thought, 'form':form}
 		return render(request, templateName, c)
 	
@@ -116,7 +118,9 @@ def challengeView(request, thought_id):
 			error_msg="Uh oh, it looks like you don't have permission to access this thought."
 			form=""
 		else:
-				pass
+			pass
+	for d in thought.distortions.all():
+		print d.getChallengeQuestions(thought)
 	c={'thought':thought, 'form':form}
 	return render(request, templateName, c)
 	
