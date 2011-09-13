@@ -29,9 +29,7 @@
 			{{distortion.explanation}}
 			{{distortion.howtorespond}}
 			{{distortion.example}}
-			{% for q in distortion.getChallengeQuestions thought %}
-			{{q}}
-			{% endfor %}
+			{{distortion.challenge_questions.all|first }}
 			{% endautoescape %}
 			</div>
 		{% endfor %}

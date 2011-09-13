@@ -119,8 +119,6 @@ def challengeView(request, thought_id):
 			form=""
 		else:
 			pass
-	for d in thought.distortions.all():
-		print d.getChallengeQuestions(thought)
 	c={'thought':thought, 'form':form}
 	return render(request, templateName, c)
 	

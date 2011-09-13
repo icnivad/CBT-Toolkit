@@ -150,12 +150,6 @@ class Distortion(models.Model):
 	explanation=models.TextField(blank=True)
 	how_to_respond=models.TextField(blank=True)
 	example=models.TextField(blank=True)
-	
-	# really, really need to test this method!  testing needs to be done!!!!
-	def getChallengeQuestions(self, thought):
-		alreadyUsed=thought.challenge_questions_answered.all()
-		leftQuestions=[q for q in self.challenge_questions.all() if (q not in alreadyUsed)]
-		return leftQuestions
 		
 	def __unicode__(self):
 		return self.distortion
