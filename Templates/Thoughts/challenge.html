@@ -29,7 +29,6 @@
 			{{distortion.explanation}}
 			{{distortion.howtorespond}}
 			{{distortion.example}}
-			{{distortion.challenge_questions.all|first }}
 			{% endautoescape %}
 			</div>
 		{% endfor %}
@@ -37,10 +36,10 @@
 		</div>
 
 	</div>
-	
+		
 	<form id="challenge_thought_form" class="form-stacked" action="{% url thought_challenge thought.pk %}" method="POST">
 		{% csrf_token %}
-		{{form.response}}
+		{{form}}
 		<div class="row">
 			<input class="offset1 tower btn primary" type="submit" value="Challenge Thought"/>
 		</div>

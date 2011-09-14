@@ -109,6 +109,18 @@ class TrackItemStatus(models.Model):
 	def __unicode__(self):
 		return str(self.item)+": "+str(self.value)
 
+class ThoughtManager(models.Manager):
+	#returns either a thought that the user has permission to access or None
+	def get_with_permission(self, user, thought_id):
+		try:
+			thought=self.get(pk=thought_id)
+			if thought.user==user:
+				return thought
+		except:
+			pass
+		return None
+
+
 class Thought(models.Model):
 	share=models.BooleanField(default=False)
 	category=models.CharField(blank=True, max_length=100)
@@ -117,8 +129,8 @@ class Thought(models.Model):
 	user=models.ForeignKey(User)
 	datetime=models.DateTimeField('time', editable=False)
 	distortions=models.ManyToManyField("Distortion", blank=True, null=True)
-	challenge_questions_answered=models.ManyToManyField("ChallengeQuestion", blank=True, null=True)
-	
+	objects=ThoughtManager()
+			
 	def save(self):
 		if not self.datetime:
 			self.datetime=datetime.datetime.now()
@@ -139,11 +151,22 @@ class Thought(models.Model):
 	
 	def get_challenge(self):
 		try:
-			challenge=Challenge.objects.get(thought=self)
-			return challenge
+			challenges=Challenge.objects.filter(thought=self)
+			return challenges
 		except:
 			return ""
-			
+	
+	#includes answered and unanswered - but only for the distortions appropriate to this thought
+	def get_all_questions(self):
+		return [q for d in self.distortions.all() for q in d.challenge_questions.all()]
+	
+	#definitely want to test these methods!
+	def get_unanswered_questions(self):
+		questions=self.get_all_questions()
+		answered=[c.challenge_question for c in self.get_challenge()]
+		left_questions=list(set(questions)-set(answered))
+		return left_questions
+		
 class Distortion(models.Model):
 	distortion=models.CharField(max_length=100)
 	question=models.TextField(blank=True)
@@ -162,7 +185,7 @@ class ChallengeQuestion(models.Model):
 
 class Challenge(models.Model):
 	thought=models.ForeignKey(Thought)
-	challenge_question=models.ManyToManyField("ChallengeQuestion")
+	challenge_question=models.ForeignKey("ChallengeQuestion")
 	response=models.TextField()
 	def __unicode__(self):
 		return self.response

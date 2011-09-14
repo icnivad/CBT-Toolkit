@@ -6,8 +6,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 import simplejson
-from django.views.generic import *
-from django.views.generic.edit import *
 from django.template import RequestContext
 from models import  *
 from django.conf import settings
@@ -67,17 +65,7 @@ def editView(request, thought_id):
 		return render(request, "thought_edit.html", c)
 
 def distortionView(request, thought_id, questions=True):
-	thought=None
-	try:
-		thought=Thought.objects.get(pk=thought_id)
-		if not thought.user==request.user:
-			#need to write this so it returns an error_msg - can't access thought
-			thought=None
-			form=""
-		else:
-			pass
-	except: 
-		thought=None
+	thought=Thought.objects.get_with_permission(request.user, thought_id)
 	form=DistortionForm(questions=questions, instance=thought)
 	if request.method=="POST":
 		form=DistortionForm(request.POST, instance=thought, questions=questions)
@@ -95,35 +83,29 @@ def distortionView(request, thought_id, questions=True):
 	
 def challengeView(request, thought_id):
 	templateName="challenge.html"
-	errors=False
-	error_msg=""
-	form=ChallengeForm()
-	thought=""
-	thought=Thought.objects.get(pk=thought_id)
-	if request.method=="POST":
-		form=ChallengeForm(request.POST)
-		if form.is_valid():
-			temp=form.save(commit=False)
-			temp.thought=thought
-			temp.user=request.user
-			temp.save()
-		else:
-			pass
-		return HttpResponse("success")
+	thought=Thought.objects.get_with_permission(request.user, thought_id)
+	if thought==None:
+		#Need to replace this with something real
+		return redirect("oops")
 	else:
-		if not thought.user==request.user:
-			#need to write this so it returns an error_msg - can't access thought
-			errors=True
-			thought=""
-			error_msg="Uh oh, it looks like you don't have permission to access this thought."
-			form=""
-		else:
-			pass
-	c={'thought':thought, 'form':form}
-	return render(request, templateName, c)
+		questions=thought.get_unanswered_questions()
+		question=questions[0]
+		print question
+		form=ChallengeForm(initial={'challenge_question':question})
+		c={'thought':thought, 'form':form, 'question':question}
+		if request.method=="POST":
+			form=ChallengeForm(request.POST)
+			if form.is_valid():
+				temp=form.save(commit=False)
+				temp.thought=thought
+				temp.user=request.user
+				temp.save()
+			else:
+				pass
+		return render(request, templateName, c)
 	
 def deleteView(request, thought_id):
-	thought=Thought.objects.get(pk=thought_id)
+	thought=Thought.objects.get_with_permission(request.user, pk=thought_id)
 	if request.method=="POST":
 		if ((request.user.is_authenticated()) and (request.user==thought.user)):
 			thought.delete()
