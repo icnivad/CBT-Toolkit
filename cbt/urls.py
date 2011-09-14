@@ -38,6 +38,7 @@ urlpatterns = patterns('',
     (r'^accounts/', include('registration.backends.simple.urls')),
 #    (r'', errorView),
     (r'^%s' % spreedly_settings.SPREEDLY_URL[1:], include('spreedly.urls')),
+    (r'^convert/', include('lazysignup.urls')),
 )
 
 urlpatterns += patterns('',

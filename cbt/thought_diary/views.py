@@ -12,7 +12,9 @@ from django.conf import settings
 from myforms import *
 from registration.forms import RegistrationForm
 import datetime
+from lazysignup.decorators import allow_lazy_user
 
+@allow_lazy_user
 def thoughtView(request):
 	if request.method=="POST":
 		form=ThoughtForm(request.POST)
@@ -64,6 +66,7 @@ def editView(request, thought_id):
 		c={'thought':thought, 'form':form}
 		return render(request, "thought_edit.html", c)
 
+@allow_lazy_user
 def distortionView(request, thought_id, questions=True):
 	thought=Thought.objects.get_with_permission(request.user, thought_id)
 	form=DistortionForm(questions=questions, instance=thought)
@@ -80,7 +83,8 @@ def distortionView(request, thought_id, questions=True):
 		print form
 		c={'thought':thought, 'form':form}
 		return render(request, templateName, c)
-	
+
+@allow_lazy_user
 def challengeView(request, thought_id):
 	templateName="challenge.html"
 	thought=Thought.objects.get_with_permission(request.user, thought_id)

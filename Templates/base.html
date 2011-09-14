@@ -47,7 +47,7 @@
             <li><a href="/blog/contact">Contact</a></li>
 	    <li><a href="/blog">Blog</a></li>
             <li><a href="/forum">Forum</a></li>         
-	    {% if request.user.is_authenticated %}
+	    {% if request.user|nonlazy %}
 	    <li class="{% active request 'dashboard' %}"><a href="/dashboard">My Account</a></li>
 	    {% endif %}
 	 </ul>

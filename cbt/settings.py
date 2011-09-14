@@ -46,6 +46,10 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
 
+AUTHENTICATION_BACKENDS = (
+  'django.contrib.auth.backends.ModelBackend',
+  'lazysignup.backends.LazySignupBackend',
+)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -74,4 +78,5 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'spreedly',
     'mytags',
+    'lazysignup',
 )

@@ -1,4 +1,5 @@
-{% if request.user.is_authenticated %}
+{% load tags %}
+{% if request.user|nonlazy %}
 	<span id="log_in" class="top_bar_text">Welcome {{request.user.username}}, you are now logged in! <a href="/accounts/logout/">Sign Out</a></span>
 {% else %}
 	<span id="log_in">
