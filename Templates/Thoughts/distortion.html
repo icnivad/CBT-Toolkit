@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} Find the Distortion {% endblock title %}
+{% block content%}
+	<div class="row">
+		<div class='page-header tower'>
+		<h1>Find The Distortion</h1> or
+		<a href="/thought">Add More Thoughts</a>
+		</div>
+		<div class="row">
+		<p class="columns span10">
+		Thanks for sharing your thought!  The next step is to take a good hard look at your thought, to see if you are looking
+		at things in a distorted way.  Cognitive distortions are extremely common in depression and anxiety, and they can make you feel really bad.  
+		<br/><br/>
+		Below are a few questions about your thought, to help you figure out if any 
+		<a href="/content/tutorial/distortions"> cognitive distortions</a> are present.		
+		</p>
+		
+		<div class="columns span10">
+		<h2>Your Thought:</h2>
+		<h2>{{thought}}</h2>
+		</div>
+		</div>
+	</div>
+			<form action="{% url thought_distortion thought.pk %}" method="POST">
+			<div class="row">
+			<div class="columns span10 distortions">
+			{{form.distortions}}
+			{% csrf_token %}
+			
+			</div>
+			</div>
+			<div class="row">
+				<div class="columns offset1">
+					<input class="btn primary" type="submit" value="next">
+				</div>
+			</div>
+			</form>
+{% endblock content %}

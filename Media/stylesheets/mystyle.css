@@ -1,14 +1,77 @@
 /**********************
-**** Main Page *******
+**** All Pages *******
 ***************************/
-img.main_screenshot {
-	float: left;
-    padding: 20px 50px 0 100px;
+
+#page {
+	margin-top:30px;
 }
 
-div.signup form.signup {
-	margin: 10px 0px 0px 500px;
+#log_in {
+	float:right;
 }
+
+#log_in input {
+	width:100px;
+}
+
+/*Let's make the topbar not be fixed cause that's annoying me*/
+.topbar {
+	position:relative;
+}
+
+.topbar .top_bar_text {
+	padding: 10px 10px 11px;
+}
+
+#footer {
+    background-color: #049CD9;
+    background-image: -moz-linear-gradient(#004D9F, #049CD9);
+    background-repeat: no-repeat;
+	margin-top:50px;
+}
+
+#footer div.inner {
+    -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) inset;
+    background: url("../my_images/grid-18px.png") repeat scroll center top transparent;
+    padding: 45px 0;
+}
+
+#footer p, #footer ul {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+#footer ul {
+	display: block;
+    float: right;
+    position: relative;
+}
+
+#footer ul li{
+	display: block;
+    float: left;
+	margin: 0px 10px;
+}
+
+#footer ul a {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+
+/*Positioning above */
+.dungeon {
+	margin-bottom:20px;
+}
+
+.tower {
+	margin-top:20px;
+}
+
+/**********************
+**** Main Page *******
+***************************/
 
 /**********************
 **** Thought Diary *******
@@ -37,7 +100,7 @@ div.signup form.signup {
 }
 
 form #id_thought , #id_response{
-	width:700px;
+	width: 450px;
 	height:75px;
 }
 
@@ -79,11 +142,7 @@ div.form_label {
 	left:50px;
 }
 
-#login_message{
-	position:absolute;
-	top:15px;
-	right:30px;
-}
+
 
 .text_header {
 		position:relative;
@@ -147,6 +206,13 @@ form.challenge a.button {
 }
 
 /**********************
+**** Zebra striped without stripes *******
+***************************/
+.odd {
+	background-color: #f9f9f9;
+}
+
+/**********************
 **** Delete Form *******
 ***************************/
 #delete_form div.float {
@@ -175,6 +241,48 @@ form.signup div.submit {
 div.add_padding {
     margin: 15px 15px;
 }
+
+/**********************
+**** thought distortions *******
+***************************/
+
+
+.distortions label {
+	float:none;
+	width:auto;
+	font-size:16px;
+	display:block;
+	padding:5px;
+}
+
+.distortions ul {
+	list-style:none;
+}
+
+.distortions ul li:nth-child(odd) {
+	background-color: #f9f9f9;
+}
+
+.distortions ul li:hover {
+	background-color: #f5f5f5;
+}
+
+.distortions ul li:hover label{
+	color: #202020;
+}
+
+.distortions li{
+	margin:0px;
+}
+
+.distortions input {
+	float:left;
+}
+
+.distortions .odd {
+	  background-color: #f9f9f9;
+}
+
 
 /**********************
 **** mood chart *******

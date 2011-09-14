@@ -27,6 +27,7 @@ def check_memory():
 	run('cat /home/tukipenda/logs/user/cron/cron.log | tail')
 	run("ps -u tukipenda -o rss,command | sed -e '1d' | awk '{s+=$1} END {print s}'")
 	run("ps -u tukipenda -o rss,command")
+	
 def move_static_files():
 	with settings(warn_only=True):
 		result=run('rm -r /home/tukipenda/webapps/%s/*' % env.static_folder)

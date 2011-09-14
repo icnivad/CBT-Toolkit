@@ -1,30 +1,32 @@
-<div class="text_header">Thoughts</div>
-<div id="jqm_popup_msg"></div>
+{% extends "base.html" %}
+{% block title %} My Thoughts {% endblock title %}
+{% block content %}
+<div class="text_header">My Thoughts</div>
 <table class="thoughts">
 	<tr class="thought_header">
 		<td class='id'></td>
 		<td class='time'></td>
 		<td class='thought'>Thought</td>
-		<td class='actions'>Actions</td>
+		<td>Actions</td>
 	</tr>
 {% for thought in thoughts reversed%}
-	<tr class="thought_box">
+	<tr class="thought_box {% cycle 'odd' 'even' %}">
 		<td class='id'>{{thought.pk}}</td>
 		<td class='time'><span class='time'>{{thought.pretty_date}}</span></td>
 		<td class='thought'>
 			<div class='thought'>{{thought.thought}}</div>
 			<div class="thought_details">
 				{% if thought.get_mood.mood %}
-					<img title="Mood" class="icon" src="{{MEDIA_URL}}/my_images/16px/mood.png"/> {{thought.get_mood.mood}}
+					<img title="Mood" class="icon" src="{{MEDIA_URL}}/my_images/Icons/16px/mood.png"/> {{thought.get_mood.mood}}
 				{% endif %}
 				{% if thought.get_mood.feeling %}
-					<img title="Feeling" class="icon" src="{{MEDIA_URL}}/my_images/16px/feeling.png"/> {{thought.get_mood.feeling}}
+					<img title="Feeling" class="icon" src="{{MEDIA_URL}}/my_images/Icons/16px/feeling.png"/> {{thought.get_mood.feeling}}
 				{% endif %}
 				{% if thought.situation %}
-					<img title="Situation" class="icon" src="{{MEDIA_URL}}/my_images/16px/situation.png"/> {{thought.situation}}
+					<img title="Situation" class="icon" src="{{MEDIA_URL}}/my_images/Icons/16px/situation.png"/> {{thought.situation}}
 				{% endif %}
 				{% if thought.category %}
-					<img title="Category" class="icon" src="{{MEDIA_URL}}/my_images/16px/category.png"/> {{thought.category}}
+					<img title="Category" class="icon" src="{{MEDIA_URL}}/my_images/Icons/16px/category.png"/> {{thought.category}}
 				{% endif %}
 				<div class="thought_challenge">
 				{% if thought.get_challenge.response %}
@@ -36,12 +38,14 @@
 			</div>
 			
 		</td>
-		<td class='actions'>
-			<a class="jqm_trigger" href="{% url thought_delete thought.pk %}"><img title="Delete Thought" class="icon" src="{{MEDIA_URL}}/my_images/24px/delete2.png"/></a>
-			<a class="jqm_trigger" href="{% url thought_edit thought.pk %}"><img title="Edit Thought" class="icon" src="{{MEDIA_URL}}/my_images/24px/edit.png"/></a>
-			<a class="jqm_trigger" href="{% url thought_challenge thought.pk %}"><img title="Challenge Thought" class="icon" src="{{MEDIA_URL}}/my_images/24px/challenge.png"/></a>
+		<td>
+			<a class="jqm_trigger" href="{% url thought_delete thought.pk %}"><img title="Delete Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/delete2.png"/></a>
+			<a class="jqm_trigger" href="{% url thought_edit thought.pk %}"><img title="Edit Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/edit.png"/></a>
+			<a class="jqm_trigger" href="{% url thought_challenge thought.pk %}"><img title="Challenge Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/challenge.png"/></a>
 		</td>
 	</tr>
     </li>
 {% endfor %}
 </table>
+
+{% endblock content %}

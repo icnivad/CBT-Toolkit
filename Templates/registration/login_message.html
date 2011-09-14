@@ -1,0 +1,12 @@
+{% if request.user.is_authenticated %}
+	<span id="log_in" class="top_bar_text">Welcome {{request.user.username}}, you are now logged in! <a href="/accounts/logout/">Sign Out</a></span>
+{% else %}
+	<span id="log_in">
+	<form action="/accounts/login/" method="POST">
+		{% csrf_token %}
+		Username: <input id="id_username" type="text" maxlength="20" name="username">
+		Password: <input id="id_password" type="password" maxlength="20" name="password">
+	<a class="submit">Log In</a>
+	</form>
+	</span>
+{% endif %}

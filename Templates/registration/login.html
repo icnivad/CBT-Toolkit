@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<h2>Log In to the Mood Toolkit</h2>
+<form method="post" action=".">
+  {% csrf_token %}
+  {{ form.as_p }}
+<div class="row">
+	<div class="offset1 columns">
+		<input type="submit" class="btn primary" value="{% trans 'Log in' %}" />
+	</div>
+</div>
+	<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+<p>{% trans "Forgot your password" %}? <a href="{% url auth_password_reset %}">{% trans "Reset it" %}</a>!</p>
+<p>{% trans "Not a member" %}? <a href="{% url registration_register %}">{% trans "Register" %}</a>!</p>
+{% endblock %}
