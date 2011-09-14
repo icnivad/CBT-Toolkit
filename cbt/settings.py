@@ -43,7 +43,7 @@ TEMPLATE_DIRS = (
 INTERNAL_IPS = ('127.0.0.1',)
 
 DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
+    'INTERCEPT_REDIRECTS':True, 
 }
 
 AUTHENTICATION_BACKENDS = (
@@ -75,8 +75,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'thought_diary',
     'south',
-    'debug_toolbar',
     'spreedly',
     'mytags',
     'lazysignup',
+    'debug_toolbar',
 )
