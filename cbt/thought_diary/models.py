@@ -185,7 +185,7 @@ class ChallengeQuestion(models.Model):
 
 class Challenge(models.Model):
 	thought=models.ForeignKey(Thought)
-	challenge_question=models.ForeignKey("ChallengeQuestion")
+	challenge_question=models.ForeignKey("ChallengeQuestion", blank=True, null=True)
 	response=models.TextField()
 	def __unicode__(self):
 		return self.response

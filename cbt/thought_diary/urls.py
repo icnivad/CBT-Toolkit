@@ -10,6 +10,7 @@ from django.views.generic.simple import direct_to_template
 urlpatterns = patterns('',
     url(r'^$', thoughtView, name='thought'),
     url(r'^(?P<thought_id>\d.*)/challenge/$', challengeView, name='thought_challenge'),
+    url(r'^(?P<thought_id>\d.*)/challenge/(?P<challenge_question_id>\d.*)/$', challengeView, name='thought_challenge'),
     url(r'^(?P<thought_id>\d.*)/distortion/$', distortionView, name='thought_distortion'),
     url(r'^(?P<thought_id>\d.*)/distortion/simple$', distortionView, {'questions':False}, name='thought_distortion_simple'),
     url(r'^(?P<thought_id>\d+)/$', detailView, name='thought_detail'),

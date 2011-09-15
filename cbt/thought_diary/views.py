@@ -85,16 +85,39 @@ def distortionView(request, thought_id, questions=True):
 		return render(request, templateName, c)
 
 @allow_lazy_user
-def challengeView(request, thought_id):
+def challengeView(request, thought_id, challenge_question_id=None):
 	templateName="challenge.html"
 	thought=Thought.objects.get_with_permission(request.user, thought_id)
+	if request.method=="POST":
+		form=ChallengeForm(request.POST)
+		if form.is_valid():
+			temp=form.save(commit=False)
+			temp.thought=thought
+			temp.user=request.user
+			if challenge_question_id!=None:
+				question=ChallengeQuestion.objects.get(pk=challenge_question_id)
+				temp.challenge_question=question
+			temp.save()
+			c={'thought':thought, 'form':form}
+			return render(request, "challenge_success.html", c)
+				
+	#If there's no thought - we're in trouble
 	if thought==None:
 		#Need to replace this with something real
 		return redirect("oops")
-	else:
+	
+	#Don't have a question to respond - no trouble - just get one.  
+	#What do we do if all available questions have been answered though?
+	elif challenge_question_id==None:
 		questions=thought.get_unanswered_questions()
+		if len(questions)==0:
+			form=ChallengeForm()
+			c={'thought':thought, 'form':form}
+			return render(request, templateName, c)
 		question=questions[0]
-		print question
+		return redirect(reverse('thought_challenge', kwargs={'thought_id':thought.pk, 'challenge_question_id':question.pk}))
+	else:
+		question=ChallengeQuestion.objects.get(pk=challenge_question_id)
 		form=ChallengeForm(initial={'challenge_question':question})
 		c={'thought':thought, 'form':form, 'question':question}
 		if request.method=="POST":
