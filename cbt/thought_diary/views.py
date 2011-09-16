@@ -12,9 +12,8 @@ from django.conf import settings
 from myforms import *
 from registration.forms import RegistrationForm
 import datetime
-from lazysignup.decorators import allow_lazy_user
+from django_session_stashable import SessionStashable
 
-@allow_lazy_user
 def thoughtView(request):
 	if request.method=="POST":
 		form=ThoughtForm(request.POST)
@@ -22,8 +21,12 @@ def thoughtView(request):
 		if form.is_valid():
 			if(form.cleaned_data['thought']!=""):
 				temp=form.save(commit=False)
-				temp.user=request.user
-				temp.save()
+				if request.user.is_active:
+					temp.created_by=request.user
+					temp.save()
+				else:
+					temp.save()
+					temp.stash_in_session(request.session)
 			else:
 				pass
 		else:
@@ -66,9 +69,8 @@ def editView(request, thought_id):
 		c={'thought':thought, 'form':form}
 		return render(request, "thought_edit.html", c)
 
-@allow_lazy_user
 def distortionView(request, thought_id, questions=True):
-	thought=Thought.objects.get_with_permission(request.user, thought_id)
+	thought=Thought.objects.get_with_permission(request, thought_id)
 	form=DistortionForm(questions=questions, instance=thought)
 	if request.method=="POST":
 		form=DistortionForm(request.POST, instance=thought, questions=questions)
@@ -84,7 +86,6 @@ def distortionView(request, thought_id, questions=True):
 		c={'thought':thought, 'form':form}
 		return render(request, templateName, c)
 
-@allow_lazy_user
 def challengeView(request, thought_id, challenge_question_id=None):
 	templateName="challenge.html"
 	thought=Thought.objects.get_with_permission(request.user, thought_id)

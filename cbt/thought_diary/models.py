@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from south.modelsinspector import add_introspection_rules
+from django_session_stashable import SessionStashable
 
 import sys
 import os
@@ -111,22 +112,23 @@ class TrackItemStatus(models.Model):
 
 class ThoughtManager(models.Manager):
 	#returns either a thought that the user has permission to access or None
-	def get_with_permission(self, user, thought_id):
-		try:
-			thought=self.get(pk=thought_id)
-			if thought.user==user:
-				return thought
-		except:
-			pass
+	def get_with_permission(self, request, thought_id):
+		thought=self.get(pk=thought_id)
+		if ((thought.created_by==request.user) or (thought.stashed_in_session(request.session))):
+			return thought
 		return None
 
 
-class Thought(models.Model):
+class Thought(models.Model, SessionStashable):
 	share=models.BooleanField(default=False)
 	category=models.CharField(blank=True, max_length=100)
 	thought=models.TextField(blank=True)
 	situation=models.TextField(blank=True)
-	user=models.ForeignKey(User)
+
+	#stores user who created thought
+	created_by=models.ForeignKey(User, blank=True, null=True)
+	session_variable='thought_stash'
+
 	datetime=models.DateTimeField('time', editable=False)
 	distortions=models.ManyToManyField("Distortion", blank=True, null=True)
 	objects=ThoughtManager()

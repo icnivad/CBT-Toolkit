@@ -14,30 +14,13 @@
 		</p>
 		</div>
 		<div class="span10 columns">
-		<h2>Your Thought:</h2>
 		<h2>{{thought}}</h2>
-		<ul class="tabs">
-		{% for distortion in thought.distortions.all %}
-		<li {% if forloop.first %} class="active" {% endif %}><a id="distortion_tab_link_{{distortion.pk}}" href="">{{distortion.distortion}}</a></li>
-		{% endfor %}
-		<li><a href="{% url thought_distortion_simple thought.pk %}"><img title="Edit Distortions" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/edit.png"/></a></li>
-		</ul>
-		<div id="distortion_tabs">
-		{% for distortion in thought.distortions.all %}
-			<div id="distortion_tab_content_{{distortion.pk}}">
-			{% autoescape off %}
-			{{distortion.explanation}}
-			{{distortion.howtorespond}}
-			{{distortion.example}}
-			{% endautoescape %}
-			</div>
-		{% endfor %}
-		</div>
+		{{question}}
 		</div>
 
 	</div>
 		
-	<form id="challenge_thought_form" class="form-stacked" action="{% url thought_challenge thought.pk %}" method="POST">
+	<form id="challenge_thought_form" class="form-stacked" action="" method="POST">
 		{% csrf_token %}
 		{{form}}
 		<div class="row">
