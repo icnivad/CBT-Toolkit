@@ -35,12 +35,8 @@ def thoughtView(request):
 
 def detailView(request, thought_id):
 	thought=Thought.objects.get(pk=thought_id)
-	challenge=None
-	try:
-		challenge=Challenge.objects.get(thought=thought)
-	except:
-		pass
-	c={'thought':thought, 'challenge':challenge}
+	print thought.get_challenges()
+	c={'thought':thought}
 	return render(request, "thought_detail.html", c)
 
 def editView(request, thought_id):

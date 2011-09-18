@@ -156,12 +156,8 @@ class Thought(models.Model, SessionStashable):
 		except:
 			return ""
 	
-	def get_challenge(self):
-		try:
-			challenges=Challenge.objects.filter(thought=self)
-			return challenges
-		except:
-			return ""
+	def get_challenges(self):
+		return Challenge.objects.filter(thought=self)
 	
 	#includes answered and unanswered - but only for the distortions appropriate to this thought
 	def get_all_questions(self):
@@ -207,7 +203,7 @@ class Challenge(models.Model):
 	objects=ChallengeManager()
 	def __unicode__(self):
 		return self.response		
-
+	
 class UserProfile(models.Model):
 	user=models.ForeignKey(User, unique=True)
 	startedTracking=models.BooleanField(default=False)
