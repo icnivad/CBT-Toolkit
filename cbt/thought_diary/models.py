@@ -166,7 +166,7 @@ class Thought(models.Model, SessionStashable):
 	#definitely want to test these methods!
 	def get_unanswered_questions(self):
 		questions=self.get_all_questions()
-		answered=[c.challenge_question for c in self.get_challenge()]
+		answered=[c.challenge_question for c in self.get_challenges()]
 		left_questions=list(set(questions)-set(answered))
 		return left_questions
 		
