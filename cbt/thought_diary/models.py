@@ -133,11 +133,16 @@ class Thought(models.Model, SessionStashable):
 	distortions=models.ManyToManyField("Distortion", blank=True, null=True)
 	objects=ThoughtManager()
 			
-	def save(self):
+	def save(self, request):
 		if not self.datetime:
 			self.datetime=datetime.datetime.now()
-		super(Thought, self).save()
-		
+		if request.user.is_active:
+			self.created_by=request.user			
+			super(Thought, self).save()
+		else:
+			super(Thought, self).save()
+			self.stash_in_session(request.session)
+			
 	def __unicode__(self):
 		return self.thought
 	
@@ -181,16 +186,27 @@ class Distortion(models.Model):
 
 class ChallengeQuestion(models.Model):
 	question=models.TextField()
-	distortion=models.ManyToManyField("Distortion", related_name="challenge_questions")
+	distortion=models.ManyToManyField("Distortion", related_name="challenge_questions", blank=True, null=True)
 	def __unicode__(self):
-		return self.question
+		if len(self.distortion.all())>0:
+			distortions=", ".join([d.distortion for d in self.distortion.all()])
+			return distortions+": "+self.question
+		else:
+			return self.question
+class ChallengeManager(models.Manager):
+	def get_with_permission(self, request, response_id):
+		challenge=self.get(pk=response_id)
+		if ((challenge.thought.created_by==request.user) or (challenge.thought.stashed_in_session(request.session))):
+			return challenge
+		return None
 
 class Challenge(models.Model):
 	thought=models.ForeignKey(Thought)
 	challenge_question=models.ForeignKey("ChallengeQuestion", blank=True, null=True)
 	response=models.TextField()
+	objects=ChallengeManager()
 	def __unicode__(self):
-		return self.response
+		return self.response		
 
 class UserProfile(models.Model):
 	user=models.ForeignKey(User, unique=True)

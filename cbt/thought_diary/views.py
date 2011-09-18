@@ -21,12 +21,7 @@ def thoughtView(request):
 		if form.is_valid():
 			if(form.cleaned_data['thought']!=""):
 				temp=form.save(commit=False)
-				if request.user.is_active:
-					temp.created_by=request.user
-					temp.save()
-				else:
-					temp.save()
-					temp.stash_in_session(request.session)
+				temp.save(request)
 			else:
 				pass
 		else:
@@ -50,7 +45,7 @@ def detailView(request, thought_id):
 
 def editView(request, thought_id):
 	if request.method=="POST":
-		thought=Thought.objects.get(pk=thought_id)
+		thought=Thought.objects.get_with_permission(request, pk=thought_id)
 		form=ThoughtForm(request.POST, instance=thought)
 		temp=""
 		if form.is_valid():
@@ -75,7 +70,9 @@ def distortionView(request, thought_id, questions=True):
 	if request.method=="POST":
 		form=DistortionForm(request.POST, instance=thought, questions=questions)
 		if form.is_valid():
-			form.save()
+			temp=form.save(commit=False)
+			temp.save(request)
+			form.save_m2m()
 		else:
 			print 'not valid'
 			pass #trouble trouble trouble!
@@ -88,7 +85,7 @@ def distortionView(request, thought_id, questions=True):
 
 def challengeView(request, thought_id, challenge_question_id=None):
 	templateName="challenge.html"
-	thought=Thought.objects.get_with_permission(request.user, thought_id)
+	thought=Thought.objects.get_with_permission(request, thought_id)
 	if request.method=="POST":
 		form=ChallengeForm(request.POST)
 		if form.is_valid():
@@ -99,6 +96,7 @@ def challengeView(request, thought_id, challenge_question_id=None):
 				question=ChallengeQuestion.objects.get(pk=challenge_question_id)
 				temp.challenge_question=question
 			temp.save()
+			form.save_m2m()
 			c={'thought':thought, 'form':form}
 			return render(request, "challenge_success.html", c)
 				
@@ -121,15 +119,6 @@ def challengeView(request, thought_id, challenge_question_id=None):
 		question=ChallengeQuestion.objects.get(pk=challenge_question_id)
 		form=ChallengeForm(initial={'challenge_question':question})
 		c={'thought':thought, 'form':form, 'question':question}
-		if request.method=="POST":
-			form=ChallengeForm(request.POST)
-			if form.is_valid():
-				temp=form.save(commit=False)
-				temp.thought=thought
-				temp.user=request.user
-				temp.save()
-			else:
-				pass
 		return render(request, templateName, c)
 	
 def deleteView(request, thought_id):
@@ -145,6 +134,6 @@ def deleteView(request, thought_id):
 		return render(request, "thought_delete.html", c)
 	
 def listView(request):
-	thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
+	thoughts=Thought.objects.filter(created_by=request.user).order_by('datetime')
 	c={'thoughts':thoughts}
 	return render(request, 'thought_list.html', c)

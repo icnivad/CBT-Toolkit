@@ -14,6 +14,10 @@
 	width:100px;
 }
 
+#log_in a {
+	cursor:pointer;
+}
+
 /*Let's make the topbar not be fixed cause that's annoying me*/
 .topbar {
 	position:relative;

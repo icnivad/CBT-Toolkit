@@ -1252,6 +1252,8 @@ table .headerSortUp.purple, table .headerSortDown.purple {
   -moz-opacity: 1;
   opacity: 1;
 }
+
+
 .topbar form input {
   background-color: #444;
   background-color: rgba(255, 255, 255, 0.3);

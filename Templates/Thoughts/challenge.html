@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "thought_base.html" %}
 {% block title %} Challenge Your Thought {% endblock title %}
 {% block content %}
 	<div class="row">
@@ -15,7 +15,7 @@
 		</div>
 		<div class="span10 columns">
 		<h2>{{thought}}</h2>
-		{{question}}
+		<h3>{{question.question}}</h3>
 		</div>
 
 	</div>

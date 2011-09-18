@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 {% block tabs %}
-{% if request.user.is_authenticated %}
-<!--	<ul class="tabs">
-		<li><a href="/">Dashboard</a></li>
-		<li class="active"><a href="/thought">Thought Diary</a></li>
-		<li><a href="/mood">Mood Tracker</a></li>
-		<li><a href="/activity">Activity Planner</a></li>
+	{% if thought.pk %}
+	<ul class="tabs">
+		<li><a href="{% url thought %}">Think It</a></li>
+		<li><a href="{% url thought_distortion thought.pk %}">Check It</a></li>
+		<li><a href="{% url thought_challenge thought.pk %}">Challenge It</a></li>
 	</ul>
--->
-{% endif %}
+	{% else %}
+		<ul class="tabs">
+			<li><a href="{% url thought %}">Think It</a></li>
+			<li><a href="/thought/distortion">Check It</a></li>
+			<li><a href="/thought/challenge">Challenge It</a></li>
+		</ul>
+	{% endif %}
+	
 {% endblock %}
