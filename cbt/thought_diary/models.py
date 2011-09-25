@@ -15,7 +15,6 @@ from custom_fields import SeparatedValuesField
 
 add_introspection_rules([], ["^thought_diary\.models\.MultiSelectField"])
 
-
 class MultiSelectFormField(forms.MultipleChoiceField):
 	widget = forms.CheckboxSelectMultiple
 
@@ -132,6 +131,10 @@ class Thought(models.Model, SessionStashable):
 	datetime=models.DateTimeField('time', editable=False)
 	distortions=models.ManyToManyField("Distortion", blank=True, null=True)
 	objects=ThoughtManager()
+	
+	def delete_with_permission(self, request):
+		if (request.user.is_authenticated() and (self.created_by==request.user)):
+			super(Thought, self).delete()
 			
 	def save(self, request):
 		if not self.datetime:
@@ -166,7 +169,7 @@ class Thought(models.Model, SessionStashable):
 	#definitely want to test these methods!
 	def get_unanswered_questions(self):
 		questions=self.get_all_questions()
-		answered=[c.challenge_question for c in self.get_challenge()]
+		answered=[c.challenge_question for c in self.get_challenges()]
 		left_questions=list(set(questions)-set(answered))
 		return left_questions
 		

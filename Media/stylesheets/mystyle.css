@@ -27,6 +27,11 @@
 	padding: 10px 10px 11px;
 }
 
+/* topbar menu */
+.topbar li:hover .dropdown-menu{
+		display:block;
+}
+
 #footer {
     background-color: #049CD9;
     background-image: -moz-linear-gradient(#004D9F, #049CD9);
@@ -155,6 +160,11 @@ div.form_label {
 		font-size:30px;
 }
 
+
+/**********************
+**** List of Thoughts *******
+***************************/
+
 .thoughts {
 	list-style:none;
 }
@@ -169,40 +179,22 @@ td {
 }
 
 td.thought{
-	width:450px;
+	width:550px;
 	padding:10px;
 	height:75px;
+}
+
+td.time {
+	width:100px;
 }
 
 td.id {
 	display:none;
 }
 
+
 div.thought_challenge {
 	display:none;
-}
-
-/**********************
-**** JQM Popup *******
-***************************/
-
-#jqm_popup_msg {
-display: none;
-    
-    position: fixed;
-    top: 17%;
-    left: 50%;
-    
-    margin-left: -300px;
-    
-    background-color: #EEE;
-    color: #333;
-    border: 1px solid black;
-    padding: 12px;	
-}
-
-#jqm_popup_msg #id_situation, #jqm_popup_msg #id_thought{
-	width:600px;
 }
 
 form.challenge a.button {
@@ -216,15 +208,19 @@ form.challenge a.button {
 	background-color: #f9f9f9;
 }
 
+
+
 /**********************
-**** Delete Form *******
+**** Modal Window *******
 ***************************/
-#delete_form div.float {
-	float:left;
-	width:100px;
-	left: 0px;
+#thought_modal {
+	top:50%;
+	margin: 0px 0px 0px 0px;
 }
 
+#thought_modal .alert-message.block-message {
+	margin:0px;
+}
 
 /**********************
 **** Signup Page *******

@@ -24,11 +24,11 @@ class ModelTest(TestCase):
 	fixtures=['test.json']
 	def test_thought(self):
 		thoughts=Thought.objects.all()
-		for thought in thoughts:
-			print thought.pk
 		thought=Thought.objects.get(pk=2)
-		self.assertEqual(thought.user.pk, 1)
+		self.assertEqual(thought.created_by.pk, 1)
+
 	
+
 	def test_user(self):
 		for user in User.objects.all():
 			print user.username

@@ -5,6 +5,7 @@ import sys
 #spreedly controls
 SPREEDLY_AUTH_TOKEN='03743ec2ed1546ef8ee91ed6ef5f64c04c86b518'
 SPREEDLY_SITE_NAME='cbttoolkit'
+SPREEDLY_FREE_TRIAL_ID=13483
 SITE_URL="http://www.cbttoolkit.com"
 SPREEDLY_ALLOWED_PATHS=["/media/", "/admin/", "/"]
 

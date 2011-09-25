@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% block tabs %}
 	{% if thought.pk %}
-	<ul class="tabs">
-		<li><a href="{% url thought %}">Think It</a></li>
-		<li><a href="{% url thought_distortion thought.pk %}">Check It</a></li>
-		<li><a href="{% url thought_challenge thought.pk %}">Challenge It</a></li>
+	<ul class="breadcrumb">
+		<li><a href="{% url thought %}">Add Thought</a><span class="divider">/</span></li>
+		<li><a href="{% url thought_distortion thought.pk %}">Check For Distortions</a><span class="divider">/</span></li>
+		<li><a href="{% url thought_challenge thought.pk %}">Challenge Thought</a></li>
 	</ul>
 	{% else %}
-		<ul class="tabs">
-			<li><a href="{% url thought %}">Think It</a></li>
-			<li><a href="/thought/distortion">Check It</a></li>
-			<li><a href="/thought/challenge">Challenge It</a></li>
+		<ul class="breadcrumb">
+			<li><a href="{% url thought %}">Add Thought</a><span class="divider">/</span></li>
+			<li><a href="/thought/distortion">Check For Distortions</a><span class="divider">/</span></li>
+			<li><a href="/thought/challenge">Challenge Thought</a></li>
 		</ul>
 	{% endif %}
 	

@@ -4,7 +4,7 @@
     <title>{% block title %}{% endblock %}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
-    <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}stylesheets/bootstrap-1.1.1.css" />
+    <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}stylesheets/bootstrap-1.3.css" />
     <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}javascripts/Popups/jqmodal.css"/>
     <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}stylesheets/mystyle.css" media="screen" />  
     <link type="text/css" href="{{MEDIA_URL}}/javascripts/jquery-ui/css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
@@ -12,6 +12,7 @@
     <script type="text/javascript" src="{{MEDIA_URL}}javascripts/jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
     <script type="text/javascript" src="{{MEDIA_URL}}javascripts/Popups/jqmodal.js"></script>
     <script type="text/javascript" src="{{MEDIA_URL}}javascripts/jquery.tablesorter.min.js"></script>
+     <script type="text/javascript" src="{{MEDIA_URL}}javascripts/bootstrap-modal.js"></script>
  
      <!--These scripts provide the toggle-switch functionality -->
      <script src="{{MEDIA_URL}}/javascripts/toggle-switch/jquery/iphone-style-checkboxes.js" type="text/javascript" charset="utf-8"></script>
@@ -41,16 +42,27 @@
       <div class="fill">
         <div class="container">
           <h3><a href="/">Mood Toolkit</a></h3>
-          <ul>
-            <li class="{% active request 'main' %}"><a href="/">Home</a></li>
-            <li class="{% active request 'about' %}"><a href="/about">About</a></li>
-            <li><a href="/blog/contact">Contact</a></li>
-	    <li><a href="/blog">Blog</a></li>
-            <li><a href="/forum">Forum</a></li>         
-	    {% if request.user|nonlazy %}
-	    <li class="{% active request 'dashboard' %}"><a href="/dashboard">My Account</a></li>
-	    {% endif %}
-	 </ul>
+		{% if request.user.is_authenticated %}
+		<ul>
+			<li class="{% active request 'dashboard' %}"><a href="/dashboard">My Account</a></li>
+			<li class="{% active request 'thought' %}"><a href="/thought">Thought Diary</a>
+				<ul class="dropdown-menu">
+					<li><a href="/thought/list">My Thoughts</a></li>
+					<li><a href="/thought">New Thought</a></li>
+				</ul>
+			</li>
+			<li><a href="/content/tutorial">Tutorial</a></li>
+		</ul>	
+		{% else %}
+		<ul>
+			<li class="{% active request 'main' %}"><a href="/">Home</a></li>
+			<li class="{% active request 'about' %}"><a href="/about">About</a></li>
+			<li><a href="/blog/contact">Contact</a></li>
+			<li><a href="/blog">Blog</a></li>
+			<li><a href="/forum">Forum</a></li>         
+			<li><a href="/content/tutorial">Tutorial</a></li>
+		</ul>
+		{% endif %}
 	{% include "login_message.html" %}
         </div>
       </div>
@@ -67,7 +79,7 @@
 	<div class="inner">
 		<div class="container">
 			<ul class="unstyled">
-			            <li class="active"><a href="/">Home</a></li>
+			            <li><a href="/">Home</a></li>
 				    <li><a href="/about">About</a></li>
 				    <li><a href="/blog/contact">Contact</a></li>
 				    <li><a href="/blog">Blog</a></li>

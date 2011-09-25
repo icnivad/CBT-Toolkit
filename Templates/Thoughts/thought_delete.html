@@ -1,9 +1,6 @@
-<div id="delete_form">
-	<div>Are you sure you want to delete this thought?</div>
-	<div class="submit_thought float">
-		<a href="javascript:;" class="button cancel"><span>Cancel</span></a>
-	</div>
-	<div class='float'>
-		<a class="thought_delete" href="{% url thought_delete thought.pk %}">Delete</a>
-	</div>
-</div>	
+<div class="modal-header">Are you sure you want to delete this thought?</div>
+<div class="modal-body">{{thought.thought}}</div>
+<div class="modal-footer">
+<a href="#" class="btn primary thought_cancel">Cancel</a>
+<a href="{% url thought_delete thought.pk %}" class="btn thought_delete">Delete</a>
+</div>

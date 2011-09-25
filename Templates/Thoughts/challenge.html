@@ -16,6 +16,9 @@
 		<div class="span10 columns">
 		<h2>{{thought}}</h2>
 		<h3>{{question.question}}</h3>
+		{% if next_url %}
+			<a href="{{next_url}}">Try a different question.</a>
+		{% endif %}
 		</div>
 
 	</div>

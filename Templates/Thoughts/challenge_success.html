@@ -1,0 +1,25 @@
+{% extends "thought_base.html" %}
+{% block title %} Challenge Your Thought {% endblock title %}
+{% block content %}
+	<div class="row">
+		<div class='page-header tower'>
+		<h1>Good for you!</h1>
+		</div>
+		<div class="row">
+		<p class="columns span10">
+		Thanks for challenging your thought!  Hopefully you feel a little better, but don't worry if you're still upset.  
+		It can take a while to get used to challenging thoughts.  
+
+		{% if stashed %}
+		You have some thoughts that have not been saved!
+		<a href="{% url auth_login %}">Log In</a> or <a href="{% url register %}">Sign Up</a> to save these thoughts.
+		{% endif %}
+		
+		If you'd like, you can <a href="{% url thought_detail thought.pk %}">take a look at your thought</a>, 
+		or <a href="{% url thought %}">add another thought</a>.  
+		
+		You can also <a href="{% url thought_challenge thought.pk %}">answer another question about your thought</a>.  
+		That might help you feel better too.  
+		</div>
+	</div>
+{% endblock content %}

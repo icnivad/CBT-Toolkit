@@ -13,6 +13,7 @@ from myforms import *
 from registration.forms import RegistrationForm
 import datetime
 from django_session_stashable import SessionStashable
+from django.views.generic.list_detail import object_list
 
 def thoughtView(request):
 	if request.method=="POST":
@@ -93,7 +94,10 @@ def challengeView(request, thought_id, challenge_question_id=None):
 				temp.challenge_question=question
 			temp.save()
 			form.save_m2m()
-			c={'thought':thought, 'form':form}
+			stashed=False
+			if Thought.num_stashed_in_session(request.session):
+				stashed=True
+			c={'thought':thought, 'form':form, 'stashed':stashed}
 			return render(request, "challenge_success.html", c)
 				
 	#If there's no thought - we're in trouble
@@ -113,23 +117,28 @@ def challengeView(request, thought_id, challenge_question_id=None):
 		return redirect(reverse('thought_challenge', kwargs={'thought_id':thought.pk, 'challenge_question_id':question.pk}))
 	else:
 		question=ChallengeQuestion.objects.get(pk=challenge_question_id)
+		questions=thought.get_unanswered_questions()
+		next_url=None
+		try:
+			i=questions.index(question)
+			next=questions[i+1]
+			next_url=reverse('thought_challenge', kwargs={'thought_id':thought.pk, 'challenge_question_id':next.pk})
+		except:
+			pass
 		form=ChallengeForm(initial={'challenge_question':question})
-		c={'thought':thought, 'form':form, 'question':question}
+		c={'thought':thought, 'form':form, 'question':question, 'next_url':next_url}
 		return render(request, templateName, c)
 	
 def deleteView(request, thought_id):
-	thought=Thought.objects.get_with_permission(request.user, pk=thought_id)
+	thought=Thought.objects.get_with_permission(request, thought_id)
 	if request.method=="POST":
-		if ((request.user.is_authenticated()) and (request.user==thought.user)):
-			thought.delete()
-		else:
-			pass
+		thought.delete_with_permission(request)
 		return HttpResponse('deleted');
 	else:
 		c={'thought':thought}
-		return render(request, "thought_delete.html", c)
+		return render(request, "modal_delete.html", c)
 	
 def listView(request):
-	thoughts=Thought.objects.filter(created_by=request.user).order_by('datetime')
+	thoughts=Thought.objects.filter(created_by=request.user).order_by('-datetime')
 	c={'thoughts':thoughts}
-	return render(request, 'thought_list.html', c)
+	return object_list(request, template_name='thought_list.html', queryset=thoughts, paginate_by=10)

@@ -1,17 +1,6 @@
 {% extends "base.html" %}
 {% block title %} Mood Toolkit {% endblock title %}
 
-{% block tabs %}
-{% if request.user.is_authenticated %}
-	<ul class="tabs">
-		<li class="active"><a href="/">Dashboard</a></li>
-		<li><a href="/thought">Thought Diary</a></li>
-		<li><a href="/mood">Mood Tracker</a></li>
-		<li><a href="/activity">Activity Planner</a></li>
-	</ul>
-{% endif %}
-{% endblock %}
-
 {% block content%}
 
 <h1>Welcome to the Mood Toolkit</h1>
@@ -20,16 +9,8 @@
 
 Not sure where to start?  Check out the tutorial on <a href="/content/tutorial">Thoughts, Moods, and Feelings</a>
 <h2>Thought Diary</h2>
-When you feel bad, you sometimes wish you could snap your fingers and feel better.  
-Unfortunately, that doesn't work.  You can't force yourself to feel happy, no matter how much
-you want to.  But your feelings are largely determined by your thoughts.  If you can change your thoughts,
-and get rid of negative patterns of thinking, you can change how you feel.  This thought diary will help you keep track of your thoughts, and challenge your negative thinking patterns.  
-Use the <a href="/thought">Thought Diary</a> to control these thoughts.  Learn how to think more constructively and feel better.
-<div class="row">
-<div class="columns offset1 tower">
-<a href="/thought" class="btn primary">Try It Now</a>
-</div>
-</div>
+<a href="/thought/list">My Thoughts</a>
+<a href="/thought">Add a new thought</a>
 </div>
 </div>
 

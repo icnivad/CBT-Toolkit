@@ -2,44 +2,37 @@
 {% block title %} My Thoughts {% endblock title %}
 {% block content %}
 <div class="text_header">My Thoughts</div>
+{% if is_paginated %}{% load tags %}{% paginator 3 %}{% endif %}
+<div id="thought_modal" class="modal hide fade"></div>
 <table class="thoughts">
 	<tr class="thought_header">
 		<td class='id'></td>
-		<td class='time'></td>
+		<td class='time'>Time</td>
 		<td class='thought'>Thought</td>
 		<td>Actions</td>
 	</tr>
-{% for thought in thoughts reversed%}
+{% for thought in object_list%}
 	<tr class="thought_box {% cycle 'odd' 'even' %}">
 		<td class='id'>{{thought.pk}}</td>
 		<td class='time'><span class='time'>{{thought.pretty_date}}</span></td>
 		<td class='thought'>
 			<div class='thought'>{{thought.thought}}</div>
-			<div class="thought_details">
-				{% if thought.get_mood.mood %}
-					<img title="Mood" class="icon" src="{{MEDIA_URL}}/my_images/Icons/16px/mood.png"/> {{thought.get_mood.mood}}
+			<div class='responses'>
+				{% for challenge in thought.get_challenges %}
+				{% if forloop.first %}
+				<p>
+				<span class="question">{{challenge.challenge_question.question}}</span>
+				<span class="response">{{challenge.response}}</span>
+				</p>
+				<a href="{% url thought_detail thought.pk %}">See More Responses</a>
 				{% endif %}
-				{% if thought.get_mood.feeling %}
-					<img title="Feeling" class="icon" src="{{MEDIA_URL}}/my_images/Icons/16px/feeling.png"/> {{thought.get_mood.feeling}}
-				{% endif %}
-				{% if thought.situation %}
-					<img title="Situation" class="icon" src="{{MEDIA_URL}}/my_images/Icons/16px/situation.png"/> {{thought.situation}}
-				{% endif %}
-				{% if thought.category %}
-					<img title="Category" class="icon" src="{{MEDIA_URL}}/my_images/Icons/16px/category.png"/> {{thought.category}}
-				{% endif %}
-				<div class="thought_challenge">
-				{% if thought.get_challenge.response %}
-					<strong>{{thought.get_challenge.response}}</strong>
-				{% else %}
-					<a class="jqm_trigger" href="{% url thought_challenge thought.pk %}">Challenge This Thought</a>
-				{% endif %}
-				</div>
+				{% empty %}
+				<a href="{% url thought_challenge thought.pk %}">Challenge This Thought</a>
+				{% endfor %}
 			</div>
-			
 		</td>
 		<td>
-			<a class="jqm_trigger" href="{% url thought_delete thought.pk %}"><img title="Delete Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/delete2.png"/></a>
+			<a class="launch_thought_modal" href="{% url thought_delete thought.pk %}"><img title="Delete Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/delete2.png"/></a>
 			<a class="jqm_trigger" href="{% url thought_edit thought.pk %}"><img title="Edit Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/edit.png"/></a>
 			<a class="jqm_trigger" href="{% url thought_challenge thought.pk %}"><img title="Challenge Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/challenge.png"/></a>
 		</td>

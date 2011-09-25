@@ -108,7 +108,24 @@ $(document).ready(function(){
 		.removeAttr('checked')
 		.removeAttr('selected');
 	});
+	$('a.launch_thought_modal').live('click', function(){
+		$.get($(this).attr("href"), success=function(data){
+			$('#thought_modal').html(data);
+			$('#thought_modal').modal('show');
+		});
+		return false;
+	});
 	
+	$(".modal_cancel").live('click', function(){
+		$(this).closest('.modal').modal('hide');
+		return false;
+	});
+	
+	$(".modal_action").live('click', function(){
+		$.post($(this).attr("href"));
+		$(this).closest('.modal').modal('hide');
+		return false;
+	});
 	/*
 	function show_distortion_tab(el){
 		var id=el.attr("id").split("_").pop();
