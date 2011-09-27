@@ -16,8 +16,8 @@ def pretty_date(time=False):
 	second_diff = diff.seconds
 	day_diff = diff.days
 
-	if day_diff < 0:
-		return ''
+	if diff.seconds < 0:
+		raise Exception('Thought appears to be from the future')
 
 	if day_diff == 0:
 		if second_diff < 10:

@@ -20,18 +20,27 @@ class SimpleTest(TestCase):
         """
         self.failUnlessEqual(1 + 1, 2)
 
+
+class HelperTest(TestCase):
+	import sys
+	import os
+	sys.path.append(os.path.join(os.path.dirname(__file__),"helper_functions"))
+	import datetime_helper
+	def test_pretty_date(self):
+		time=datetime.datetime.now()
+		delta=datetime.timedelta(0, -5)
+		self.assertEqual(datetime_helper.pretty_date(time+delta), "just now")
+		
+		later_delta=datetime.timedelta(0, 10)
+		self.assertRaises(Exception, 'Thought appears to be from the future', datetime_helper.pretty_date, time+delta)
+		
+
 class ModelTest(TestCase):
-	fixtures=['test.json']
+	fixtures=['model_test.json']
 	def test_thought(self):
 		thoughts=Thought.objects.all()
 		thought=Thought.objects.get(pk=2)
 		self.assertEqual(thought.created_by.pk, 1)
-
-	
-
-	def test_user(self):
-		for user in User.objects.all():
-			print user.username
 
 class ViewTest(TestCase):
 	fixtures=['test.json']
@@ -41,19 +50,18 @@ class ViewTest(TestCase):
 	def test_thought_view(self):
 		thought_view=reverse('thought')
 		self.assertEqual(thought_view, '/thought/')
-		
-		test=self.client.login(username="ben", password="cold")	
 		resp=self.client.get(thought_view)
 		self.assertEqual(resp.status_code, 200)
 
-	def test_challenge_view(self):
-		challenge_view=reverse('thought_challenge', args=[2])
-		self.assertEqual(challenge_view, '/thought/2/challenge/')
+
+	#~ def test_challenge_view(self):
+		#~ challenge_view=reverse('thought_challenge', args=[2])
+		#~ self.assertEqual(challenge_view, '/thought/2/challenge/')
 		
-		#check if we can get a challenge view that does exist
-		self.client.login(username="ben", password="cold")
+		#~ #check if we can get a challenge view that does exist
+		#~ self.client.login(username="ben", password="cold")
 		
-		#check what happens if challenge doesn't exist -we should return some type of friendly response
-		not_exist_challenge_view=reverse('thought_challenge', args=[10000])
-		resp=self.client.get(not_exist_challenge_view)
-		self.assertEqual(resp.status_code, 200)
+		#~ #check what happens if challenge doesn't exist -we should return some type of friendly response
+		#~ not_exist_challenge_view=reverse('thought_challenge', args=[10000])
+		#~ resp=self.client.get(not_exist_challenge_view)
+		#~ self.assertEqual(resp.status_code, 200)

@@ -1,20 +1,2473 @@
 [
     {
         "pk": 1, 
-        "model": "auth.user", 
+        "model": "thought_diary.thought", 
         "fields": {
-            "username": "ben", 
-            "first_name": "", 
-            "last_name": "", 
-            "is_active": true, 
-            "is_superuser": false, 
-            "is_staff": false, 
-            "last_login": "2011-08-08 16:50:25", 
-            "groups": [], 
-            "user_permissions": [], 
-            "password": "sha1$3ab22$5e8bb44c3e6b399ccb3b98818301477e1848807b", 
-            "email": "bearle2009@gmail.com", 
-            "date_joined": "2011-08-08 16:50:25"
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-08-19 12:18:29", 
+            "thought": "my thought", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-08-30 14:37:51", 
+            "thought": "I am working on website with Dr. Baer", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-08-30 14:43:49", 
+            "thought": "working on webapp", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-08-30 14:46:04", 
+            "thought": "I'm worried about my new roommates", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-08-30 14:46:17", 
+            "thought": "What if my new roommates don't like me?", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-07 17:36:30", 
+            "thought": "I'm a thief.", 
+            "distortions": [
+                8
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-10 23:04:03", 
+            "thought": "I should have entered my hours this week.  I'm always behind with this stuff.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-07 18:19:22", 
+            "thought": "I should have a girlfriend.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-07 18:19:35", 
+            "thought": "I should have a girlfriend.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-07 18:54:39", 
+            "thought": "I'm worried about dancing tonight.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-10 18:20:26", 
+            "thought": "I'm really slow at getting stuff done.  I'm behind with work.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-07 20:37:34", 
+            "thought": "I'm nervous about dancing.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-08 08:24:45", 
+            "thought": "i'm sleepy", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-08 11:29:47", 
+            "thought": "I should have email Jennifer Lake back weeks ago.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-08 11:36:33", 
+            "thought": "EPGY is going to be mad at me.", 
+            "distortions": [
+                1, 
+                9
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-08 15:47:05", 
+            "thought": "Worried about this new job.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-08 16:23:14", 
+            "thought": "I'm not getting enough done with my web application.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-08 16:32:53", 
+            "thought": "I'm not getting anything done.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-08 17:58:21", 
+            "thought": "I am tired", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-09 11:36:12", 
+            "thought": "Feeling behind with work.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-09 14:42:07", 
+            "thought": "This web app is taking way too long to get done.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-10 17:44:04", 
+            "thought": "I'm really slow to get anything done at the moment.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-10 01:14:08", 
+            "thought": "i'm tired", 
+            "distortions": [
+                1, 
+                4, 
+                5
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-10 00:56:04", 
+            "thought": "i should be dating more", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-10 00:04:04", 
+            "thought": "I'm worried about tomorrow.  Should I have invited these people?  Was it a mistake to invite people?", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-10 23:14:11", 
+            "thought": "I shouldn't have forgotten to enter my hours", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-10 23:14:41", 
+            "thought": "I should be doing more work for VIC.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-10 23:15:11", 
+            "thought": "I should be more proactive about my medical school applications.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-10 23:15:51", 
+            "thought": "Everyone will be angry with me.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-10 23:15:59", 
+            "thought": "I'm not going to get enough done.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-11 01:51:28", 
+            "thought": "pondering stuff.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-11 02:16:44", 
+            "thought": "I should go to bed now.  I've stayed up too late.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-11 02:30:13", 
+            "thought": "I need to go to sleep. But I can't.  Because I am teh lame.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-11 23:36:50", 
+            "thought": "my wrists hurt.  I shouldn't use the computer so much.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-12 08:30:32", 
+            "thought": "Tired and don't feel like putting up posters today.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-12 08:31:41", 
+            "thought": "I should have gotten up earlier.", 
+            "distortions": [
+                4, 
+                5
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-12 09:18:42", 
+            "thought": "I should be up by now.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-12 09:49:30", 
+            "thought": "I need to get my laundry done.", 
+            "distortions": [
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-12 11:36:44", 
+            "thought": "Its gotten really late - I should be flyering by now.", 
+            "distortions": [
+                1, 
+                5
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 65, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-12 15:58:43", 
+            "thought": "I should be more proactive.", 
+            "distortions": [
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-12 16:39:17", 
+            "thought": "I feel like a fool.", 
+            "distortions": [
+                8
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 67, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-12 18:28:47", 
+            "thought": "I'm getting overwhelmed with this website.", 
+            "distortions": [
+                4, 
+                8
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 68, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-12 20:36:28", 
+            "thought": "No one is going to come to the event on Wednesday.", 
+            "distortions": [
+                5, 
+                7, 
+                9
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 69, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-13 00:09:13", 
+            "thought": "I should be like Dr. Oz", 
+            "distortions": [
+                6, 
+                8, 
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 70, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-13 11:30:07", 
+            "thought": "I feel like I'm not getting everything I need to done.", 
+            "distortions": [
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 71, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-13 21:12:46", 
+            "thought": "What if someone says something unfriendly?", 
+            "distortions": [
+                3, 
+                5
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 72, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-14 08:59:00", 
+            "thought": "I'm feeling sick.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 73, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-14 08:59:30", 
+            "thought": "What if my wrists get so bad I can't use the computer any more?", 
+            "distortions": [
+                5
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 74, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-14 11:27:12", 
+            "thought": "I've fucked up my application!", 
+            "distortions": [
+                1, 
+                9
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 75, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-14 11:50:31", 
+            "thought": "Here's my thought", 
+            "distortions": [
+                4
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 76, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-14 13:29:01", 
+            "thought": "hey", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 77, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-14 14:47:58", 
+            "thought": "I have gotten nothing done this afternoon.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 78, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-14 14:47:59", 
+            "thought": "I have gotten nothing done this afternoon.", 
+            "distortions": [
+                1, 
+                9
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 79, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-14 14:55:00", 
+            "thought": "This app is really messy.", 
+            "distortions": [
+                5, 
+                8
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 80, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-14 16:43:59", 
+            "thought": "I feel lousy.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 81, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-14 16:46:39", 
+            "thought": "I'm not making any progress.", 
+            "distortions": [
+                9
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 82, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-15 12:39:14", 
+            "thought": "Susan wasn't having a good time.", 
+            "distortions": [
+                3
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 83, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-15 13:58:58", 
+            "thought": "I should be like one of these tiger kids, super successful at everything.", 
+            "distortions": [
+                10, 
+                12
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 84, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-15 16:06:51", 
+            "thought": "I should be able to speak Japanese better.  ", 
+            "distortions": [
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 85, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 00:02:39", 
+            "thought": "I don't know how to make this site.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 86, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 09:53:19", 
+            "thought": "I don't know what to put in this thought diary.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 87, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 09:57:32", 
+            "thought": "I should have a better plan for this site.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 88, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 09:57:32", 
+            "thought": "I should have a better plan for this site.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 89, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 10:21:59", 
+            "thought": "I shouldn't have wasted so much time at the bookstore.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 90, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 12:49:06", 
+            "thought": "No one will come to the party.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 91, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 13:53:45", 
+            "thought": "adf", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 92, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 13:54:49", 
+            "thought": "hello", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 93, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 13:55:42", 
+            "thought": "hello", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 94, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 13:56:51", 
+            "thought": "ad", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 95, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 13:59:20", 
+            "thought": "ad", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 96, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 14:00:09", 
+            "thought": "addf", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 97, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 14:00:24", 
+            "thought": "addf", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 98, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 14:03:52", 
+            "thought": "hellok", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 99, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-16 14:04:40", 
+            "thought": "hmmm", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 143, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-23 15:22:46", 
+            "thought": "I feel shitty because I don't have any fun plans for tonight. ", 
+            "distortions": [
+                1, 
+                9
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 101, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-17 10:18:04", 
+            "thought": "I'm feeling really tired.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 102, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-17 10:18:20", 
+            "thought": "I'm such a fool.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 104, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-17 10:31:24", 
+            "thought": "I'm going nowhere with this project.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 105, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-17 10:31:37", 
+            "thought": "ugh", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 106, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-17 10:34:21", 
+            "thought": "My progress on this is glacially slow.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 107, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-17 11:38:31", 
+            "thought": "Worried about the future.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 141, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-21 15:08:04", 
+            "thought": "Just thinking about some stuff.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 110, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-17 12:36:45", 
+            "thought": "I'm not a good friend.", 
+            "distortions": [
+                8, 
+                12
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 111, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-17 19:56:11", 
+            "thought": "This website is a waste of time.", 
+            "distortions": [
+                1, 
+                8, 
+                12
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 112, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-17 20:00:56", 
+            "thought": "I should be out having fun tonight?", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 113, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-17 20:01:03", 
+            "thought": "I should be out having fun tonight.", 
+            "distortions": [
+                8, 
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 114, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-17 20:05:32", 
+            "thought": "I need to pee.", 
+            "distortions": [
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 115, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-17 20:06:22", 
+            "thought": "something's up.", 
+            "distortions": [
+                12
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 116, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-17 20:06:22", 
+            "thought": "something's up.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 117, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-17 20:06:39", 
+            "thought": "I should have a more exciting life.", 
+            "distortions": [
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 118, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-17 20:29:07", 
+            "thought": "I don't want to go out because I'm tired.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 119, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-17 20:32:05", 
+            "thought": "People will think this web app is dumb.", 
+            "distortions": [
+                3, 
+                5
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 120, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-18 08:56:22", 
+            "thought": "I should be doing something different.", 
+            "distortions": [
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 121, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-18 23:16:44", 
+            "thought": "My back really hurts.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 122, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-18 23:19:49", 
+            "thought": "I should be nicer to Maja.", 
+            "distortions": [
+                8, 
+                12
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 123, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-18 23:52:38", 
+            "thought": "uugh", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 124, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-18 23:54:05", 
+            "thought": "f", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 126, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 10, 
+            "datetime": "2011-09-19 00:10:20", 
+            "thought": "ad", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 127, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 11, 
+            "datetime": "2011-09-19 00:11:51", 
+            "thought": "I'm fucking tired.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 128, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-19 09:38:52", 
+            "thought": "I should have a girlfriend.", 
+            "distortions": [
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 129, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-19 12:29:34", 
+            "thought": "I should have dated a lot more before.", 
+            "distortions": [
+                8, 
+                10, 
+                11
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 130, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-19 12:38:44", 
+            "thought": "I feel shitty!", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 131, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-19 12:39:10", 
+            "thought": "I can't get a girlfriend.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 132, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-19 12:41:45", 
+            "thought": "I'm bored and a loser.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 133, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-19 14:48:55", 
+            "thought": "i should have dated more.", 
+            "distortions": [
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 134, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-19 18:26:14", 
+            "thought": "I should be more like Paul Farmer.  I should be a more giving person.", 
+            "distortions": [
+                8, 
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 142, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-21 15:08:32", 
+            "thought": "I'm taking way too long to finish this thought diary.", 
+            "distortions": [
+                8
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 136, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-20 14:07:21", 
+            "thought": "I'm a loser for not having had a girlfriend in the last three years.", 
+            "distortions": [
+                8, 
+                11
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 137, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-20 14:27:37", 
+            "thought": "I should have dated more.", 
+            "distortions": [
+                8, 
+                10
+            ], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 138, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-20 20:43:51", 
+            "thought": "My life is seeping away.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 139, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-20 20:44:23", 
+            "thought": "I'm a loser.  I just wasted the entire day.  I'm wasting my life.  Why the fuck am I not dating anyone.  I'm such a failure.  I fucking hate my life.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 140, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-20 20:45:18", 
+            "thought": "I feel stuck.  I'm sick, so i can't go dancing, but I don't have something else to do instead, so I'm spending all my time on the computer, or reading, just wasting my life away.  I'm feeling really lonely.  I don't know how to make friends.  I'm a failure.  I'm barely a man.", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 144, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": 1, 
+            "datetime": "2011-09-23 15:24:30", 
+            "thought": "I feel like such a loser though, since people aren't inviting me to parties very often.  ", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 145, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-23 17:14:13", 
+            "thought": "latest thought", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 146, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-24 01:44:59", 
+            "thought": "d", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 147, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-25 01:26:49", 
+            "thought": " ", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 148, 
+        "model": "thought_diary.thought", 
+        "fields": {
+            "category": "", 
+            "share": false, 
+            "created_by": null, 
+            "datetime": "2011-09-25 09:59:24", 
+            "thought": " ", 
+            "distortions": [], 
+            "situation": ""
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "<h3>What's wrong with it?:</h3>The problem with a mental filter is that you ignore the things that might make you feel good if you give them a chance.  ", 
+            "question": "Are you looking only at the negatives aspects of the situation?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Mental Filter"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Did you make an assumption about what someone else is thinking?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Mind-Reading"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Are you making predictions or assumptions based on how you feel?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Emotional Reasoning"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Did you make a prediction about the future?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Predictions"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Did you compare yourself to someone else?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Comparisons"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Are you imagining the worst possible case?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Catastrophizing"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Are you criticizing yourself or others?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Critical Self"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "What it is: Thinking about things in all or nothing terms. \r\nWhy its a distortion: You ignore the fact that .", 
+            "question": "Do you feel like if it's not perfect it will be a disaster?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Black and White Thinking"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Did you use the words \"should\" or \"must\" or make a demand?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Shoulds and Musts"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Are you thinking about the past?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Regrets and Memories"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Are you ignoring or minimizing positive things about yourself or others?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Disqualifying the Positive"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "What are some good qualities that you have that the other person might not share?", 
+            "distortion": [
+                6
+            ]
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Can you think of some problems the other person has that you don't have to worry about?", 
+            "distortion": [
+                6
+            ]
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "What is the best possible scenario?  Can you think of a way that things could turn out better than you expected?", 
+            "distortion": [
+                5
+            ]
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Try and think of one good thing that is true about this situation.  ", 
+            "distortion": [
+                1
+            ]
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Think of one good thing that is true about your situation now that wasn't true in the past.", 
+            "distortion": [
+                11
+            ]
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "If your thought was critical, can you think of a time when the opposite of this thought was true?  ", 
+            "distortion": [
+                8
+            ]
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Even if your prediction comes true, can you think of some good things that will still be true?", 
+            "distortion": [
+                5
+            ]
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Can you think of some problems you might still have, even if this were true?", 
+            "distortion": [
+                10
+            ]
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Is this conclusion really likely?  Can you think of a good result that might occur instead?", 
+            "distortion": [
+                7
+            ]
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Do the facts support your conclusion?  Can you think of any evidence that supports a more positive conclusion?", 
+            "distortion": [
+                4
+            ]
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Can you think of some positive things that could be true?  What is some evidence supports them?", 
+            "distortion": [
+                12
+            ]
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Can you imagine a scenario where things aren't perfect, but they're still pretty good?", 
+            "distortion": [
+                9
+            ]
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "What might a positive interpretation of this situation be?", 
+            "distortion": [
+                3
+            ]
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "What would a friend tell you to make you feel better?", 
+            "distortion": []
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 45, 
+            "challenge_question": 1, 
+            "response": "Its okay.  It might have been a mistake, but that's no big deal.  I can't know how things will turn out - this is the first time I've done this before.  If its not a good fit, what's the big deal?"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 48, 
+            "challenge_question": 1, 
+            "response": "I've actually made a fair amount of progress on this site.  I could be getting more done, but I'm doing pretty well.  I also have a lot of other things going on, and its hard to keep on top of everything.  I'm doing pretty well."
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 47, 
+            "challenge_question": 1, 
+            "response": "nothing to challenge!"
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 10, 
+            "challenge_question": 1, 
+            "response": "I downloaded some music online, but I also just bought some music from another artist.  This is probably not the best thing to do, but its also not the worst thing in the world either."
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 50, 
+            "challenge_question": 1, 
+            "response": "Well, I do get behind with things sometimes, and it probably would have been better if I'd entered my hours, but I will find a way to make this work out."
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 55, 
+            "challenge_question": 1, 
+            "response": "I'm doing a lot.  I'm working hard.  I've done a good job of getting things done up until now.  I'm doing okay really."
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 54, 
+            "challenge_question": 1, 
+            "response": "Some people might be upset with me about this - notably the person who enters my hours.  But certainly not everyone.  It's probably possible to find a solution to this problem."
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 65, 
+            "challenge_question": 1, 
+            "response": "I tend to be calmer because I don't try to be proactive all the time.  I get to relax more often.  Even if I was more proactive, there is a limit to how much one person can achieve.  I think I have a good balance."
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 66, 
+            "challenge_question": 1, 
+            "response": "I'm building an amazing online website.  That takes some pretty serious intelligence!"
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 69, 
+            "challenge_question": 1, 
+            "response": "I speak French, Spanish, and Japanese.  I can program computers extremely well, and I know how to dance salsa.  I'm very patient and relaxed, and I don't stress about perfectionism too much.  I don't have to work all the time."
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 68, 
+            "challenge_question": 1, 
+            "response": "Sure, there could be 100 people who come!"
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 68, 
+            "challenge_question": 1, 
+            "response": "Even if no one came, Mark would be unhappy, and Dr. Ryan might be embarrassed, but the talk will still be good, and there will be food and stuff to drink.  And then I get to go home and relax."
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 68, 
+            "challenge_question": 1, 
+            "response": "Probably its not true that no one will come.  Someone is likely to come."
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 70, 
+            "challenge_question": 1, 
+            "response": "Well, I'm actually making a lot of progress on my website, so that's kind of cool.  Also, I just got a new job, and I'm learning how to salsa dance.  So I guess I'm getting a lot of things done."
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 70, 
+            "challenge_question": 1, 
+            "response": "I'm actually getting a lot done."
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 69, 
+            "challenge_question": 1, 
+            "response": "hey"
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 69, 
+            "challenge_question": 1, 
+            "response": "ok"
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 69, 
+            "challenge_question": 2, 
+            "response": "Has to deal with people recognizing him.  He's a surgeon, so he has to work all the time.  Very little free time.  May wonder whether people like him because of his success or for who he actually is.  Older, probably has some health problems.  Married, so has to deal with the complexities of married life.  Probably has people asking him for money often.  "
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 71, 
+            "challenge_question": 3, 
+            "response": "Someone says something nice about me.  Or probably says nothing about me at all."
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 73, 
+            "challenge_question": 3, 
+            "response": "My wrists don't hurt any more at all, and I can continue to use the computer.  More likely is, I have to curtail my use a bit, and change my practices a little bit to try and fix this problem, but I can still come to a solution."
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 78, 
+            "challenge_question": 4, 
+            "response": "I got to read about lawyers.  Its kind of funny and makes me happy about the decisions I've made with my life."
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 79, 
+            "challenge_question": 3, 
+            "response": "lalala"
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 79, 
+            "challenge_question": 6, 
+            "response": "Well, its a little disorganized because I haven't gone through and organized it yet, but it is beginning to have a fair amount of functionality.  Its working pretty well.  The design is very pretty and neat.  I've removed things that don't belong.  Once I add a testing suite it will be easier to refactor.  It is still fairly easy to read the code and understand what's going on.  So some of these qualities are present."
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 81, 
+            "challenge_question": null, 
+            "response": "Well, I'm making some progress, even if its really slow."
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 82, 
+            "challenge_question": null, 
+            "response": "She might have been having a great time, but just been really late for work.  I don't know.  "
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 83, 
+            "challenge_question": null, 
+            "response": "Are tiger kids super successful at everything.  They are very good at some things, but perhaps overly obedient, and unable to try new different things.  "
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 110, 
+            "challenge_question": 13, 
+            "response": "I hung out with Jean a bunch today.  I talk to Maja about her problems to try and help her out."
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 110, 
+            "challenge_question": 13, 
+            "response": "I try to help Maja when she's upset, as well as Leann.  "
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 111, 
+            "challenge_question": 4, 
+            "response": "Well, it seems like its actually been a lot of help to Leann."
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 113, 
+            "challenge_question": 10, 
+            "response": "Well, it is unlikely that I'd get a girlfriend tonight, or even have sex.  Also, where would I go to have sex, even if I had it.  Logistically it would be a bit challenging.  Even that wouldn't guarantee me tons of friends, or more sex in the future.  The sex could be really bad.  I'd probably be a bit nervous.  "
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 114, 
+            "challenge_question": 10, 
+            "response": "Yes, I would still not have a girlfriend even if I peed.  But my bladder would be happy."
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 117, 
+            "challenge_question": 10, 
+            "response": "What does exciting mean?  Its like the ancient chinese curse.  Gunfire, unwanted pregnancy, death, destruction, disease, danger - all of these are exciting, but they're not necessarily fun.  Besides some parts of my life are quite exciting.  No need to look for more excitement.  "
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 119, 
+            "challenge_question": 8, 
+            "response": "I'll have learned a lot about programming.  Leann has definitely enjoyed using the web app.  I'll know that I'm able to follow through on a project.  I've had a lot of fun building this.  I've learned a little bit about CBT myself."
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 119, 
+            "challenge_question": 3, 
+            "response": "People might love the app.  It could help some people a ton.  It might even make me some money."
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 119, 
+            "challenge_question": 15, 
+            "response": "At least I tried.  I did the best I could.  "
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 119, 
+            "challenge_question": null, 
+            "response": "This actually works pretty well."
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 122, 
+            "challenge_question": 13, 
+            "response": "Well, I do talk to her almost every day.  I try to be helpful.  I listen to her when I can.  I care about her.  I'm human, I can't help getting annoyed sometimes, but I try to be a good friend to her."
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 122, 
+            "challenge_question": 6, 
+            "response": "Sure, I just called maja up a ton to try to be good friends with her.  I'm doing a pretty good job."
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 123, 
+            "challenge_question": null, 
+            "response": "d"
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 124, 
+            "challenge_question": null, 
+            "response": "d"
+        }
+    }, 
+    {
+        "pk": 65, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 143, 
+            "challenge_question": 4, 
+            "response": "Well, I am having dinner with a couple friends tonight, so that should be fun.  I'm making progress on OK Cupid, soon I might actually message someone.  Maybe I'll meet someone that way.  "
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 126, 
+            "challenge_question": null, 
+            "response": "d"
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 128, 
+            "challenge_question": 10, 
+            "response": "Well, we might not get along.  We might not be compatible.  I would still need to make money, still have to worry about getting into medical school.  I would still want to make friends.  I might miss having my privacy and free time.  I might get jealous.  I might get her pregnant before I'm ready."
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 133, 
+            "challenge_question": 10, 
+            "response": "sexual addiction, stds, unwanted pregnancy, misogyny, even loneliness.  People not liking the real me.  "
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 134, 
+            "challenge_question": 6, 
+            "response": "Well, I did stay up late listening to Vibha last night.  I am spending a lot of time working at VIC for low pay.  I've done some volunteer work.  I try to help out the people I care about.  I could definitely do more, but that doesn't mean I don't do anything to help."
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 136, 
+            "challenge_question": 5, 
+            "response": "Well, I'm a lot more patient with myself.  I have a better sense of how to relate to people, though I'm not perfect.  I have some ideas about what to do when I feel lonely."
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 136, 
+            "challenge_question": 6, 
+            "response": "Well, I have had girlfriends before.  I'm still close to one of the girls I dated.  I have dated in the last year, even if not a lot.  I'm smart, friendly, and patient.  I can be a little judgemental, and I'm sometimes shy, but I'm a pretty good person overall, and I work hard."
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 137, 
+            "challenge_question": 10, 
+            "response": "I might still be anxious, still be worried about my career.  I might have to worry about my girlfriend being jealous, or taking up a lot of my time.  I might feel stuck in a rut in my relationship, or be worried about how to break up, or not enjoy my girlfriend's company.  We might be fighting a lot."
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 144, 
+            "challenge_question": null, 
+            "response": "I do get invited to parties sometimes.  I'm still new to the city, I have a lot going on.  If I wasn't sick I'd be dancing both tonight and tomorrow.  I'll have more fun things to do as the year goes along."
+        }
+    }, 
+    {
+        "pk": 67, 
+        "model": "thought_diary.challenge", 
+        "fields": {
+            "thought": 145, 
+            "challenge_question": null, 
+            "response": "d"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 1
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 11
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 10
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 9
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 8
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 7
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 12
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 13
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 14
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 15
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 16
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 17
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 18
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 19
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 20
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 21
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "thought_diary.userprofile", 
+        "fields": {
+            "startedTracking": false, 
+            "user": 22
         }
     }
 ]
