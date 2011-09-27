@@ -40,5 +40,29 @@
             "created_by": 1, 
             "situation": ""
         }
+    },
+    {
+        "pk": 106, 
+        "model": "thought_diary.thought_distortions", 
+        "fields": {
+            "thought": 2, 
+            "distortion": 5
+        }
+    },
+    {
+        "pk": 107, 
+        "model": "thought_diary.thought_distortions", 
+        "fields": {
+            "thought": 4, 
+            "distortion": 6
+        }
+    },
+   {
+        "pk": 108, 
+        "model": "thought_diary.thought_distortions", 
+        "fields": {
+            "thought": 4, 
+            "distortion": 7
+        }
     }
 ]

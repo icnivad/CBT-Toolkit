@@ -36,12 +36,23 @@ class HelperTest(TestCase):
 		
 
 class ModelTest(TestCase):
-	fixtures=['model_test.json']
+#	fixtures=['model_test.json']#, 'challenge_and_distortion.json']
+	fixtures=['challenge_and_distortion.json']
 	def test_thought(self):
 		thoughts=Thought.objects.all()
 		thought=Thought.objects.get(pk=2)
 		self.assertEqual(thought.created_by.pk, 1)
+		
+		#test get_all_questions
+		thought=Thought.objects.get(pk=2)
+		qs=thought.get_all_questions()
+		values=['<ChallengeQuestion: Predictions: What is the best possible scenario?  Can you think of a way that things could turn out better than you expected?>','<ChallengeQuestion: Predictions: Even if your prediction comes true, can you think of some good things that will still be true?>']
 
+		self.assertQuerysetEqual(qs, values)
+		nvalues=['<ChallengeQuestion: Predictions: Even if your prediction comes true, can you think of some good things that will still be true?>', '<ChallengeQuestion: Predictions: What is the best possible scenario?  Can you think of a way that things could turn out better than you expected?>']
+		nqs=thought.get_unanswered_questions()
+		self.assertQuerysetEqual(nqs, nvalues)
+		
 class ViewTest(TestCase):
 	fixtures=['test.json']
 	def setUp(self):

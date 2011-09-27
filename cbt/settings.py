@@ -3,18 +3,15 @@ import os
 import sys
 
 #spreedly controls
-SPREEDLY_AUTH_TOKEN='03743ec2ed1546ef8ee91ed6ef5f64c04c86b518'
-SPREEDLY_SITE_NAME='cbttoolkit'
-SPREEDLY_FREE_TRIAL_ID=13483
-SITE_URL="http://www.cbttoolkit.com"
-SPREEDLY_ALLOWED_PATHS=["/media/", "/admin/", "/"]
+#SPREEDLY_AUTH_TOKEN='03743ec2ed1546ef8ee91ed6ef5f64c04c86b518'
+#SPREEDLY_SITE_NAME='cbttoolkit'
+#SPREEDLY_FREE_TRIAL_ID=13483
+#SITE_URL="http://www.cbttoolkit.com"
+#SPREEDLY_ALLOWED_PATHS=["/media/", "/admin/", "/"]
 
 #We really really need to organize this file - oh well
 LOGIN_REDIRECT_URL="/dashboard"
 REGISTER_REDIRECT_URL="/dashboard"
-#lets see if we can speed up testing
-#if 'test' in sys.argv:
-#	DATABASE_ENGINE='sqlite3'
 
 #deal with urls
 APPEND_SLASH=True
@@ -76,8 +73,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'thought_diary',
     'south',
-    'spreedly',
+    #'spreedly',
     'mytags',
-    'lazysignup',
+    #'lazysignup',
     'debug_toolbar',
 )

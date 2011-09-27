@@ -142,3 +142,8 @@ def listView(request):
 	thoughts=Thought.objects.filter(created_by=request.user).order_by('-datetime')
 	c={'thoughts':thoughts}
 	return object_list(request, template_name='thought_list.html', queryset=thoughts, paginate_by=10)
+	
+def dataView(request):
+	distortions=Distortion.objects.all()
+	for d in distortion:
+		print d+": "+", ".join(d.challenges_questions.all())

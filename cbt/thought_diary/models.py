@@ -151,13 +151,6 @@ class Thought(models.Model, SessionStashable):
 	
 	def pretty_date(self):
 		return datetime_helper.pretty_date(self.datetime)
-		
-	def get_mood(self):
-		try:
-			mood=Mood.objects.filter(user=self.user, datetime=self.datetime)[0]
-			return mood
-		except:
-			return ""
 	
 	def get_challenges(self):
 		return Challenge.objects.filter(thought=self)
