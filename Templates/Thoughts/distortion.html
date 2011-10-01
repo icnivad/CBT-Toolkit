@@ -24,7 +24,17 @@
 			<form action="{% url thought_distortion thought.pk %}" method="POST">
 			<div class="row">
 			<div class="columns span10 distortions">
-			{{form.distortions}}
+			<ul>
+			{% for distortion in distortions %}
+			<li>
+			<label for="id_distortions_{{forloop.counter}}" class="distortion_main_label">
+			<p class="columns span7">{{distortion.question}}</p>
+			</label>
+			<input class="columns span3" id="id_distortions_{{forloop.counter}}" type="checkbox" value="{{distortion.pk}}" name="distortions"/>
+			
+			</li>
+			{% endfor %}
+			</ul>
 			{% csrf_token %}
 			</div>
 			</div>

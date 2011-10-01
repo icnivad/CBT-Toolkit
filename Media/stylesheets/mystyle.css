@@ -271,7 +271,7 @@ div.add_padding {
 	background-color: #f5f5f5;
 }
 
-.distortions ul li:hover label{
+.distortions ul li:hover p{
 	color: #202020;
 }
 
@@ -279,16 +279,13 @@ div.add_padding {
 	margin:0px;
 }
 
-.distortions input {
-	float:left;
-}
-
 .distortions .odd {
 	  background-color: #f9f9f9;
 }
 
-.distortions label {
+.distortions label.distortion_main_label {
 	padding:10px;
+	text-align:left;
 }
 
 .distortions .iPhoneCheckContainer {
