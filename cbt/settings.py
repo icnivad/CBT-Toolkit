@@ -1,6 +1,10 @@
 from localsettings import *
+# should define EMAIL_HOST and EMAIL_PORT
+
 import os
 import sys
+
+
 
 #spreedly controls
 #SPREEDLY_AUTH_TOKEN='03743ec2ed1546ef8ee91ed6ef5f64c04c86b518'

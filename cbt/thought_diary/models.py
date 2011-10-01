@@ -116,12 +116,19 @@ class ThoughtManager(models.Manager):
 		if ((thought.created_by==request.user) or (thought.stashed_in_session(request.session))):
 			return thought
 		return None
-	
+
+	def latest_with_permission(self, request):
+		if Thought.num_stashed_in_session(request.session):
+			thoughts=Thought.get_stashed_in_session(request.session)
+			return thoughts.order_by('-datetime')[0]
+		elif request.user.is_active:
+			return self.latest('datetime')
+
 	def all_with_permission(self, request):
 		thoughts=Thought.get_stashed_in_session(request.session)
 		if request.user.is_active:
-			thoughts=thoughts | self.filter(created_by=request.user).order_by('-datetime')
-		return thoughts
+			thoughts=thoughts | self.filter(created_by=request.user)
+		return thoughts.order_by('-datetime')
 
 class Thought(models.Model, SessionStashable):
 	share=models.BooleanField(default=False)

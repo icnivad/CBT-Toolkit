@@ -2,15 +2,18 @@
 {% block navigation %}
 
 <div class="row">
-	<div class="span3">
-		<a href="{% url thought_list %}">&laquo View My Thoughts</a>
-	</div>
-</div>
-
-<div class="row">
 	<div class="span9">
 		{% include "unsaved_thoughts_warning.html" %}
 	</div>
 </div>
+<div class="row">
+	<div class="span9 dungeon">
+		<ul class="unstyled my_horizontal">
+			<li><a href="{% url thought_list %}">&laquo View My Thoughts</a></li>
+			{% block links %} {% endblock %}
+		</ul>
+	</div>
+</div>
+
 
 {% endblock %}

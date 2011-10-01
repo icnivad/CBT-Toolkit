@@ -9,18 +9,15 @@ from django.template import RequestContext
 from models import  *
 from django.conf import settings
 from registration.forms import RegistrationForm
+from myforms import ContactForm
+from django.core.mail import send_mail
+
 
 def mainView(request):
 	if request.user.is_authenticated():
 		return redirect(reverse('dashboard'))
 	else:
 		return render(request, "main.html")
-
-def tryView(request):
-	if request.user.is_authenticated():
-		return redirect(reverse('dashboard'))
-	else:
-		return redirect("/accounts/register")
 
 def getLoginMessage(request):
 	return render(request, "login_message.html")
@@ -40,3 +37,22 @@ def contentView(request, templateName):
 
 def dashboardView(request):
 	return render(request, "dashboard.html")
+	
+def contact(request):
+	#If thanks is true - displays a thank you note
+	form=ContactForm(request.POST or None)
+	if request.method=="POST" and form.is_valid():	
+		topic=form.cleaned_data['topic']
+		message=form.cleaned_data['message']
+		email=form.cleaned_data['email']
+		try:
+			send_mail("MoodToolkit - From:"+email+" Subject: "+topic, message, email, ['bearle2009@gmail.com'])
+		# should log this exception!
+		except Exception:
+			error='Oops, there was a problem sending your email!  Please try again!'
+			return render(request, 'contact.html', {'form':form, 'error':error})
+		return redirect(reverse('thanks'))
+	return render(request, 'contact.html', {'form':form})
+
+def thanks(request):
+	return render(request, 'thanks.html')

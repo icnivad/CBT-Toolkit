@@ -5,8 +5,7 @@ from django.forms import ModelForm
 from django.forms.models import ModelMultipleChoiceField
 from django.core.validators import validate_email
 from django.utils.text import *
-from models import *
-
+from models import Thought, Challenge, Distortion, Mood
 
 class ThoughtForm(ModelForm):
 	class Meta:

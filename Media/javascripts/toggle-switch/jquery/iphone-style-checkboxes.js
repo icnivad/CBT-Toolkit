@@ -142,11 +142,16 @@
         $(document).unbind('mousemove touchmove', localMouseMove);
         return $(document).unbind('mouseup touchend', localMouseUp);
       };
-      this.container.bind('mousedown touchstart', function(event) {
-        self.onMouseDown.apply(self, arguments);
-        $(document).bind('mousemove touchmove', localMouseMove);
-        return $(document).bind('mouseup touchend', localMouseUp);
-      });
+      
+      /*I edited this file so as to prevent the toggle switch from moving twice when it is clicked 
+	This could potentially result in disaster, though I don't know how yet  what out on this 
+      should really turn this into an option!
+      */
+//      this.container.bind('mousedown touchstart', function(event) {
+   //     self.onMouseDown.apply(self, arguments);
+      //  $(document).bind('mousemove touchmove', localMouseMove);
+       // return $(document).bind('mouseup touchend', localMouseUp);
+      //});
       return this.elem.bind("change", function() {
         return self.onChange.apply(self, arguments);
       });

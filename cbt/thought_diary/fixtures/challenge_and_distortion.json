@@ -1,0 +1,365 @@
+[
+    {
+        "pk": 1, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "<h3>What's wrong with it?:</h3>The problem with a mental filter is that you ignore the things that might make you feel good if you give them a chance.  ", 
+            "question": "Are you looking only at the negatives aspects of the situation?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Mental Filter"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Did you make an assumption about what someone else is thinking?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Mind-Reading"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Are you making predictions or assumptions based on how you feel?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Emotional Reasoning"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Did you make a prediction about the future?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Predictions"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Did you compare yourself to someone else?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Comparisons"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Are you imagining the worst possible case?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Catastrophizing"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Are you criticizing yourself or others?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Critical Self"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "What it is: Thinking about things in all or nothing terms. \r\nWhy its a distortion: You ignore the fact that .", 
+            "question": "Do you feel like if it's not perfect it will be a disaster?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Black and White Thinking"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Did you use the words \"should\" or \"must\" or make a demand?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Shoulds and Musts"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Are you thinking about the past?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Regrets and Memories"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "thought_diary.distortion", 
+        "fields": {
+            "explanation": "", 
+            "question": "Are you ignoring or minimizing positive things about yourself or others?", 
+            "example": "", 
+            "how_to_respond": "", 
+            "distortion": "Disqualifying the Positive"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "What are some good qualities that you have that the other person might not share?", 
+            "distortion": [
+                6
+            ]
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Can you think of some problems the other person has that you don't have to worry about?", 
+            "distortion": [
+                6
+            ]
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "What is the best possible scenario?  Can you think of a way that things could turn out better than you expected?", 
+            "distortion": [
+                5
+            ]
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Try and think of one good thing that is true about this situation.  ", 
+            "distortion": [
+                1
+            ]
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Think of one good thing that is true about your situation now that wasn't true in the past.", 
+            "distortion": [
+                11
+            ]
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "If your thought was critical, can you think of a time when the opposite of this thought was true?  ", 
+            "distortion": [
+                8
+            ]
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Even if your prediction comes true, can you think of some good things that will still be true?", 
+            "distortion": [
+                5
+            ]
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Can you think of some problems you might still have, even if this were true?", 
+            "distortion": [
+                10
+            ]
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Is this conclusion really likely?  Can you think of a good result that might occur instead?", 
+            "distortion": [
+                7
+            ]
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Do the facts support your conclusion?  Can you think of any evidence that supports a more positive conclusion?", 
+            "distortion": [
+                4
+            ]
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Can you think of some positive things that could be true?  What is some evidence supports them?", 
+            "distortion": [
+                12
+            ]
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "Can you imagine a scenario where things aren't perfect, but they're still pretty good?", 
+            "distortion": [
+                9
+            ]
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "What might a positive interpretation of this situation be?", 
+            "distortion": [
+                3
+            ]
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "thought_diary.challengequestion", 
+        "fields": {
+            "question": "What would a friend tell you to make you feel better?", 
+            "distortion": []
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 1, 
+            "distortion": 6
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 2, 
+            "distortion": 6
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 3, 
+            "distortion": 5
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 4, 
+            "distortion": 1
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 5, 
+            "distortion": 11
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 6, 
+            "distortion": 8
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 8, 
+            "distortion": 5
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 10, 
+            "distortion": 10
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 11, 
+            "distortion": 7
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 12, 
+            "distortion": 4
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 13, 
+            "distortion": 12
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 14, 
+            "distortion": 9
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "thought_diary.challengequestion_distortion", 
+        "fields": {
+            "challengequestion": 15, 
+            "distortion": 3
+        }
+    }
+]

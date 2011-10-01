@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Contact Me{% endblock title %}
+{% block content %}
+	<div class="row">
+		<div class='page-header tower'>
+			<h1>Contact Me</h1>
+		</div>
+			{% if error %}
+			<h3>{{error}}</h3>
+			{% endif %}
+	</div>
+	<form class="form-stacked" method="POST" action="{% url contact %}">
+		<div class="row">
+		{% csrf_token %}
+		{{form}}
+		</div>
+		<div class="row tower">
+		<input type="submit" class="btn" value="Send"/>
+		</div>
+	</form>		
+{% endblock %}

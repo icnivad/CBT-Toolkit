@@ -9,7 +9,7 @@ import simplejson
 from django.template import RequestContext
 from models import  *
 from django.conf import settings
-from myforms import *
+from myforms import ThoughtForm, DistortionForm, ChallengeForm
 from registration.forms import RegistrationForm
 import datetime
 from django_session_stashable import SessionStashable
@@ -31,7 +31,7 @@ def thoughtView(request):
 		
 	else:
 		form=ThoughtForm()
-		c={'form':form}
+		c={'form':form, 'recent':Thought.objects.latest_with_permission(request)}
 		return render(request, "thought.html", c)
 
 def detailView(request, thought_id):
@@ -140,9 +140,13 @@ def deleteView(request, thought_id):
 		return render(request, "modal_delete.html", c)
 	
 def listView(request):
+	tname="thought_list.html"
+	xhr = request.GET.has_key('xhr')
 	thoughts=Thought.objects.all_with_permission(request)
 	c={'thoughts':thoughts}
-	return object_list(request, template_name='thought_list.html', queryset=thoughts, paginate_by=10)
+	if xhr:
+		tname="thought_list_contents.html"
+	return object_list(request, template_name=tname, queryset=thoughts, paginate_by=10)
 	
 def dataView(request):
 	distortions=Distortion.objects.all()

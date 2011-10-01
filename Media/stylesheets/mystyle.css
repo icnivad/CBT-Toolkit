@@ -33,6 +33,8 @@
 }
 
 #footer {
+	
+	/*other stuff*/
     background-color: #049CD9;
     background-image: -moz-linear-gradient(#004D9F, #049CD9);
     background-repeat: no-repeat;
@@ -79,6 +81,19 @@
 }
 
 /**********************
+**** List styles *******
+***************************/
+ul.my_horizontal {
+	display:inline;
+	list-style-type:none;
+	margin: 10px 0px;
+}
+ul.my_horizontal li {
+	float:left;
+	padding:10px;
+}
+
+/**********************
 **** Main Page *******
 ***************************/
 
@@ -88,10 +103,6 @@
 
 .hidden {
 	display:none;
-}
-
-.add_thought {
-	padding:10px;
 }
 
 .detail_field {
@@ -191,11 +202,9 @@ td.id, th.id {
 	display:none;
 }
 
-
 div.thought_challenge {
 	display:none;
 }
-
 form.challenge a.button {
 	width:150px;
 }
@@ -246,12 +255,28 @@ div.add_padding {
     margin: 15px 15px;
 }
 
+
+
+/**********************
+**** Add a thought *******
+***************************/
+
+#add_thought_form {
+	padding:0px;
+}
+
+.add_thought {
+	padding:10px 0px;
+}
+
+
 /**********************
 **** thought distortions *******
 ***************************/
 
 .distortions ul {
 	list-style:none;
+	margin:0px;
 }
 
 .distortions ul li:nth-child(odd) {
@@ -280,7 +305,7 @@ div.add_padding {
 }
 
 .distortions label.distortion_main_label {
-	padding:10px;
+	padding:5px;
 	text-align:left;
 	float:none;
 	width:auto;
@@ -289,6 +314,14 @@ div.add_padding {
 }
 
 .distortions .iPhoneCheckContainer {
+}
+
+/**********************
+**** thought challenge *******
+***************************/
+
+#challenge_thought_form {
+	padding:0px;
 }
 
 

@@ -1,33 +1,35 @@
 {% extends "thought_base.html" %}
 {% block title %} Challenge Your Thought {% endblock title %}
+
+{% block links %}
+<li><a href="{% url thought %}">Add Another Thought</a></li>
+<li><a href="{% url thought_detail thought.pk %}">Edit This Thought</a></li>
+<li><a href="{% url thought_distortion thought.pk %}">Edit Distortions</a></li>
+{% endblock %}
+
 {% block content %}
 	<div class="row">
-		<div class='page-header tower'>
-		<h1>Challenge Your Thought</h1>
+		<div class="columns span9">
+			<div class='page-header'>
+			<h1>Challenge Your Thought</h1>
+			</div>
+			<p>
+			Thanks for sharing your thought!  The next step is to take a good hard look at your thought, to see if you
+			can change it to something more positive, especially if it is making you feel very bad.   This is called 
+			thought challenging.  
+			<br/><br/>
+			</p>
+			<h2>{{thought}}</h2>
+			<h3>{{question.question}}</h3>
+			{% if next_url %}
+				<a href="{{next_url}}">Try a different question.</a>
+			{% endif %}		
+			<form id="challenge_thought_form" class="form-stacked" action="" method="POST">
+				{% csrf_token %}
+				{{form}}
+					<input class="tower btn primary" type="submit" value="Challenge Thought"/>
+			</form>
 		</div>
-		<div class="row">
-		<p class="columns span10">
-		Thanks for sharing your thought!  The next step is to take a good hard look at your thought, to see if you
-		can change it to something more positive, especially if it is making you feel very bad.   This is called 
-		thought challenging.  
-		<br/><br/>
-		</p>
-		</div>
-		<div class="span10 columns">
-		<h2>{{thought}}</h2>
-		<h3>{{question.question}}</h3>
-		{% if next_url %}
-			<a href="{{next_url}}">Try a different question.</a>
-		{% endif %}
-		</div>
-
 	</div>
-		
-	<form id="challenge_thought_form" class="form-stacked" action="" method="POST">
-		{% csrf_token %}
-		{{form}}
-		<div class="row">
-			<input class="offset1 tower btn primary" type="submit" value="Challenge Thought"/>
-		</div>
-	</form>
+
 {% endblock content %}
