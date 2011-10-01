@@ -126,6 +126,8 @@ $(document).ready(function(){
 		$(this).closest('.modal').modal('hide');
 		return false;
 	});
+	
+	$('.distortions input[name="distortions"]').iphoneStyle({checkedLabel:'Yes', uncheckedLabel: 'No'});
 	/*
 	function show_distortion_tab(el){
 		var id=el.attr("id").split("_").pop();

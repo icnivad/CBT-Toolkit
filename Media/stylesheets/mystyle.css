@@ -160,7 +160,6 @@ div.form_label {
 		font-size:30px;
 }
 
-
 /**********************
 **** List of Thoughts *******
 ***************************/
@@ -286,6 +285,13 @@ div.add_padding {
 
 .distortions .odd {
 	  background-color: #f9f9f9;
+}
+
+.distortions label {
+	padding:10px;
+}
+
+.distortions .iPhoneCheckContainer {
 }
 
 
