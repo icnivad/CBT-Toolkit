@@ -1,17 +1,16 @@
 {% extends "base.html" %}
-{% block tabs %}
-	{% if thought.pk %}
-	<ul class="breadcrumb">
-		<li><a href="{% url thought %}">Add Thought</a><span class="divider">/</span></li>
-		<li><a href="{% url thought_distortion thought.pk %}">Check For Distortions</a><span class="divider">/</span></li>
-		<li><a href="{% url thought_challenge thought.pk %}">Challenge Thought</a></li>
-	</ul>
-	{% else %}
-		<ul class="breadcrumb">
-			<li><a href="{% url thought %}">Add Thought</a><span class="divider">/</span></li>
-			<li><a href="/thought/distortion">Check For Distortions</a><span class="divider">/</span></li>
-			<li><a href="/thought/challenge">Challenge Thought</a></li>
-		</ul>
-	{% endif %}
-	
+{% block navigation %}
+
+<div class="row">
+	<div class="span3">
+		<a href="{% url thought_list %}">&laquo View My Thoughts</a>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span9">
+		{% include "unsaved_thoughts_warning.html" %}
+	</div>
+</div>
+
 {% endblock %}

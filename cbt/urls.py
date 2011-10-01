@@ -33,8 +33,11 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
+    
     url(r'^accounts/register/', 'registration.views.register', {'backend':'registration.backends.simple.SimpleBackend', 'success_url': settings.REGISTER_REDIRECT_URL}, name='register'),
+    url(r'^accounts/login/', 'django.contrib.auth.views.login', name="login"),    
     (r'^accounts/', include('registration.backends.simple.urls')),
+
 #    (r'', errorView),
 #    (r'^%s' % spreedly_settings.SPREEDLY_URL[1:], include('spreedly.urls')),
 )

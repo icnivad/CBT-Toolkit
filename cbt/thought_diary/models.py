@@ -116,7 +116,12 @@ class ThoughtManager(models.Manager):
 		if ((thought.created_by==request.user) or (thought.stashed_in_session(request.session))):
 			return thought
 		return None
-
+	
+	def all_with_permission(self, request):
+		thoughts=Thought.get_stashed_in_session(request.session)
+		if request.user.is_active:
+			thoughts=thoughts | self.filter(created_by=request.user).order_by('-datetime')
+		return thoughts
 
 class Thought(models.Model, SessionStashable):
 	share=models.BooleanField(default=False)
@@ -127,6 +132,7 @@ class Thought(models.Model, SessionStashable):
 	#stores user who created thought
 	created_by=models.ForeignKey(User, blank=True, null=True)
 	session_variable='thought_stash'
+	context_count_name='thought_stash_count'
 
 	datetime=models.DateTimeField('time', editable=False)
 	distortions=models.ManyToManyField("Distortion", blank=True, null=True)
@@ -135,6 +141,14 @@ class Thought(models.Model, SessionStashable):
 	def delete_with_permission(self, request):
 		if (request.user.is_authenticated() and (self.created_by==request.user)):
 			super(Thought, self).delete()
+		elif self.stashed_in_session(request.session):
+			self.remove_from_session(request.session)
+			
+	#need to really check this method out to make sure its okay!
+	def remove_from_session(self, session):
+		if self.pk in session[self.session_variable]:
+			session[self.session_variable].remove(self.pk)
+			session.modified=True
 			
 	def save(self, request):
 		if not self.datetime:

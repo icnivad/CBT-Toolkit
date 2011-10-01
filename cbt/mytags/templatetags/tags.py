@@ -2,6 +2,7 @@ from django import template
 from django.core.urlresolvers import resolve
 register=template.Library()
 from lazysignup.utils import is_lazy_user
+from django.conf import settings
 
 @register.simple_tag
 def active(request, name):

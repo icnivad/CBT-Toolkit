@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load tags %}
 
 {% block content %}
 <h1>You are now logged out of the Mood Toolkit!</h1>
@@ -12,7 +13,7 @@ If you logged out by mistake, you can <a href="/accounts/login">log back in</a>.
 </li>
 <li>
 If you still want to learn more about the Mood Toolkit, and how it can help you improve your mood,
-feel free to check out <a href="/content/tutorial">our tutorial</a>.
+feel free to check out <a href="{{NAMED_URLS.tutorial}}">our tutorial</a>.
 </li>
 <li>We hope you'll be back to visit us soon!</li>
 </div>

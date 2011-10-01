@@ -1,10 +1,34 @@
 {% extends "base.html" %}
 {% block title %} Thought {% endblock title %}
 {% block content %}
+
+	<div class="row">
+	<div class="columns span8">
+	<a href="{% url thought_list %}">&laquo Back to My Thoughts</a>
+		<h3>Your Thought: {{thought.thought}}</h3>
+	</div>
+	<div class="columns span2">
+	<h4>Actions:</h4>
+	<a class="launch_thought_modal" href="{% url thought_delete thought.pk %}"><img title="Delete Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/delete2.png"/></a>	
+	<a href="{% url thought_edit thought.pk %}"><img title="Edit Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/edit.png"/></a>
+	<a href="{% url thought_challenge thought.pk %}"><img title="Challenge Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/challenge.png"/></a>
+	</div>
+	</div>
+	
 	<div class="row">
 	<div class="columns span10">
-		<h3>Your Thought: {{thought.thought}}</h3>
+	
+	<p>
+	<h4>Distortions:</h4>
+	{% for distortion in thought.distortions.all %}
+	{{distortion.distortion}}{% if not forloop.last %}, {% endif %}
+	{% empty %}
+	None, <a href="{% url thought_distortion thought.pk %}">Add a Distortion</a>
+	{% endfor %}
+	</p>
+	
 		<h4>Responses:</h4>
+		<div id="thought_modal" class="modal hide fade"></div>
 		{% for challenge in thought.get_challenges %}
 		<strong>{{challenge.challenge_question.question}}</strong>
 		<p>{{challenge.response}}</p>

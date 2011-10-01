@@ -1,0 +1,7 @@
+{% if not request.user.is_active and thought_stash_count %}
+<div class="alert-message warning">
+<p><strong>You have unsaved thoughts!</strong> 
+Please <a href="{% url login %}">log in</a> or <a href="{% url register %}">sign up</a> 
+to save your thoughts.  
+</div>
+{% endif %}

@@ -139,7 +139,7 @@ def deleteView(request, thought_id):
 		return render(request, "modal_delete.html", c)
 	
 def listView(request):
-	thoughts=Thought.objects.filter(created_by=request.user).order_by('-datetime')
+	thoughts=Thought.objects.all_with_permission(request)
 	c={'thoughts':thoughts}
 	return object_list(request, template_name='thought_list.html', queryset=thoughts, paginate_by=10)
 	

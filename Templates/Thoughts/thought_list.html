@@ -2,43 +2,51 @@
 {% block title %} My Thoughts {% endblock title %}
 {% block content %}
 <div class="text_header">My Thoughts</div>
+{% include "unsaved_thoughts_warning.html" %}
 {% if is_paginated %}{% load tags %}{% paginator 3 %}{% endif %}
 <div id="thought_modal" class="modal hide fade"></div>
-<table class="thoughts">
-	<tr class="thought_header">
-		<td class='id'></td>
-		<td class='time'>Time</td>
-		<td class='thought'>Thought</td>
-		<td>Actions</td>
-	</tr>
-{% for thought in object_list%}
-	<tr class="thought_box {% cycle 'odd' 'even' %}">
-		<td class='id'>{{thought.pk}}</td>
-		<td class='time'><span class='time'>{{thought.pretty_date}}</span></td>
-		<td class='thought'>
-			<div class='thought'>{{thought.thought}}</div>
-			<div class='responses'>
-				{% for challenge in thought.get_challenges %}
-				{% if forloop.first %}
-				<p>
-				<span class="question">{{challenge.challenge_question.question}}</span>
-				<span class="response">{{challenge.response}}</span>
-				</p>
-				<a href="{% url thought_detail thought.pk %}">See More Responses</a>
-				{% endif %}
-				{% empty %}
-				<a href="{% url thought_challenge thought.pk %}">Challenge This Thought</a>
-				{% endfor %}
-			</div>
-		</td>
-		<td>
-			<a class="launch_thought_modal" href="{% url thought_delete thought.pk %}"><img title="Delete Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/delete2.png"/></a>
-			<a class="jqm_trigger" href="{% url thought_edit thought.pk %}"><img title="Edit Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/edit.png"/></a>
-			<a class="jqm_trigger" href="{% url thought_challenge thought.pk %}"><img title="Challenge Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/challenge.png"/></a>
-		</td>
-	</tr>
-    </li>
-{% endfor %}
+{% if object_list %}
+	<table class="thoughts">
+		<tr class="thought_header">
+			<th class='id'></th>
+			<th class='time'>Time</th>
+			<th class='thought'>Thought</th>
+			<th>Actions</th>
+		</tr>
+	{% for thought in object_list%}
+		<tr class="thought_box {% cycle 'odd' 'even' %}">
+			<td class='id'>{{thought.pk}}</td>
+			<td class='time'><span class='time'>{{thought.pretty_date}}</span></td>
+			<td class='thought'>
+				<div class='thought'><h5><a href="{% url thought_detail thought.pk %}">{{thought.thought}}</a></h5></div>
+				<div class='responses'>
+					{% for challenge in thought.get_challenges %}
+					{% if forloop.first %}
+					<p>
+					<span class="question"><strong>{{challenge.challenge_question.question}}</strong></span>
+					<span class="response">{{challenge.response}}</span>
+					</p>
+					<a href="{% url thought_detail thought.pk %}">See More Responses</a>
+					{% endif %}
+					{% empty %}
+					<a href="{% url thought_challenge thought.pk %}">Challenge This Thought</a>
+					{% endfor %}
+				</div>
+			</td>
+			<td>
+				<a class="launch_thought_modal" href="{% url thought_delete thought.pk %}"><img title="Delete Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/delete2.png"/></a>
+				<a class="jqm_trigger" href="{% url thought_edit thought.pk %}"><img title="Edit Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/edit.png"/></a>
+				<a class="jqm_trigger" href="{% url thought_challenge thought.pk %}"><img title="Challenge Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/challenge.png"/></a>
+			</td>
+		</tr>
+	    </li>
+	{% endfor %}
 </table>
+
+{% else %}
+<p> You haven't added any thoughts yet!  You can <a href="{% url thought %}">add some here!</a></p>
+{% endif %}
+
+{% if is_paginated %}{% load tags %}{% paginator 3 %}{% endif %}
 
 {% endblock content %}

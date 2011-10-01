@@ -16,11 +16,23 @@ REGISTER_REDIRECT_URL="/dashboard"
 #deal with urls
 APPEND_SLASH=True
 
+
+# set up a dictionary of urls that can be accessed anywhere - good for static urls
+NAMED_URLS={
+	'tutorial':'/blog/tutorial',
+	'distortions':'/blog/tutorial#distorted-thinking',
+	'howto':'/blog/thought-diary-how-it-works',
+}
+if not PRODUCTION:
+	for k in NAMED_URLS:
+		NAMED_URLS[k]="http://www.moodtoolkit.com"+NAMED_URLS[k]
+
 TEMPLATE_CONTEXT_PROCESSORS = ('django.core.context_processors.request',
 'django.core.context_processors.auth',
 'django.core.context_processors.debug',
 'django.core.context_processors.i18n',
 'thought_diary.context_processors.get_useful_constants',
+'django_session_stashable.stashed_object_counts',
 )
 
 MYFILEPATH=os.path.dirname(os.path.dirname(__file__))+"/"

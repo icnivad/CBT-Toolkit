@@ -51,7 +51,7 @@
 					<li><a href="/thought">New Thought</a></li>
 				</ul>
 			</li>
-			<li><a href="/content/tutorial">Tutorial</a></li>
+			<li><a href="{{NAMED_URLS.tutorial}}">Tutorial</a></li>
 		</ul>	
 		{% else %}
 		<ul>
@@ -60,7 +60,7 @@
 			<li><a href="/blog/contact">Contact</a></li>
 			<li><a href="/blog">Blog</a></li>
 			<li><a href="/forum">Forum</a></li>         
-			<li><a href="/content/tutorial">Tutorial</a></li>
+			<li><a href="{{NAMED_URLS.tutorial}}">Tutorial</a></li>
 		</ul>
 		{% endif %}
 	{% include "login_message.html" %}
@@ -71,7 +71,7 @@
 
 
 <div class="container" id="page">
-	{% block tabs %}{% endblock %}
+	{% block navigation %}{% endblock %}
 	{% block content %}{% endblock %}
 </div>
 

@@ -188,7 +188,7 @@ td.time {
 	width:100px;
 }
 
-td.id {
+td.id, th.id {
 	display:none;
 }
 
@@ -200,6 +200,11 @@ div.thought_challenge {
 form.challenge a.button {
 	width:150px;
 }
+
+/**********************
+**** DetailView *******
+***************************/
+
 
 /**********************
 **** Zebra striped without stripes *******
