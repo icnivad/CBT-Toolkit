@@ -23,12 +23,12 @@
 	</div>
 			<form action="{% url thought_distortion thought.pk %}" method="POST">
 			<div class="row">
-			<div class="columns span10 distortions">
+			<div class="columns span12 distortions">
 			<ul>
 			{% for distortion in distortions %}
 			<li>
 			<label for="id_distortions_{{forloop.counter}}" class="distortion_main_label">
-			<p class="columns span7">{{distortion.question}}</p>
+			<p class="columns span9">{{distortion.question}}</p>
 			<input class="columns span3" id="id_distortions_{{forloop.counter}}" type="checkbox" value="{{distortion.pk}}" name="distortions"/>
 			</label>
 			

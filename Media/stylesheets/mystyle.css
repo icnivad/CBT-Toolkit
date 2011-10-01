@@ -250,15 +250,6 @@ div.add_padding {
 **** thought distortions *******
 ***************************/
 
-
-.distortions label {
-	float:none;
-	width:auto;
-	font-size:16px;
-	display:block;
-	padding:5px;
-}
-
 .distortions ul {
 	list-style:none;
 }
@@ -275,6 +266,11 @@ div.add_padding {
 	color: #202020;
 }
 
+.distortions p {
+	color:#404040;
+	font-size:16px;
+}
+
 .distortions li{
 	margin:0px;
 }
@@ -286,6 +282,10 @@ div.add_padding {
 .distortions label.distortion_main_label {
 	padding:10px;
 	text-align:left;
+	float:none;
+	width:auto;
+	font-size:16px;
+	display:block;
 }
 
 .distortions .iPhoneCheckContainer {
