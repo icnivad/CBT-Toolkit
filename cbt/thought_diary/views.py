@@ -6,224 +6,156 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 import simplejson
-from django.views.generic import *
-from django.views.generic.edit import *
 from django.template import RequestContext
 from models import  *
 from django.conf import settings
-from myforms import *
+from myforms import ThoughtForm, DistortionForm, ChallengeForm
+from registration.forms import RegistrationForm
 import datetime
-
-def mainView(request):
-	logged_in=False
-	username=""
-	if request.user.is_authenticated():
-		return redirect(reverse('thought'))
-	else:
-		loginForm=LoginForm()
-		signupForm=CreateUserForm()
-		c={'logged_in':logged_in, 'username':username, 'loginform':loginForm, 'signupform':signupForm}
-		c.update(csrf(request))
-		return render(request, "main.html", c)
-
-def loginAction(request):
-	if request.method=="POST":
-		form=LoginForm(request.POST)
-		if form.is_valid():
-			username=form.cleaned_data['username']
-			password=form.cleaned_data['password']
-			user=authenticate(username=username, password=password)
-			if user is not None:
-				if user.is_active:
-					login(request, user)
-					return redirect("/")
-				else:
-					pass
-			else:
-				errormsg="You have entered an incorrect username or password.  Please try again."  
-				c={'form':form, 'errormsg':errormsg}
-				c.update(csrf(request))
-				return render(request, "login.html", c)
-		else:
-			pass
-	else:
-		form=LoginForm()
-	c={'form':form}
-	c.update(csrf(request))
-	return render(request, "login.html", c)
-
-def signupAction(request):
-	if request.method=="POST":
-		form=CreateUserForm(request.POST)
-		if form.is_valid():
-			username=form.cleaned_data['username']
-			password=form.cleaned_data['password']
-			email=form.cleaned_data['email']
-			user=User.objects.create_user(username=username, email=email, password=password) 
-			user.save()
-			createdUser=authenticate(username=username, password=password)
-			login(request, createdUser)
-			return redirect("/")
-		else:
-			c={'form':form}
-			c.update(csrf(request))
-			return render(request, "signup.html", c)
-	else:
-		form=CreateUserForm()
-		c={'form':form}
-		c.update(csrf(request))
-		return render(request, "signup.html", c)
-				
-def logoutView(request):
-	logout(request)
-	return redirect("/")
+from django_session_stashable import SessionStashable
+from django.views.generic.list_detail import object_list
 
 def thoughtView(request):
 	if request.method=="POST":
 		form=ThoughtForm(request.POST)
-		moodForm=MoodForm(request.POST)
 		temp=""
 		if form.is_valid():
 			if(form.cleaned_data['thought']!=""):
 				temp=form.save(commit=False)
-				temp.user=request.user
-				temp.save()
+				temp.save(request)
 			else:
 				pass
 		else:
 			raise Exception('thought form invalid')
-		if moodForm.is_valid():
-			if ((moodForm.cleaned_data['mood'] is not None) or (moodForm.cleaned_data['feeling']!="")):
-				mtemp=moodForm.save(commit=False)
-				mtemp.user=request.user
-				mtemp.save()
-			else:
-				pass
-		else:
-			raise Exception('mood form invalid')
-		c={'recent_thought':temp}
-		return render(request, "thought_message.html", c)
+		return redirect(reverse('thought_distortion', kwargs={'thought_id':temp.pk}))
 		
 	else:
 		form=ThoughtForm()
-		moodForm=MoodForm()
-		thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
-		c={'form':form, 'thoughts':thoughts, 'mood':moodForm}
+		c={'form':form, 'recent':Thought.objects.latest_with_permission(request)}
 		return render(request, "thought.html", c)
 
-def thoughtDetailView(request, thought_id):
+def detailView(request, thought_id):
 	thought=Thought.objects.get(pk=thought_id)
-	challenge=None
-	try:
-		challenge=Challenge.objects.get(thought=thought)
-	except:
-		pass
-	c={'thought':thought, 'challenge':challenge}
+	print thought.get_challenges()
+	c={'thought':thought}
 	return render(request, "thought_detail.html", c)
 
-def thoughtEditView(request, thought_id):
+def editView(request, thought_id):
 	if request.method=="POST":
-		thought=Thought.objects.get(pk=thought_id)
+		thought=Thought.objects.get_with_permission(request, thought_id)
 		form=ThoughtForm(request.POST, instance=thought)
-		try:
-			moodForm=MoodForm(request.POST, instance=thought.get_mood())
-		except:
-			moodForm=MoodForm(request.POST)
 		temp=""
 		if form.is_valid():
 			if(form.cleaned_data['thought']!=""):
 				temp=form.save(commit=False)
-				temp.user=request.user
-				temp.save()
+				temp.save(request)
 			else:
 				pass
 		else:
 			raise Exception('thought form invalid')
-		if moodForm.is_valid():
-			if ((moodForm.cleaned_data['mood'] is not None) or (moodForm.cleaned_data['feeling']!="")):
-				mtemp=moodForm.save(commit=False)
-				mtemp.user=request.user
-				mtemp.save()
-			else:
-				pass
-		else:
-			raise Exception('mood form invalid')
-		return HttpResponse("")
+		return redirect(reverse('thought_detail', kwargs={'thought_id':temp.pk}))
+
 	else:
-		thought=Thought.objects.get(pk=thought_id)
+		thought=Thought.objects.get_with_permission(request, thought_id)
 		form=ThoughtForm(instance=thought)
-		try:
-			moodForm=MoodForm(instance=thought.get_mood())
-		except:
-			moodForm=MoodForm()
-		c={'thought':thought, 'form':form, 'mood':moodForm}
+		c={'thought':thought, 'form':form}
 		return render(request, "thought_edit.html", c)
 
-def challengeView(request, thought_id):
-	thought=Thought.objects.get(pk=thought_id)
+def distortionView(request, thought_id, questions=True):
+	thought=Thought.objects.get_with_permission(request, thought_id)
+	distortions=Distortion.objects.all()
+	distortions_used=thought.distortions.all()
+	form=DistortionForm(questions=questions, instance=thought)
+	if request.method=="POST":
+		form=DistortionForm(request.POST, instance=thought, questions=questions)
+		if form.is_valid():
+			temp=form.save(commit=False)
+			temp.save(request)
+			form.save_m2m()
+		else:
+			print 'not valid'
+			pass #trouble trouble trouble!
+		return redirect(reverse('thought_challenge', kwargs={'thought_id':thought.pk}))
+	else:		
+		templateName="distortion.html"
+		print form
+		c={'thought':thought, 'form':form, 'distortions':distortions, 'distortions_used':distortions_used}
+		return render(request, templateName, c)
+
+def challengeView(request, thought_id, challenge_question_id=None):
+	templateName="challenge.html"
+	thought=Thought.objects.get_with_permission(request, thought_id)
 	if request.method=="POST":
 		form=ChallengeForm(request.POST)
 		if form.is_valid():
 			temp=form.save(commit=False)
 			temp.thought=thought
 			temp.user=request.user
+			if challenge_question_id!=None:
+				question=ChallengeQuestion.objects.get(pk=challenge_question_id)
+				temp.challenge_question=question
 			temp.save()
-		else:
-			pass
-		return redirect("/thought")
-	else:
-		if not thought.user==request.user:
-			return redirect("/")
-		else:
+			form.save_m2m()
+			stashed=False
+			if Thought.num_stashed_in_session(request.session):
+				stashed=True
+			c={'thought':thought, 'form':form, 'stashed':stashed}
+			return render(request, "challenge_success.html", c)
+				
+	#If there's no thought - we're in trouble
+	if thought==None:
+		#Need to replace this with something real
+		return redirect("oops")
+	
+	#Don't have a question to respond - no trouble - just get one.  
+	#What do we do if all available questions have been answered though?
+	elif challenge_question_id==None:
+		questions=thought.get_unanswered_questions()
+		if len(questions)==0:
 			form=ChallengeForm()
 			c={'thought':thought, 'form':form}
-			return render(request, "challenge_thought_form.html", c)
-	
-def thoughtDeleteView(request, thought_id):
-	thought=Thought.objects.get(pk=thought_id)
-	if request.method=="POST":
-		if ((request.user.is_authenticated()) and (request.user==thought.user)):
-			thought.delete()
-		else:
+			return render(request, templateName, c)
+		question=questions[0]
+		return redirect(reverse('thought_challenge', kwargs={'thought_id':thought.pk, 'challenge_question_id':question.pk}))
+	else:
+		question=ChallengeQuestion.objects.get(pk=challenge_question_id)
+		questions=thought.get_unanswered_questions()
+		next_url=None
+		next=questions[0]
+		try:
+			i=questions.index(question)
+			next=questions[i+1]
+		except:
 			pass
-		return HttpResponse('deleted');
+		next_url=reverse('thought_challenge', kwargs={'thought_id':thought.pk, 'challenge_question_id':next.pk})
+		form=ChallengeForm(initial={'challenge_question':question})
+		c={'thought':thought, 'form':form, 'question':question, 'next_url':next_url}
+		return render(request, templateName, c)
+
+def challenge_all(request, thought_id):
+	thought=Thought.objects.get_with_permission(request, thought_id)
+	c={'thought':thought}
+	return render(request, 'challenge_all.html', c)
+
+def deleteView(request, thought_id):
+	thought=Thought.objects.get_with_permission(request, thought_id)
+	if request.method=="POST":
+		thought.delete_with_permission(request)
+		return HttpResponse('deleted')
 	else:
 		c={'thought':thought}
-		return render(request, "thought_delete.html", c)
+		return render(request, "modal_delete.html", c)
 	
-def errorView(request):
-	logged_in=False
-	username=""
-	if request.user.is_authenticated():
-		logged_in=True
-		username=request.user.username
-		c={'logged_in':logged_in, 'username':username}
-		c.update(csrf(request))
-		return render(request, "error.html", c)
-	else:
-		loginForm=LoginForm()
-		c={'logged_in':logged_in, 'username':username, 'loginform':loginForm}
-		c.update(csrf(request))
-		return render(request, "error.html", c)
-
-def testView(request):
-	test=reverse('main')
-	c={'test':test}
-	return render(request, 'test.html', c)
-	
-def getThoughts(request):
-	thoughts=Thought.objects.filter(user=request.user).order_by('datetime')
+def listView(request):
+	tname="thought_list.html"
+	xhr = request.GET.has_key('xhr')
+	thoughts=Thought.objects.all_with_permission(request)
 	c={'thoughts':thoughts}
-	return render(request, 'thought_list.html', c)
-
-def getLoginMessage(request):
-	return render(request, "login_message.html")
+	if xhr:
+		tname="thought_list_contents.html"
+	return object_list(request, template_name=tname, queryset=thoughts, paginate_by=10)
 	
-def server_error(request, template_name='500.html'):
-	"Always includes MEDIA_URL"
-	from django.http import HttpResponseServerError
-	t = loader.get_template(template_name)
-	c=Context({'MEDIA_URL':settings.MEDIA_URL})
-	c.update(csrf(request))
-	return HttpResponseServerError(t.render(c))
-
+def dataView(request):
+	distortions=Distortion.objects.all()
+	for d in distortion:
+		print d+": "+", ".join(d.challenges_questions.all())

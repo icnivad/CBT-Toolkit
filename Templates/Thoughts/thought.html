@@ -1,12 +1,21 @@
-{% extends "base.html" %}
-{% block title %} CBT Toolkit Dashboard {% endblock title %}
+{% extends "thought_base.html" %}
+{% block title %} Thought Diary {% endblock title %}
+
+{% block links %}
+{% if recent %}
+	<li><a href="{% url thought_list %}">&laquo View My Thoughts</a></li>
+	<li><a href="{% url thought_detail recent.pk%}">My Most Recent Thought</a></li>
+{% endif %}
+{% endblock %}
+
 {% block content %}
-	<div id="header_message">
-	{% include "thought_message.html" %}
+	<h1>Welcome to the Thought Diary</h1>
+	<div class="row">
+	<div class="span9 dungeon">
+	<strong>Let's get started!</strong>  Just type out what you're thinking below.  If you are feeling bad, 
+	try to think about what is making you feel so awful, and type that out.  <a href="{{NAMED_URLS.howto}}">Need some help getting started?</a>
+	</div>
 	</div>
 	{% include "add_thought_form.html" %}
-	<div class='thoughts'>
-		{% include "thought_list.html" %}
-	</div>
 </div>
 {% endblock %}

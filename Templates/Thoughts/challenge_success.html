@@ -1,0 +1,21 @@
+{% extends "challenge_base.html" %}
+{% block challenge_title %} Good For You! {% endblock challenge_title %}
+
+{% block links %}
+<li><a href="{% url thought_list %}">&laquo View My Thoughts</a></li>
+<li><a href="{% url thought %}">Add Another Thought</a></li>
+<li><a href="{% url thought_edit thought.pk %}">Edit This Thought</a></li>
+{% endblock %}
+
+{% block challenge_content %}
+		Thanks for challenging your thought!  Hopefully you feel a little better, but don't worry if you're still upset.  
+		It can take a while to get used to challenging thoughts.  
+
+		If you'd like, you can <a href="{% url thought_detail thought.pk %}">take a look at your thought</a>, 
+		or <a href="{% url thought %}">add another thought</a>.  
+		
+		You can also <a href="{% url thought_challenge thought.pk %}">answer another question about your thought</a>.  
+		That might help you feel better too.  
+		</div>
+	</div>
+{% endblock challenge_content %}

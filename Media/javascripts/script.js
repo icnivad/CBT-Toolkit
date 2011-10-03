@@ -1,6 +1,8 @@
 $(document).ready(function(){
 	
 	$('#id_thought').focus();
+
+	$("#sortTable").tablesorter();
 	
 	//allow ajax to work with django
 	$('html').ajaxSend(function(event, xhr, settings) {
@@ -25,93 +27,46 @@ $(document).ready(function(){
 		}
 	});
 	
-	//basic crud for thoughts
-	$('a.thought_delete').live('click', function(e){
-		var href=$(this).attr("href");
-		$.post(href, "delete", function(data){
-			$("#jqm_popup_msg").jqmHide();
-			refresh_thoughts();
+	$("a.submit").click(function(){
+		$(this).closest('form').submit();
+	});
+	
+	
+	/*Really, really hackish!*/
+	function refresh_thoughts(){
+		var getURL=document.URL
+		if(getURL.indexOf("?")!=-1){
+			getURL=getURL+"&xhr"
+		}
+		else {
+			getURL=getURL+"?xhr"
+		}
+		$.get(getURL, function(data){
+			$('#thought_contents').html(data);
+		});
+	}
+		
+	$('a.launch_thought_modal').live('click', function(){
+		$.get($(this).attr("href"), success=function(data){
+			$('#thought_modal').html(data);
+			$('#thought_modal').modal('show');
 		});
 		return false;
 	});
 	
-	// onShow : show+make the window translucent
-	$(".details").hide();
-	$(".detail_trigger").live("click", function(){
-		$(".details").toggle();
-		var msg=$(this).children("a")
-		if($(".details").is(":visible")){
-			msg.html("Click to Hide Optional Details");
-		}
-		else {
-			msg.html("Click to Show Optional Details");
-		}
+	$(".modal_cancel").live('click', function(){
+		$(this).closest('.modal').modal('hide');
+		return false;
 	});
 	
-	// CSS3 rounded corners / shadows
-	function fix_form_css(){
-		$("div#header li.active a").css({ '-moz-border-radius': '6px', '-webkit-border-radius': '6px', 'border-radius': '6px' });
-		$("div.sidebar_box").css({ '-moz-border-radius': '8px', '-webkit-border-radius': '8px', 'border-radius': '8px' });
-		$("div#price_table table").css({ '-moz-border-radius': '8px', '-webkit-border-radius': '8px', 'border-radius': '8px' });
-		$("span.highlight_dark, span.highlight_light").css({ '-moz-border-radius': '2px', '-webkit-border-radius': '2px', 'border-radius': '2px' });
-		$("div#about .team ul li a").css({ '-moz-border-radius': '8px', '-webkit-border-radius': '8px', 'border-radius': '8px' });
-		$("form .text_field").css({ '-moz-border-radius': '8px', '-webkit-border-radius': '8px', 'border-radius': '8px' });
-		$("a.button span").css({ 'text-shadow': '#000 0px -0px 2px' });
-		$("div#page .section_title h3").css({ 'text-shadow': '#3e2828 0px 0px 2px' });
-	}
-	fix_form_css();
-	
-	$('#jqm_popup_msg').jqm({overlay:20, ajax:"@href", modal:true, trigger:'a.jqm_trigger', onLoad:fix_form_css});
-	$('.cancel').live('click', function(){
-		$('#jqm_popup_msg').jqmHide();
-	});
-	
-	$("div.thought_challenge").show();
-//	$('tr.thought_box').live('mouseenter', function(){
-//		$(this).find("div.thought_challenge").show();
-//	});
-//	$('tr.thought_box').live('mouseleave', function(){
-//		$(this).find("div.thought_challenge").hide();
-//	});
-	
-	function refresh_thoughts(){
-		$.get('/thought/list/', function(data){
-			$('div.thoughts').html(data);
-			$('#jqm_popup_msg').jqm({overlay:20, ajax:"@href", modal:true, trigger:'a.jqm_trigger'});
-			$("div.thought_challenge").show();
+	$(".modal_action").live('click', function(){
+		$.post($(this).attr("href"), function(){
+			refresh_thoughts();
 		});
-	}
-	
-	function ajax_submit(form, callback){
-		$.ajax({
-			type:'POST',
-			url:form.attr("action"),
-			data:form.serialize(),
-			success: callback
-		});
-	}
-	
-	$("a.ajax_submit", "#challenge_thought_form").live('click', function(){
-		ajax_submit($(this).closest("form"), refresh_thoughts);
-		$('#jqm_popup_msg').jqmHide();
+		$(this).closest('.modal').modal('hide');
+		return false;
 	});
 	
-	$("a.ajax_submit", "#edit_thought_form").live('click', function(){
-		ajax_submit($(this).closest("form"), refresh_thoughts);
-		$('#jqm_popup_msg').jqmHide();
-	});
+	$('.distortions input[name="distortions"]').iphoneStyle({checkedLabel:'Yes', uncheckedLabel: 'No'});
 	
-	function add_thought(data){
-		$("#header_message").html(data);
-		refresh_thoughts();
-	}
-	
-	$('a.ajax_submit', '#add_thought_form').live('click', function(){
-		ajax_submit($(this).closest("form"), add_thought);
-		$(':input','#add_thought_form')
-		.not(':button, :submit, :reset, :hidden')
-		.val('')
-		.removeAttr('checked')
-		.removeAttr('selected');
-	});
 });

@@ -1,0 +1,13 @@
+{% load tags %}
+{% if request.user|nonlazy %}
+	<span id="log_in" class="top_bar_text">Welcome <a href="{% url dashboard %}">{{request.user.username}}</a>, you are now logged in! <a href="/accounts/logout/">Sign Out</a></span>
+{% else %}
+	<span id="log_in">
+	<form action="/accounts/login/" method="POST">
+		{% csrf_token %}
+		<input id="id_username" type="text" maxlength="20" name="username" placeholder="username">
+		<input id="id_password" type="password" maxlength="20" name="password" placeholder="password">
+	<a class="submit">Log In</a>
+	</form>
+	</span>
+{% endif %}

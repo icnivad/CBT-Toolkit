@@ -1,0 +1,58 @@
+{% extends "thought_base.html" %}
+{% block title %} Checklist for Negative Thoughts {% endblock title %}
+
+{% block links %}
+<li><a href="{% url thought_list %}">&laquo View My Thoughts</a></li>
+<li><a href="{% url thought %}">Add Another Thought</a></li>
+<li><a href="{% url thought_edit thought.pk %}">Edit This Thought</a></li>
+<li><a href="{% url thought_challenge thought.pk %}">Challenge This Thought</a></li>
+{% endblock %}
+
+{% block content%}
+	<div class="row">
+		<div class="span9 columns">
+			<div class='page-header'>
+			<h1>Checklist for Negative Thoughts</h1>
+			</div>
+			<div class="row">
+			<p class="columns span10">
+			Thanks for sharing your thought!  The next step is to take a good hard look at your thought, to see if you are looking
+			at things in a distorted way.  Cognitive distortions are extremely common in depression and anxiety, and they can make you feel really bad.  
+			<br/><br/>
+			Below are a few questions about your thought, to help you figure out if any 
+			<a href="{{NAMED_URLS.distortions}}"> cognitive distortions</a> are present.		
+			</p>
+			
+			<div class="columns span10">
+			<h2>{{thought}}</h2>
+			<a href="{% url thought_challenge thought.pk%}">Skip right to challenging this thought.</a>
+			</div>
+			</div>
+		</div>
+	</div>
+			<form action="{% url thought_distortion thought.pk %}" method="POST">
+			<div class="row">
+			<div class="columns span12 distortions tower dungeon">
+			<ul>
+			{% for distortion in distortions %}
+			<li>
+			<label for="id_distortions_{{forloop.counter}}" class="distortion_main_label">
+			<p class="columns span9">{{distortion.question}}</p>
+			<input class="columns span3" id="id_distortions_{{forloop.counter}}" type="checkbox" value="{{distortion.pk}}" name="distortions"
+			{% if distortion in distortions_used %}checked="checked"{% endif %}
+			/>
+			</label>			
+			</li>
+			{% endfor %}
+			</ul>
+			{% csrf_token %}
+			</div>
+			</div>
+			<div class="row">
+				<div class="columns offset1">
+					<input class="btn primary" type="submit" value="Submit Answers">
+					<a href="/thought">I don't want/need to challenge this thought</a>
+				</div>
+			</div>
+			</form>
+{% endblock content %}

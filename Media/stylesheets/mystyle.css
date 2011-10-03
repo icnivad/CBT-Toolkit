@@ -1,14 +1,102 @@
 /**********************
-**** Main Page *******
+**** All Pages *******
 ***************************/
-img.main_screenshot {
-	float: left;
-    padding: 20px 50px 0 100px;
+
+#page {
+	margin-top:30px;
 }
 
-div.signup form.signup {
-	margin: 10px 0px 0px 500px;
+#log_in {
+	float:right;
 }
+
+#log_in input {
+	width:100px;
+}
+
+#log_in a {
+	cursor:pointer;
+}
+
+/*Let's make the topbar not be fixed cause that's annoying me*/
+.topbar {
+	position:relative;
+}
+
+.topbar .top_bar_text {
+	padding: 10px 10px 11px;
+	color:#757575;
+}
+
+/* topbar menu */
+.topbar li:hover .dropdown-menu{
+		display:block;
+}
+
+#footer {
+	
+	/*other stuff*/
+    background-color: #049CD9;
+    background-image: -moz-linear-gradient(#004D9F, #049CD9);
+    background-repeat: no-repeat;
+	margin-top:50px;
+}
+
+#footer div.inner {
+    -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) inset;
+    background: url("../my_images/grid-18px.png") repeat scroll center top transparent;
+    padding: 45px 0;
+}
+
+#footer p, #footer ul {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+#footer ul {
+	display: block;
+    float: right;
+    position: relative;
+}
+
+#footer ul li{
+	display: block;
+    float: left;
+	margin: 0px 10px;
+}
+
+#footer ul a {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+
+/*Positioning above */
+.dungeon {
+	margin-bottom:20px;
+}
+
+.tower {
+	margin-top:20px;
+}
+
+/**********************
+**** List styles *******
+***************************/
+ul.my_horizontal {
+	display:inline;
+	list-style-type:none;
+	margin: 10px 0px;
+}
+ul.my_horizontal li {
+	float:left;
+	padding:10px;
+}
+
+/**********************
+**** Main Page *******
+***************************/
 
 /**********************
 **** Thought Diary *******
@@ -16,10 +104,6 @@ div.signup form.signup {
 
 .hidden {
 	display:none;
-}
-
-.add_thought {
-	padding:10px;
 }
 
 .detail_field {
@@ -37,7 +121,7 @@ div.signup form.signup {
 }
 
 form #id_thought , #id_response{
-	width:700px;
+	width: 450px;
 	height:75px;
 }
 
@@ -79,17 +163,21 @@ div.form_label {
 	left:50px;
 }
 
-#login_message{
-	position:absolute;
-	top:15px;
-	right:30px;
-}
+
 
 .text_header {
 		position:relative;
 		margin: 50px 0px 20px;
 		left: 250px;
 		font-size:30px;
+}
+
+/**********************
+**** List of Thoughts *******
+***************************/
+
+.notopmargin {
+	margin-top:0px;
 }
 
 .thoughts {
@@ -106,55 +194,51 @@ td {
 }
 
 td.thought{
-	width:450px;
+	width:550px;
 	padding:10px;
 	height:75px;
 }
 
-td.id {
+td.time {
+	width:100px;
+}
+
+td.id, th.id {
 	display:none;
 }
 
 div.thought_challenge {
 	display:none;
 }
-
-/**********************
-**** JQM Popup *******
-***************************/
-
-#jqm_popup_msg {
-display: none;
-    
-    position: fixed;
-    top: 17%;
-    left: 50%;
-    
-    margin-left: -300px;
-    
-    background-color: #EEE;
-    color: #333;
-    border: 1px solid black;
-    padding: 12px;	
-}
-
-#jqm_popup_msg #id_situation, #jqm_popup_msg #id_thought{
-	width:600px;
-}
-
 form.challenge a.button {
 	width:150px;
 }
 
 /**********************
-**** Delete Form *******
+**** DetailView *******
 ***************************/
-#delete_form div.float {
-	float:left;
-	width:100px;
-	left: 0px;
+
+
+/**********************
+**** Zebra striped without stripes *******
+***************************/
+.odd {
+	background-color: #f9f9f9;
 }
 
+
+
+/**********************
+**** Modal Window *******
+***************************/
+#thought_modal {
+	top:50%;
+	margin: 0px 0px 0px 0px;
+}
+
+#thought_modal .alert-message.block-message {
+	margin:0px;
+}
 
 /**********************
 **** Signup Page *******
@@ -175,6 +259,76 @@ form.signup div.submit {
 div.add_padding {
     margin: 15px 15px;
 }
+
+
+
+/**********************
+**** Add a thought *******
+***************************/
+
+#add_thought_form {
+	padding:0px;
+}
+
+.add_thought {
+	padding:10px 0px;
+}
+
+
+/**********************
+**** thought distortions *******
+***************************/
+
+.distortions ul {
+	list-style:none;
+	margin:0px;
+}
+
+.distortions ul li:nth-child(odd) {
+	background-color: #f9f9f9;
+}
+
+.distortions ul li:hover {
+	background-color: #f5f5f5;
+}
+
+.distortions ul li:hover p{
+	color: #202020;
+}
+
+.distortions p {
+	color:#404040;
+	font-size:16px;
+}
+
+.distortions li{
+	margin:0px;
+}
+
+.distortions .odd {
+	  background-color: #f9f9f9;
+}
+
+.distortions label.distortion_main_label {
+	padding:5px;
+	text-align:left;
+	float:none;
+	width:auto;
+	font-size:16px;
+	display:block;
+}
+
+.distortions .iPhoneCheckContainer {
+}
+
+/**********************
+**** thought challenge *******
+***************************/
+
+#challenge_thought_form {
+	padding:0px;
+}
+
 
 /**********************
 **** mood chart *******

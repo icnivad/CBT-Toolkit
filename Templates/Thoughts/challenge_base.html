@@ -1,0 +1,22 @@
+{% extends "thought_base.html" %}
+{% block title %} Challenge Your Thought {% endblock title %}
+
+{% block links %}
+<li><a href="{% url thought_list %}">&laquo View My Thoughts</a></li>
+<li><a href="{% url thought %}">Add Another Thought</a></li>
+<li><a href="{% url thought_edit thought.pk %}">Edit This Thought</a></li>
+<li><a href="{% url thought_distortion thought.pk %}">Edit Distortions</a></li>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="columns span9">
+			<div class='page-header'>
+			<h1>{% block challenge_title %}{% endblock %}</h1>
+			</div>
+			{% block challenge_content %}
+			{% endblock %}
+		</div>
+	</div>
+
+{% endblock content %}

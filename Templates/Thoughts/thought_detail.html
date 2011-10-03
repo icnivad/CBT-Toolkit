@@ -1,16 +1,38 @@
-{% extends "base.html" %}
-{% block title %} CBT Toolkit Dashboard {% endblock title %}
+{% extends "thought_base.html" %}
+{% block title %} Thought {% endblock title %}
+{% block links %}
+<li><a href="{% url thought_list %}">&laquo Back To My Thoughts</a></li>
+<li><a href="{% url thought %}">Add Another Thought</a></li>
+<li><a href="{% url thought_edit thought.pk %}">Edit This Thought</a></li>
+{% endblock %}
 {% block content %}
-	<div class="header page">
-		<h1>Thought Diary</h1>
+	<div class="section-header">
+		<h2>Your Thought: {{thought.thought}}</h2>
 	</div>
-	<div class="padding">
-		<h3>Your Thought: {{thought.thought}}</h3>
-		<p>{{thought.situation}}</p>
-		<p>{{thought.get_mood.mood}}</p>
-		<p>{{thought.get_mood.feeling}}</p>
-		<p>{{thought.category}}</p>
-		<h4>Response: {{challenge.response}}</h4>
+	<div class="dungeon tower">
+	<a class="launch_thought_modal" href="{% url thought_delete thought.pk %}"><img title="Delete Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/delete2.png"/></a>	
+	<a href="{% url thought_edit thought.pk %}"><img title="Edit Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/edit.png"/></a>
+	<a href="{% url thought_challenge thought.pk %}"><img title="Challenge Thought" class="icon" src="{{MEDIA_URL}}/my_images/Icons/24px/challenge.png"/></a>
 	</div>
-	<div class="bottom"></div>
+
+	<div class="row">
+	<div class="columns span9">
+	<p>
+	<h3>Distortions:</h3>
+	{% for distortion in thought.distortions.all %}
+	{{distortion.distortion}}{% if not forloop.last %}, {% else %} <a href="{% url thought_distortion thought.pk %}">Edit Distortions</a>{% endif %}
+	{% empty %}
+	You haven't added any distortions, <a href="{% url thought_distortion thought.pk %}">Add a Distortion</a>
+	{% endfor %}
+	</p>
+	
+	<h4>Responses:</h4>
+	<p><a href="{% url thought_challenge thought.pk %}">Add A Response</a></p>
+	<div id="thought_modal" class="modal hide fade"></div>
+	{% for challenge in thought.get_challenges %}
+	<strong>{{challenge.challenge_question.question}}</strong>
+	<p>{{challenge.response}}</p>
+	{% endfor %}
+	</div>
+	</div>
 {% endblock %}
