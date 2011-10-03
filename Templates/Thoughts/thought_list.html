@@ -1,7 +1,18 @@
 {% extends "base.html" %}
 {% block title %} My Thoughts {% endblock title %}
 {% block content %}
-<div class="text_header">My Thoughts</div>
+<div class="row">
+	<div class="span9 dungeon">
+		<ul class="unstyled my_horizontal">
+			{% if request.user.is_active %}
+			<li><a href="{% url dashboard %}">&laquo Dashboard</a></li>
+			{% endif %}
+			<li><a href="{% url thought %}">Add A New Thought</a></li>
+			<li><a href="{{NAMED_URLS.tutorial}}">Check out the Tutorial</a></li>
+		</ul>
+	</div>
+</div>
+<div class="notopmargin text_header">My Thoughts</div>
 {% include "unsaved_thoughts_warning.html" %}
 <div id="thought_contents">
 {% include "thought_list_contents.html" %}

@@ -31,8 +31,17 @@ $(document).ready(function(){
 		$(this).closest('form').submit();
 	});
 	
+	
+	/*Really, really hackish!*/
 	function refresh_thoughts(){
-		$.get('/thought/list/?xhr', function(data){
+		var getURL=document.URL
+		if(getURL.indexOf("?")!=-1){
+			getURL=getURL+"&xhr"
+		}
+		else {
+			getURL=getURL+"?xhr"
+		}
+		$.get(getURL, function(data){
 			$('#thought_contents').html(data);
 		});
 	}
@@ -51,32 +60,13 @@ $(document).ready(function(){
 	});
 	
 	$(".modal_action").live('click', function(){
-		$.post($(this).attr("href"));
+		$.post($(this).attr("href"), function(){
+			refresh_thoughts();
+		});
 		$(this).closest('.modal').modal('hide');
-		refresh_thoughts();
 		return false;
 	});
 	
 	$('.distortions input[name="distortions"]').iphoneStyle({checkedLabel:'Yes', uncheckedLabel: 'No'});
-	/*
-	function show_distortion_tab(el){
-		var id=el.attr("id").split("_").pop();
-		$("#distortion_tab_content_"+id).show();
-	}
 	
-	function hide__distortion_tabs(){
-		$("[id^='distortion_tab_content']").hide();
-	}
-	hide_distortion_tabs();
-	show_distortion_tab($(".active a"));
-
-	$(".distortion a").live("click", function(){
-		hide_distortion_tabs();
-		show_distortion_tab($(this));
-		$(".tabs .active").removeClass("active");
-		$(this).closest("li").addClass("active");
-		$(this).blur();
-		return false;
-	});
-	*/
 });

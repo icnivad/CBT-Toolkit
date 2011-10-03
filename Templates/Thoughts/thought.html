@@ -3,6 +3,7 @@
 
 {% block links %}
 {% if recent %}
+	<li><a href="{% url thought_list %}">&laquo View My Thoughts</a></li>
 	<li><a href="{% url thought_detail recent.pk%}">My Most Recent Thought</a></li>
 {% endif %}
 {% endblock %}

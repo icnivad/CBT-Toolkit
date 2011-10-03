@@ -64,6 +64,7 @@ def editView(request, thought_id):
 def distortionView(request, thought_id, questions=True):
 	thought=Thought.objects.get_with_permission(request, thought_id)
 	distortions=Distortion.objects.all()
+	distortions_used=thought.distortions.all()
 	form=DistortionForm(questions=questions, instance=thought)
 	if request.method=="POST":
 		form=DistortionForm(request.POST, instance=thought, questions=questions)
@@ -78,7 +79,7 @@ def distortionView(request, thought_id, questions=True):
 	else:		
 		templateName="distortion.html"
 		print form
-		c={'thought':thought, 'form':form, 'distortions':distortions}
+		c={'thought':thought, 'form':form, 'distortions':distortions, 'distortions_used':distortions_used}
 		return render(request, templateName, c)
 
 def challengeView(request, thought_id, challenge_question_id=None):
@@ -134,7 +135,7 @@ def deleteView(request, thought_id):
 	thought=Thought.objects.get_with_permission(request, thought_id)
 	if request.method=="POST":
 		thought.delete_with_permission(request)
-		return HttpResponse('deleted');
+		return HttpResponse('deleted')
 	else:
 		c={'thought':thought}
 		return render(request, "modal_delete.html", c)

@@ -2,8 +2,9 @@
 {% block title %} Checklist for Negative Thoughts {% endblock title %}
 
 {% block links %}
+<li><a href="{% url thought_list %}">&laquo View My Thoughts</a></li>
 <li><a href="{% url thought %}">Add Another Thought</a></li>
-<li><a href="{% url thought_detail thought.pk %}">Edit This Thought</a></li>
+<li><a href="{% url thought_edit thought.pk %}">Edit This Thought</a></li>
 <li><a href="{% url thought_challenge thought.pk %}">Challenge This Thought</a></li>
 {% endblock %}
 
@@ -37,9 +38,10 @@
 			<li>
 			<label for="id_distortions_{{forloop.counter}}" class="distortion_main_label">
 			<p class="columns span9">{{distortion.question}}</p>
-			<input class="columns span3" id="id_distortions_{{forloop.counter}}" type="checkbox" value="{{distortion.pk}}" name="distortions"/>
-			</label>
-			
+			<input class="columns span3" id="id_distortions_{{forloop.counter}}" type="checkbox" value="{{distortion.pk}}" name="distortions"
+			{% if distortion in distortions_used %}checked="checked"{% endif %}
+			/>
+			</label>			
 			</li>
 			{% endfor %}
 			</ul>

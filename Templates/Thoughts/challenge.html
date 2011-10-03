@@ -2,8 +2,9 @@
 {% block title %} Challenge Your Thought {% endblock title %}
 
 {% block links %}
+<li><a href="{% url thought_list %}">&laquo View My Thoughts</a></li>
 <li><a href="{% url thought %}">Add Another Thought</a></li>
-<li><a href="{% url thought_detail thought.pk %}">Edit This Thought</a></li>
+<li><a href="{% url thought_edit thought.pk %}">Edit This Thought</a></li>
 <li><a href="{% url thought_distortion thought.pk %}">Edit Distortions</a></li>
 {% endblock %}
 
@@ -14,12 +15,15 @@
 			<h1>Challenge Your Thought</h1>
 			</div>
 			<p>
-			Thanks for sharing your thought!  The next step is to take a good hard look at your thought, to see if you
-			can change it to something more positive, especially if it is making you feel very bad.   This is called 
-			thought challenging.  
-			<br/><br/>
-			</p>
+			<strong>According to your answers, your thought shows the following distortions: </strong>
+			{% for distortion in thought.distortions.all %}
+			{{distortion.distortion}}{% if not forloop.last %}, {% endif %}
+			{% endfor %} <a href="{% url thought_distortion thought.pk %}">Edit Distortions</a>
 			<h2>{{thought}}</h2>
+			The next step is to challenge your thought, by rephrasing it in a more positive way.  Below is a question
+			that might help you get started challenging your thought.  If you don't like the question, or it doesn't apply,
+			just pick another one!
+			</p>
 			<h3>{{question.question}}</h3>
 			{% if next_url %}
 				<a href="{{next_url}}">Try a different question.</a>

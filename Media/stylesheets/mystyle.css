@@ -175,6 +175,10 @@ div.form_label {
 **** List of Thoughts *******
 ***************************/
 
+.notopmargin {
+	margin-top:0px;
+}
+
 .thoughts {
 	list-style:none;
 }
