@@ -1,7 +1,6 @@
 from django import template
 from django.core.urlresolvers import resolve
 register=template.Library()
-from lazysignup.utils import is_lazy_user
 from django.conf import settings
 
 @register.simple_tag
@@ -16,11 +15,6 @@ def active(request, name):
 	except:
 		#should probably log this error somehow
 		pass
-
-@register.filter
-def nonlazy(user):
-	return (user.is_authenticated() and (not is_lazy_user(user)) )
-	
 
 #  Based on: http://www.djangosnippets.org/snippets/73/
 #

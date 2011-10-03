@@ -8,6 +8,10 @@ elif [ "$1" = "test" ]; then
 python manage.py test --verbosity 2 thought_diary
 
 
+elif [ "$1" = "load" ]; then
+python manage.py loaddata thought_diary/fixtures/original_data.json
+
+
 elif [ "$1" = "all" ]; then
 python manage.py dumpdata thought_diary --indent 4 > thought_diary/fixtures/original_data.json
 fi
