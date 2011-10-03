@@ -42,21 +42,21 @@ def detailView(request, thought_id):
 
 def editView(request, thought_id):
 	if request.method=="POST":
-		thought=Thought.objects.get_with_permission(request, pk=thought_id)
+		thought=Thought.objects.get_with_permission(request, thought_id)
 		form=ThoughtForm(request.POST, instance=thought)
 		temp=""
 		if form.is_valid():
 			if(form.cleaned_data['thought']!=""):
 				temp=form.save(commit=False)
-				temp.user=request.user
-				temp.save()
+				temp.save(request)
 			else:
 				pass
 		else:
 			raise Exception('thought form invalid')
-		return HttpResponse("")
+		return redirect(reverse('thought_detail', kwargs={'thought_id':temp.pk}))
+
 	else:
-		thought=Thought.objects.get(pk=thought_id)
+		thought=Thought.objects.get_with_permission(request, thought_id)
 		form=ThoughtForm(instance=thought)
 		c={'thought':thought, 'form':form}
 		return render(request, "thought_edit.html", c)
@@ -121,16 +121,22 @@ def challengeView(request, thought_id, challenge_question_id=None):
 		question=ChallengeQuestion.objects.get(pk=challenge_question_id)
 		questions=thought.get_unanswered_questions()
 		next_url=None
+		next=questions[0]
 		try:
 			i=questions.index(question)
 			next=questions[i+1]
-			next_url=reverse('thought_challenge', kwargs={'thought_id':thought.pk, 'challenge_question_id':next.pk})
 		except:
 			pass
+		next_url=reverse('thought_challenge', kwargs={'thought_id':thought.pk, 'challenge_question_id':next.pk})
 		form=ChallengeForm(initial={'challenge_question':question})
 		c={'thought':thought, 'form':form, 'question':question, 'next_url':next_url}
 		return render(request, templateName, c)
-	
+
+def challenge_all(request, thought_id):
+	thought=Thought.objects.get_with_permission(request, thought_id)
+	c={'thought':thought}
+	return render(request, 'challenge_all.html', c)
+
 def deleteView(request, thought_id):
 	thought=Thought.objects.get_with_permission(request, thought_id)
 	if request.method=="POST":

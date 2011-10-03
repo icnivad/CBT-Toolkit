@@ -1,34 +1,26 @@
-{% extends "base.html" %}
+{% extends "thought_base.html" %}
 {% block title %} Edit Your Thought {% endblock title %}
-{% block content %}
 
-<form id="edit_thought_form" action="{% url thought_edit thought.pk %}" method="POST">
+{% block links %}
+	<li><a href="{% url thought_list %}">&laquo View My Thoughts</a></li>
+	<li><a href="{% url thought_detail thought.pk%}">Back to this Thought</a></li>
+	<li><a href="{% url thought %}">Add A New Thought</a></li>
+{% endblock %}
+
+{% block content %}
+	<h1>Edit Your Thought</h1>
+<div class="row">
+<div class="columns span9">
+<form id="edit_thought_form" class="form-stacked" action="{% url thought_edit thought.pk %}" method="POST">
 	{% csrf_token %}
-	<label class='add_thought'>Edit Your Thought:</label>
+	<div class="dungeon">
+	<label class='add_thought'>Your Thought:</label>
 	{{form.thought}}
-	<div class="details">
-		<div class="detail_field">
-			<label>What is your mood on a scale of 1 to 10? (1 for bad, 10 for good)</label>
-			{{mood.mood}}
-		</div>
-		<div class="detail_field">
-			<label>How do you feel in one word?</label>
-			{{mood.feeling}}
-		</div>
-		<div class="detail_field">
-			<label>Category</label>
-			{{form.category}}
-		</div>
-		<div class="detail_field large">
-			<label>What is the situation?</label>
-			{{form.situation}}
-		</div>
 	</div>
-	
-	<div class="submit_thought">
-		<a href="javascript:;" class="button ajax_submit"><span>Edit Thought</span></a>
-		<a href="javascript:;" class="button cancel"><span>Cancel</span></a>
-	</div>	
+	<input type="submit" class="btn primary" value="Edit Thought"/>
+	<a href="{% url thought_detail thought.pk %}" class="btn">Cancel</a>
 </form>
+</div>
+</div>
 
 {% endblock content %}

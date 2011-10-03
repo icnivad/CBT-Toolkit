@@ -1,39 +1,31 @@
-{% extends "thought_base.html" %}
-{% block title %} Challenge Your Thought {% endblock title %}
-
-{% block links %}
-<li><a href="{% url thought_list %}">&laquo View My Thoughts</a></li>
-<li><a href="{% url thought %}">Add Another Thought</a></li>
-<li><a href="{% url thought_edit thought.pk %}">Edit This Thought</a></li>
-<li><a href="{% url thought_distortion thought.pk %}">Edit Distortions</a></li>
+{% extends 'challenge_base.html' %}
+{% block challenge_title %}
+Challenge Your Thought
 {% endblock %}
-
-{% block content %}
-	<div class="row">
-		<div class="columns span9">
-			<div class='page-header'>
-			<h1>Challenge Your Thought</h1>
-			</div>
-			<p>
-			<strong>According to your answers, your thought shows the following distortions: </strong>
-			{% for distortion in thought.distortions.all %}
-			{{distortion.distortion}}{% if not forloop.last %}, {% endif %}
-			{% endfor %} <a href="{% url thought_distortion thought.pk %}">Edit Distortions</a>
-			<h2>{{thought}}</h2>
-			The next step is to challenge your thought, by rephrasing it in a more positive way.  Below is a question
-			that might help you get started challenging your thought.  If you don't like the question, or it doesn't apply,
-			just pick another one!
-			</p>
-			<h3>{{question.question}}</h3>
-			{% if next_url %}
-				<a href="{{next_url}}">Try a different question.</a>
-			{% endif %}		
-			<form id="challenge_thought_form" class="form-stacked" action="" method="POST">
-				{% csrf_token %}
-				{{form}}
-					<input class="tower btn primary" type="submit" value="Challenge Thought"/>
-			</form>
-		</div>
-	</div>
-
-{% endblock content %}
+{% block challenge_content %}
+<p>
+The next step is to challenge your thought, by rephrasing it in a more positive way.  Below is a question
+that might help you get started challenging your thought.  If you don't like the question, or it doesn't apply,
+just pick another one!
+</p>
+<h2>{{thought}}</h2>
+<h3>{{question.question}}</h3>
+<div class="row">
+<div class="columns span12">
+<ul class="unstyled my_horizontal">
+{% if next_url %}
+	<li><a href="{{next_url}}">Try a different question</a></li>
+{% endif %}		
+	<li><a href="{% url thought_challenge_all thought.pk %}">See All Questions</a></li>
+	{% if thought.get_challenges %}
+	<li><a href="{% url thought_detail thought.pk %}">Previous Responses</a></li>
+	{% endif %}
+</ul>
+</div>
+</div>
+<form id="challenge_thought_form" class="form-stacked" action="" method="POST">
+	{% csrf_token %}
+	{{form}}
+		<input class="tower btn primary" type="submit" value="Challenge Thought"/>
+</form>
+{% endblock %}

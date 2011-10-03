@@ -1,0 +1,14 @@
+{% extends 'challenge_base.html' %}
+{% block challenge_title %}
+List of Challenge Questions
+{% endblock %}
+{% block challenge_content %}
+<p>
+Here are some questions you can use to help challenge your thought.  Just click on the one you'd like to answer.
+Don't like the questions you see?  <a href="{% url thought_distortion thought.pk %}">Edit the distortions to get new questions</a>
+</p>
+<h2>Your Thought: {{thought}}</h2>
+{% for question in thought.get_all_questions %}
+<p><a href="{% url thought_challenge thought.pk question.pk %}">{{question.question}}</a></p>
+{% endfor %}
+{% endblock %}

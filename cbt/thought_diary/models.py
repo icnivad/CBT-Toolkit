@@ -178,13 +178,15 @@ class Thought(models.Model, SessionStashable):
 	
 	#includes answered and unanswered - but only for the distortions appropriate to this thought
 	def get_all_questions(self):
-		return [q for d in self.distortions.all() for q in d.challenge_questions.all()]
-	
+		questions=[q for d in self.distortions.all() for q in d.challenge_questions.all()]
+		questions.extend(ChallengeQuestion.objects.get_general_questions())
+		return questions
+		
 	#definitely want to test these methods!
 	def get_unanswered_questions(self):
 		questions=self.get_all_questions()
 		answered=[c.challenge_question for c in self.get_challenges()]
-		left_questions=list(set(questions)-set(answered))
+		left_questions=[q for q in questions if (q not in answered)]
 		return left_questions
 		
 class Distortion(models.Model):
@@ -197,9 +199,16 @@ class Distortion(models.Model):
 	def __unicode__(self):
 		return self.distortion
 
+class ChallengeQuestionManager(models.Manager):
+	def get_general_questions(self):
+		questions=self.all()
+		return [q for q in questions if (len(q.distortion.all())==0)]
+
 class ChallengeQuestion(models.Model):
 	question=models.TextField()
 	distortion=models.ManyToManyField("Distortion", related_name="challenge_questions", blank=True, null=True)
+	objects=ChallengeQuestionManager()
+	
 	def __unicode__(self):
 		if len(self.distortion.all())>0:
 			distortions=", ".join([d.distortion for d in self.distortion.all()])

@@ -1,6 +1,6 @@
 {% load tags %}
 {% if request.user|nonlazy %}
-	<span id="log_in" class="top_bar_text">Welcome {{request.user.username}}, you are now logged in! <a href="/accounts/logout/">Sign Out</a></span>
+	<span id="log_in" class="top_bar_text">Welcome <a href="{% url dashboard %}">{{request.user.username}}</a>, you are now logged in! <a href="/accounts/logout/">Sign Out</a></span>
 {% else %}
 	<span id="log_in">
 	<form action="/accounts/login/" method="POST">

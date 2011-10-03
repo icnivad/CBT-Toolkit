@@ -2,15 +2,20 @@
 {% block title %} Mood Toolkit {% endblock title %}
 
 {% block content%}
-
+<div class="page-header">
 <h1>Welcome to the Mood Toolkit</h1>
+</div>
 <div class="row">
-<div class="span6 columns">
+<div class="span9 columns">
 
-Not sure where to start?  Check out the tutorial on <a href="{{NAMED_URLS.tutorial}}">Thoughts, Moods, and Feelings</a>
+Not sure where to start?  Check out the <a href="{{NAMED_URLS.howto}}">Guide to the Mood Toolkit</a>
+<br/>
+You can also take a look at the <a href="{{NAMED_URLS.tutorial}}">Tutorial: Thoughts, Moods, and Feelings</a>, to learn more about how this therapy works.
 <h2>Thought Diary</h2>
-<a href="/thought/list">My Thoughts</a>
-<a href="/thought">Add a new thought</a>
+<ul class="unstyled">
+<li><a href="/thought/list">My Thoughts</a></li>
+<li><a href="/thought">Add a new thought</a></li>
+</ul>
 </div>
 </div>
 

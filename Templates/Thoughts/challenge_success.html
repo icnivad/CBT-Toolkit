@@ -1,20 +1,16 @@
-{% extends "thought_base.html" %}
-{% block title %} Challenge Your Thought {% endblock title %}
-{% block content %}
-	<div class="row">
-		<div class='page-header tower'>
-		<h1>Good for you!</h1>
-		</div>
-		<div class="row">
-		<p class="columns span10">
+{% extends "challenge_base.html" %}
+{% block challenge_title %} Good For You! {% endblock challenge_title %}
+
+{% block links %}
+<li><a href="{% url thought_list %}">&laquo View My Thoughts</a></li>
+<li><a href="{% url thought %}">Add Another Thought</a></li>
+<li><a href="{% url thought_edit thought.pk %}">Edit This Thought</a></li>
+{% endblock %}
+
+{% block challenge_content %}
 		Thanks for challenging your thought!  Hopefully you feel a little better, but don't worry if you're still upset.  
 		It can take a while to get used to challenging thoughts.  
 
-		{% if stashed %}
-		You have some thoughts that have not been saved!
-		<a href="{% url auth_login %}">Log In</a> or <a href="{% url register %}">Sign Up</a> to save these thoughts.
-		{% endif %}
-		
 		If you'd like, you can <a href="{% url thought_detail thought.pk %}">take a look at your thought</a>, 
 		or <a href="{% url thought %}">add another thought</a>.  
 		
@@ -22,4 +18,4 @@
 		That might help you feel better too.  
 		</div>
 	</div>
-{% endblock content %}
+{% endblock challenge_content %}
