@@ -9,5 +9,5 @@ python manage.py test --verbosity 2 thought_diary
 
 
 elif [ "$1" = "all" ]; then
-python manage.py dumpdata thought_diary.thought_distortions --indent 4 > thought_diary/fixtures/test_initial_data.json
+python manage.py dumpdata thought_diary --indent 4 > thought_diary/fixtures/original_data.json
 fi
