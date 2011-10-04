@@ -22,7 +22,8 @@ Work on staging environment
 
 def get_required_packages():
 	run('cd /home/tukipenda/webapps/%s/; pip install -E VE -r CBT-Toolkit/requirements.txt' % env.app_folder)
-
+	run('cd /home/tukipenda/webapps/%s/; chmod 777 CBT-Toolkit/lib/install.sh; CBT-Toolkit/lib/install.sh' % env.app_folder)
+	
 def push():
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/; git pull origin master' % env.app_folder)
 
@@ -38,7 +39,7 @@ def move_static_files():
 		abort("Aborting at user request.")
 	run('cp -r /home/tukipenda/webapps/%s/CBT-Toolkit/Media/. /home/tukipenda/webapps/%s' % (env.app_folder, env.static_folder))
 
-def restart():
+def restart():-
 	run('/home/tukipenda/webapps/%s/apache2/bin/restart' % env.app_folder)
 
 def stop():
