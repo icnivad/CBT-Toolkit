@@ -23,6 +23,9 @@ Work on staging environment
 
 def set_up_binaries():
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit; cp -r bin/* ~/bin/myscripts/cbt_scripts/' % env.app_folder)
+	run('cd /home/tukipenda/bin/myscripts/cbt_scripts/; chmod 777 *')
+	run('cd /home/tukipenda//; chmod 777 *')
+
 
 def add_initial_data():
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; ./script.sh load_distortions' % env.app_folder)
@@ -39,6 +42,12 @@ def get_required_packages():
 def push():
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/; git pull origin master' % env.app_folder)
 
+def push_quick():
+	local('git add .')
+	local('git commit -m "quick"')
+	local('git push origin master')
+	push()
+	
 def check_memory():
 	run('cat /home/tukipenda/logs/user/cron/cron.log | tail')
 	run("ps -u tukipenda -o rss,command | sed -e '1d' | awk '{s+=$1} END {print s}'")
