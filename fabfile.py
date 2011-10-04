@@ -21,20 +21,6 @@ Work on staging environment
     env.static_folder='static_app'
 
 
-def set_up_binaries():
-	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit; cp -r bin/* ~/bin/myscripts/cbt_scripts/' % env.app_folder)
-	run('cd /home/tukipenda/bin/myscripts/cbt_scripts/; chmod 777 *')
-	run('cd /home/tukipenda//; chmod 777 *')
-
-
-def add_initial_data():
-	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; ./script.sh load_distortions' % env.app_folder)
-	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; ./script.sh load' % env.app_folder)
-
-def initialize():
-	add_initial_data()
-	set_up_binaries()
-
 def get_required_packages():
 	run('cd /home/tukipenda/webapps/%s/; pip install -E VE -r CBT-Toolkit/requirements.txt' % env.app_folder)
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/lib; chmod 777 install.sh; ./install.sh' % env.app_folder)
@@ -47,7 +33,21 @@ def push_quick():
 	local('git commit -m "quick"')
 	local('git push origin master')
 	push()
-	
+
+
+def set_up_binaries():
+	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit; cp -r bin/* ~/bin/myscripts/cbt_scripts/' % env.app_folder)
+	run('cd /home/tukipenda/bin/myscripts/cbt_scripts/; chmod 777 *')
+
+
+def add_initial_data():
+	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; ./script.sh load_distortions' % env.app_folder)
+	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; ./script.sh load' % env.app_folder)
+
+def initialize():
+	add_initial_data()
+	set_up_binaries()
+
 def check_memory():
 	run('cat /home/tukipenda/logs/user/cron/cron.log | tail')
 	run("ps -u tukipenda -o rss,command | sed -e '1d' | awk '{s+=$1} END {print s}'")
