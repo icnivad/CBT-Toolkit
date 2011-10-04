@@ -20,15 +20,22 @@ Work on staging environment
     env.app_folder="cbt"
     env.static_folder='static_app'
 
+
+def set_up_binaries():
+	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit; cp -r bin/* ~/bin/myscripts/cbt_scripts/' % env.app_folder)
+
 def add_initial_data():
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; ./script.sh load_distortions' % env.app_folder)
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; ./script.sh load' % env.app_folder)
 
+def initialize():
+	add_initial_data()
+	set_up_binaries()
 
 def get_required_packages():
 	run('cd /home/tukipenda/webapps/%s/; pip install -E VE -r CBT-Toolkit/requirements.txt' % env.app_folder)
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/lib; chmod 777 install.sh; ./install.sh' % env.app_folder)
-	
+
 def push():
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/; git pull origin master' % env.app_folder)
 
