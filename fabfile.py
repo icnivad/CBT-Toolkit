@@ -20,6 +20,9 @@ Work on staging environment
     env.app_folder="cbt"
     env.static_folder='static_app'
 
+def get_required_packages():
+	run('cd /home/tukipenda/webapps/%s/; pip install -E VE -r CBT-Toolkit/requirements.txt' % env.app_folder)
+
 def push():
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/; git pull origin master' % env.app_folder)
 
@@ -43,6 +46,7 @@ def stop():
 
 def deploy():
 	push()
+	get_required_packages()
 	move_static_files()
 	restart()
 	
