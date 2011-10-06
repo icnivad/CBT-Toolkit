@@ -67,6 +67,8 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	$('.distortions input[name="distortions"]').iphoneStyle({checkedLabel:'Yes', uncheckedLabel: 'No'});
-	
+	#hackish, but what are you going to do?
+	if(!$.browser.msie){
+		$('.distortions input[name="distortions"]').iphoneStyle({checkedLabel:'Yes', uncheckedLabel: 'No'});
+	}
 });
