@@ -34,15 +34,16 @@ def push_quick():
 	local('git push origin master')
 	push()
 
-
 def set_up_binaries():
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit; cp -r bin/* ~/bin/myscripts/cbt_scripts/' % env.app_folder)
 	run('cd /home/tukipenda/bin/myscripts/cbt_scripts/; chmod 777 *')
 
-
 def add_initial_data():
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; ./script.sh load_distortions' % env.app_folder)
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; ./script.sh load' % env.app_folder)
+
+def dump_data():
+	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; python2.7 manage.py dumpdata thought_diary.thought thought_diary.mood thought_diary.challenge --indent 4 > ~/bkups/cbt_production/django/bkup_$(date +%%m-%%d-%%Y:%%H-%%M-%%S).json' % env.app_folder)
 
 def initialize():
 	add_initial_data()

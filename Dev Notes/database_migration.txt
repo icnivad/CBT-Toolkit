@@ -1,0 +1,3 @@
+tables to deal with : thought_diary_thought
+thought_diary_mood
+thought_diary_challenge
