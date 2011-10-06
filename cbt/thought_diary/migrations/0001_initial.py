@@ -137,7 +137,7 @@ class Migration(SchemaMigration):
         'auth.group': {
             'Meta': {'object_name': 'Group'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '80', 'unique': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '80'}),
             'permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'})
         },
         'auth.permission': {
@@ -161,7 +161,7 @@ class Migration(SchemaMigration):
             'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
             'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'}),
-            'username': ('django.db.models.fields.CharField', [], {'max_length': '30', 'unique': 'True'})
+            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
         },
         'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
@@ -179,7 +179,7 @@ class Migration(SchemaMigration):
         },
         'thought_diary.challengequestion': {
             'Meta': {'object_name': 'ChallengeQuestion'},
-            'distortion': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'challenge_questions'", 'blank': 'True', 'null': 'True', 'to': "orm['thought_diary.Distortion']"}),
+            'distortion': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'challenge_questions'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['thought_diary.Distortion']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'question': ('django.db.models.fields.TextField', [], {})
         },
@@ -205,7 +205,7 @@ class Migration(SchemaMigration):
             'category': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
             'created_by': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True', 'blank': 'True'}),
             'datetime': ('django.db.models.fields.DateTimeField', [], {}),
-            'distortions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['thought_diary.Distortion']", 'symmetrical': 'False', 'null': 'True', 'blank': 'True'}),
+            'distortions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['thought_diary.Distortion']", 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'share': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'situation': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
