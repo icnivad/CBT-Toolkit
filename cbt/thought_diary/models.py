@@ -81,7 +81,7 @@ class MultiSelectField(models.Field):
 class Mood(models.Model):
 	feeling=models.CharField(blank=True, max_length=100)
 	mood=models.IntegerField(blank=True, null=True)
-	user=models.ForeignKey(User)
+	created_by=models.ForeignKey(User, blank=True, null=True)
 	datetime=models.DateTimeField('time')
 	def save(self):
 		if not self.datetime:
@@ -95,7 +95,7 @@ class Mood(models.Model):
 		return datetime_helper.pretty_date(self.datetime)
 	
 class TrackItem(models.Model):
-	user=models.ForeignKey(User)
+	created_by=models.ForeignKey(User, blank=True, null=True)
 	item=models.CharField(blank=True, max_length=100)
 	def __unicode__(self):
 		return str(self.item)
@@ -103,7 +103,7 @@ class TrackItem(models.Model):
 
 class TrackItemStatus(models.Model):	
 	datetime=models.DateTimeField('time')
-	user=models.ForeignKey(User)
+	created_by=models.ForeignKey(User, blank=True, null=True)
 	item=models.ForeignKey('TrackItem')
 	value=models.NullBooleanField(blank=True, null=True)
 	def __unicode__(self):

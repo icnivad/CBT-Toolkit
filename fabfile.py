@@ -40,12 +40,12 @@ def set_up_binaries():
 
 def custom_load_initial():
 	if env.settings=='production':
-		run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; python2.7 manage.py loaddata ~/bkups/cbt_production/django/Fixtures/auth_data.json' % env.app_folder)
+	#	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; python2.7 manage.py loaddata ~/bkups/cbt_production/django/Fixtures/auth_data.json' % env.app_folder)
 		run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; python2.7 manage.py loaddata ~/bkups/cbt_production/django/Fixtures/old_data.json' % env.app_folder)
 
 def add_initial_data():
 	custom_load_initial()
-	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; ./script.sh load_distortions' % env.app_folder)
+	#run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; ./script.sh load_distortions' % env.app_folder)
 #	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/cbt; ./script.sh load' % env.app_folder)
 
 def dump_data():
