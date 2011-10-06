@@ -67,7 +67,7 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	#hackish, but what are you going to do?
+	//hackish, but what are you going to do?
 	if(!$.browser.msie){
 		$('.distortions input[name="distortions"]').iphoneStyle({checkedLabel:'Yes', uncheckedLabel: 'No'});
 	}
