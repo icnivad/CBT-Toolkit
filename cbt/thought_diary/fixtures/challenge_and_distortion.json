@@ -81,7 +81,7 @@
         "model": "thought_diary.distortion", 
         "fields": {
             "explanation": "What it is: Thinking about things in all or nothing terms. \r\nWhy its a distortion: You ignore the fact that .", 
-            "question": "Do you feel like if it's not perfect it will be a disaster?", 
+            "question": "Are you looking at things as either all good or all bad?", 
             "example": "", 
             "how_to_respond": "", 
             "distortion": "Black and White Thinking"
