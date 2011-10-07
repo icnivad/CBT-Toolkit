@@ -37,7 +37,7 @@
 			{% for distortion in distortions %}
 			<li>
 			<label for="id_distortions_{{forloop.counter}}" class="distortion_main_label">
-			<p class="columns span9">{{distortion.question}}</p>
+			<span class="columns span9">{{distortion.question}}</span>
 			<input class="columns span3" id="id_distortions_{{forloop.counter}}" type="checkbox" value="{{distortion.pk}}" name="distortions"
 			{% if distortion in distortions_used %}checked="checked"{% endif %}
 			/>
