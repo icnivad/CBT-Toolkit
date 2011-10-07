@@ -64,6 +64,9 @@ def deploy():
 	get_required_packages()
 	move_static_files()
 	restart()
+def quick_deploy():
+	push_quick()
+	deploy()
 	
 def rollback():
 	run('cd /home/tukipenda/webapps/%s/CBT-Toolkit/; git reset --hard HEAD~1' % env.app_folder)

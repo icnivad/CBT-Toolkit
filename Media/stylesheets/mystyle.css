@@ -12,6 +12,7 @@
 
 #log_in input {
 	width:100px;
+	cursor:text;
 }
 
 #log_in a {
