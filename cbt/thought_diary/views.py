@@ -141,7 +141,7 @@ def deleteView(request, thought_id):
 	thought=Thought.objects.get_with_permission(request, thought_id)
 	if request.method=="POST":
 		thought.delete_with_permission(request)
-		return HttpResponse('deleted')
+		return HttpResponse({'result':'deleted'})
 	else:
 		c={'thought':thought}
 		return render(request, "modal_delete.html", c)
