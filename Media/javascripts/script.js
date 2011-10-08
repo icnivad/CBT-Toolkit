@@ -58,8 +58,8 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	#for IE7, may need to send arguments with post
-	#try to improve this later on
+	//for IE7, may need to send arguments with post
+	//try to improve this later on
 	$(".modal_action").live('click', function(){
 		$.post($(this).attr("href"), {'action':'delete'}, function(){
 			refresh_thoughts();
