@@ -61,7 +61,7 @@ $(document).ready(function(){
 	//for IE7, may need to send arguments with post
 	//try to improve this later on
 	$(".modal_action").live('click', function(){
-		$.ajax(type:'POST',
+		$.ajax({type:'POST',
 			url: $(this).attr("href"), 
 			data: {'action':'delete'}, 
 			success: function(){
@@ -70,7 +70,7 @@ $(document).ready(function(){
 			error:function(xhr, type, exception){
 				alert("Error: "+type);
 			}
-		);
+		});
 		$(this).closest('.modal').modal('hide');
 		return false;
 	});
