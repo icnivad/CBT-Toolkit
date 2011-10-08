@@ -31,7 +31,6 @@ $(document).ready(function(){
 		$(this).closest('form').submit();
 	});
 	
-	
 	/*Really, really hackish!*/
 	function refresh_thoughts(){
 		var getURL=document.URL
@@ -59,8 +58,10 @@ $(document).ready(function(){
 		return false;
 	});
 	
+	#for IE7, may need to send arguments with post
+	#try to improve this later on
 	$(".modal_action").live('click', function(){
-		$.post($(this).attr("href"), function(){
+		$.post($(this).attr("href"), {'action':'delete'}, function(){
 			refresh_thoughts();
 		});
 		$(this).closest('.modal').modal('hide');
