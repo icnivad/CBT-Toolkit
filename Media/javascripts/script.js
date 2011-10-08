@@ -61,7 +61,8 @@ $(document).ready(function(){
 	//for IE7, may need to send arguments with post
 	//try to improve this later on
 	$(".modal_action").live('click', function(){
-		$.post(url=$(this).attr("href"), dataType='json', success=function(){
+		$.post(url=$(this).attr("href"), dataType='json', success=function(data){
+			alert(data);
 			refresh_thoughts();
 		});
 		$(this).closest('.modal').modal('hide');
