@@ -1,6 +1,20 @@
-<div class="modal-header">Are you sure you want to delete this thought?</div>
-<div class="modal-body">{{thought.thought}}</div>
-<div class="modal-footer">
-<a href="#" class="btn primary thought_cancel">Cancel</a>
-<a href="{% url thought_delete thought.pk %}" class="btn thought_delete">Delete</a>
+{% extends 'thought_base.html' %}
+{% block title %} Thought {% endblock title %}
+{% block links %}
+<li><a href="{% url thought_list %}">&laquo Back To My Thoughts</a></li>
+<li><a href="{% url thought_detail thought.pk%}">Go to this Thought</a></li>
+<li><a href="{% url thought_edit thought.pk %}">Edit This Thought</a></li>
+{% endblock %}
+{% block content %}
+<div class="row">
+<div class="columns span9">
+<h3>Are you sure you want to delete this thought?</h3>
+<h2 class="dungeon">{{thought.thought}}</h2>
+<form action="{% url thought_delete thought.pk %}" method="POST">
+{% csrf_token %}
+<a href="{% url thought_list %}" class="btn primary thought_cancel">Cancel</a>
+<input class="btn offset1" value="Delete" type="submit">
+</form>
 </div>
+</div>
+{% endblock %}

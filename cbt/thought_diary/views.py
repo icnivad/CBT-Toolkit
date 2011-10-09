@@ -139,12 +139,19 @@ def challenge_all(request, thought_id):
 
 def deleteView(request, thought_id):
 	thought=Thought.objects.get_with_permission(request, thought_id)
+	xhr=request.GET.has_key('xhr')
 	if request.method=="POST":
 		thought.delete_with_permission(request)
-		return HttpResponse({'result':'deleted'})
+		if xhr:
+			return HttpResponse({'result':'deleted'})
+		else:
+			return redirect(reverse('thought_list'))
 	else:
 		c={'thought':thought}
-		return render(request, "modal_delete.html", c)
+		if xhr:
+			return render(request, "modal_delete.html", c)
+		else:
+			return render(request, "thought_delete.html", c)
 	
 def listView(request):
 	tname="thought_list.html"

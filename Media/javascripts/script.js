@@ -46,7 +46,7 @@ $(document).ready(function(){
 	}
 		
 	$('a.launch_thought_modal').live('click', function(){
-		$.get($(this).attr("href"), success=function(data){
+		$.get($(this).attr("href")+"?xhr", success=function(data){
 			$('#thought_modal').html(data);
 			$('#thought_modal').modal('show');
 		});
@@ -61,9 +61,10 @@ $(document).ready(function(){
 	//for IE7, may need to send arguments with post
 	//try to improve this later on
 	$(".modal_action").live('click', function(){
+		alert($(this).attr("href"));
 		$.post($(this).attr("href"), function(data){
 			refresh_thoughts();
-		}, 'text');
+		});
 		$(this).closest('.modal').modal('hide');
 		return false;
 	});
