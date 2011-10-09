@@ -15,6 +15,23 @@
 	cursor:text;
 }
 
+#log_in input.submit_login {
+	background-color:inherit;
+	border:none;
+	border-radius:0px;
+	box-shadow:none;
+	-moz-transition:none;
+	color: #BFBFBF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	cursor:pointer;
+	padding:4px 0px;
+	width:auto;
+} 
+
+#log_in input.submit_login:hover {
+	text-decoration: underline;
+}
+
 #log_in a {
 	cursor:pointer;
 }
