@@ -61,8 +61,7 @@ $(document).ready(function(){
 	//for IE7, may need to send arguments with post
 	//try to improve this later on
 	$(".modal_action").live('click', function(){
-		alert($(this).attr("href"));
-		$.post($(this).attr("href"), function(data){
+		$.post($(this).attr("url_ref"), function(data){
 			refresh_thoughts();
 		});
 		$(this).closest('.modal').modal('hide');

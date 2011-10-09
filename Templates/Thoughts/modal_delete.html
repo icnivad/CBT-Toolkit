@@ -3,5 +3,5 @@ Are you sure you want to delete this thought?
 <h4>{{thought.thought}}</h4>
 <a href="#" class="btn modal_cancel">Cancel</a>
 <!--this is really hackish!  I need a better approach.  meh -->
-<a href="{% url thought_delete thought.pk %}?xhr" class="modal_action">Delete</a>
+<a url_ref="{% url thought_delete thought.pk %}?xhr" class="modal_action">Delete</a>
 </div>
