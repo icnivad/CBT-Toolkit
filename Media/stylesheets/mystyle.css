@@ -15,7 +15,7 @@
 	cursor:text;
 }
 
-#log_in input.submit_login {
+input.topbar_submit {
 	background-color:inherit;
 	border:none;
 	border-radius:0px;
