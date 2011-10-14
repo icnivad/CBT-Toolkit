@@ -39,7 +39,6 @@ input.topbar_submit {
 /*Let's make the topbar not be fixed cause that's annoying me*/
 .topbar {
 	position:relative;
-	z-index: 9000;
 }
 
 .topbar .top_bar_text {
