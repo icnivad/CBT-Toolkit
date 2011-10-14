@@ -40,6 +40,11 @@ input.topbar_submit {
 .topbar {
 	position:relative;
 }
+<!--[if IE 6]>
+.topbar {
+	z-index:'9000';
+}
+<![endif]-->
 
 .topbar .top_bar_text {
 	padding: 10px 10px 11px;

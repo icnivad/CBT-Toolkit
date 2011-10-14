@@ -198,7 +198,7 @@ if(window.__noconflict){ jQuery.noConflict();}
         // Set the needed css styles
         container.css({
           'display': 'none',
-          'position': 'absolute',
+          'position': 'fixed',
           'zIndex': '9999',
           'top': '0px',
           'left': '0px',            
