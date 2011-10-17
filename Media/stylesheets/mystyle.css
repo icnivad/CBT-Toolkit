@@ -15,7 +15,7 @@
 	cursor:text;
 }
 
-input.topbar_submit {
+#log_in input.topbar_submit {
 	background-color:inherit;
 	border:none;
 	border-radius:0px;
@@ -28,7 +28,7 @@ input.topbar_submit {
 	width:auto;
 } 
 
-#log_in input.submit_login:hover {
+#log_in input.topbar_submit:hover {
 	text-decoration: underline;
 }
 
