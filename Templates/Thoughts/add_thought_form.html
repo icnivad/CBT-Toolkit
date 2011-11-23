@@ -3,6 +3,9 @@
 <form id="add_thought_form" class="form-stacked" action="{% url thought %}" method="POST">
 	{% csrf_token %}
 	<label class='add_thought'>What's on your mind?</label>
+	{% if error %}
+	<div class="alert-message warning">{{error}}</div>
+	{% endif %}
 	{{form.thought}}
 	<!--
 	<div class="detail_trigger"><a>Click to Show Optional Details</a></div>

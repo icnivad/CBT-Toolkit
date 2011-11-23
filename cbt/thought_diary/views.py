@@ -24,7 +24,9 @@ def thoughtView(request):
 				temp=form.save(commit=False)
 				temp.save(request)
 			else:
-				pass
+				error='Please enter a thought.'
+				c={'form':form, 'recent':Thought.objects.latest_with_permission(request), 'error':error}
+				return render(request, 'thought.html', c)
 		else:
 			raise Exception('thought form invalid')
 		return redirect(reverse('thought_distortion', kwargs={'thought_id':temp.pk}))
